@@ -1,0 +1,86 @@
+fileFormatVersion: 2
+guid: 12c341fd1d71a4ae7a6ac03dd19b6aae
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: CurvedWall_SmallWindow_support
+    100004: CurvedWall_SmallWindow_support1
+    100006: CurvedWall_SmallWindow_support 1
+    100008: CurvedWall_SmallWindow_supportpillar
+    100010: CurvedWall_SmallWindow_support2
+    400000: //RootNode
+    400002: CurvedWall_SmallWindow_support
+    400004: CurvedWall_SmallWindow_support1
+    400006: CurvedWall_SmallWindow_support 1
+    400008: CurvedWall_SmallWindow_supportpillar
+    400010: CurvedWall_SmallWindow_support2
+    2300000: //RootNode
+    2300002: CurvedWall_SmallWindow_support
+    2300004: CurvedWall_SmallWindow_support1
+    2300006: CurvedWall_SmallWindow_support 1
+    2300008: CurvedWall_SmallWindow_supportpillar
+    2300010: CurvedWall_SmallWindow_support2
+    3300000: //RootNode
+    3300002: CurvedWall_SmallWindow_support
+    3300004: CurvedWall_SmallWindow_support1
+    3300006: CurvedWall_SmallWindow_support 1
+    3300008: CurvedWall_SmallWindow_supportpillar
+    3300010: CurvedWall_SmallWindow_support2
+    4300000: CurvedWall_SmallWindow_support
+    4300002: CurvedWall_SmallWindow_support1
+    4300004: CurvedWall_SmallWindow_supportpillar
+    4300006: CurvedWall_SmallWindow_support2
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 0
+    splitTangentsAcrossUV: 1
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  userData: 

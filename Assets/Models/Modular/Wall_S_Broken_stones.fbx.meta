@@ -1,0 +1,118 @@
+fileFormatVersion: 2
+guid: 061ee332979a746908534bbd00e47658
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: polySurface3803
+    100002: polySurface3804
+    100004: polySurface3805
+    100006: polySurface3806
+    100008: polySurface3807
+    100010: polySurface3808
+    100012: polySurface3809
+    100014: polySurface3810
+    100016: polySurface3811
+    100018: //RootNode
+    100020: Wall_S_Broken_stones
+    100022: Wall_S_Broken
+    400000: polySurface3803
+    400002: polySurface3804
+    400004: polySurface3805
+    400006: polySurface3806
+    400008: polySurface3807
+    400010: polySurface3808
+    400012: polySurface3809
+    400014: polySurface3810
+    400016: polySurface3811
+    400018: Wall_S_Broken_stones
+    400020: //RootNode
+    400022: Wall_S_Broken
+    2300000: polySurface3803
+    2300002: polySurface3804
+    2300004: polySurface3805
+    2300006: polySurface3806
+    2300008: polySurface3807
+    2300010: polySurface3808
+    2300012: polySurface3809
+    2300014: polySurface3810
+    2300016: polySurface3811
+    2300018: Wall_S_Broken_stones
+    2300020: //RootNode
+    2300022: Wall_S_Broken
+    3300000: polySurface3803
+    3300002: polySurface3804
+    3300004: polySurface3805
+    3300006: polySurface3806
+    3300008: polySurface3807
+    3300010: polySurface3808
+    3300012: polySurface3809
+    3300014: polySurface3810
+    3300016: polySurface3811
+    3300018: Wall_S_Broken_stones
+    3300020: //RootNode
+    3300022: Wall_S_Broken
+    4300000: polySurface3803
+    4300002: polySurface3804
+    4300004: polySurface3805
+    4300006: polySurface3806
+    4300008: polySurface3807
+    4300010: polySurface3808
+    4300012: polySurface3809
+    4300014: polySurface3810
+    4300016: polySurface3811
+    4300018: Wall_S_Broken_stones
+    4300020: Wall_S_Broken_Stones
+    4300022: Wall_S_Broken
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 0
+    splitTangentsAcrossUV: 1
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  userData: 

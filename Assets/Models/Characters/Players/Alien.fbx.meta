@@ -1,0 +1,1888 @@
+fileFormatVersion: 2
+guid: 40f9e8aac38424a229fa3faed5f719a7
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: _body
+    100002: _Eyes
+    100004: _Flame
+    100006: _Support
+    100008: //RootNode
+    100010: Alien_
+    100012: Alien__HeadJ
+    100014: Alien__HeadTipJ
+    100016: Alien__JawJ
+    100018: Alien__JawTipJ
+    100020: Alien__lAnkleJ
+    100022: Alien__lArmSwitchC
+    100024: Alien__lArmSwitchCG
+    100026: Alien__lBallJ
+    100028: Alien__lClavicleJ
+    100030: Alien__lElbowJ
+    100032: Alien__lEyeJ
+    100034: Alien__lFinger1J1
+    100036: Alien__lFinger1J1C
+    100038: Alien__lFinger1J1CG
+    100040: Alien__lFinger1J1CRotG
+    100042: Alien__lFinger1J2
+    100044: Alien__lFinger1J2C
+    100046: Alien__lFinger1J2CG
+    100048: Alien__lFinger1J2CRotG
+    100050: Alien__lFinger1J3
+    100052: Alien__lFinger1J3C
+    100054: Alien__lFinger1J3CG
+    100056: Alien__lFinger1J3CRotG
+    100058: Alien__lFinger1JTip
+    100060: Alien__lFinger2J1
+    100062: Alien__lFinger2J1C
+    100064: Alien__lFinger2J1CG
+    100066: Alien__lFinger2J1CRotG
+    100068: Alien__lFinger2J2
+    100070: Alien__lFinger2J2C
+    100072: Alien__lFinger2J2CG
+    100074: Alien__lFinger2J2CRotG
+    100076: Alien__lFinger2J3
+    100078: Alien__lFinger2J3C
+    100080: Alien__lFinger2J3CG
+    100082: Alien__lFinger2J3CRotG
+    100084: Alien__lFinger2JTip
+    100086: Alien__lForearmJ
+    100088: Alien__lHipJ
+    100090: Alien__lKneeJ
+    100092: Alien__lPalmC
+    100094: Alien__lPalmCG
+    100096: Alien__lPalmJ
+    100098: Alien__lShoulderJ
+    100100: Alien__lThumbJ1
+    100102: Alien__lThumbJ1C
+    100104: Alien__lThumbJ1CG
+    100106: Alien__lThumbJ1CRotG
+    100108: Alien__lThumbJ2
+    100110: Alien__lThumbJ2C
+    100112: Alien__lThumbJ2CG
+    100114: Alien__lThumbJ2CRotG
+    100116: Alien__lThumbJ3
+    100118: Alien__lThumbJ3C
+    100120: Alien__lThumbJ3CG
+    100122: Alien__lThumbJ3CRotG
+    100124: Alien__lThumbJTip
+    100126: Alien__lToeJ
+    100128: Alien__lWristFKC
+    100130: Alien__lWristFKCG
+    100132: Alien__lWristIKC
+    100134: Alien__lWristIKCG
+    100136: Alien__lWristJ
+    100138: Alien__lWristJFK
+    100140: Alien__lWristJFKG1
+    100142: Alien__lWristJFKG2
+    100144: Alien__lWristJG1
+    100146: Alien__lWristJG2
+    100148: Alien__lWristJIKProxy
+    100150: Alien__lWristJIKProxyG1
+    100152: Alien__lWristJIKProxyG2
+    100154: Alien__lWristJProxy
+    100156: Alien__MainC
+    100158: Alien__Neck01J
+    100160: Alien__Neck02J
+    100162: Alien__rAnkleJ
+    100164: Alien__rArmSwitchC
+    100166: Alien__rArmSwitchCG
+    100168: Alien__rBallJ
+    100170: Alien__rClavicleJ
+    100172: Alien__rElbowJ
+    100174: Alien__rEyeJ
+    100176: Alien__rFinger1J1
+    100178: Alien__rFinger1J1C
+    100180: Alien__rFinger1J1CG
+    100182: Alien__rFinger1J1CRotG
+    100184: Alien__rFinger1J2
+    100186: Alien__rFinger1J2C
+    100188: Alien__rFinger1J2CG
+    100190: Alien__rFinger1J2CRotG
+    100192: Alien__rFinger1J3
+    100194: Alien__rFinger1J3C
+    100196: Alien__rFinger1J3CG
+    100198: Alien__rFinger1J3CRotG
+    100200: Alien__rFinger1JTip
+    100202: Alien__rFinger2J1
+    100204: Alien__rFinger2J1C
+    100206: Alien__rFinger2J1CG
+    100208: Alien__rFinger2J1CRotG
+    100210: Alien__rFinger2J2
+    100212: Alien__rFinger2J2C
+    100214: Alien__rFinger2J2CG
+    100216: Alien__rFinger2J2CRotG
+    100218: Alien__rFinger2J3
+    100220: Alien__rFinger2J3C
+    100222: Alien__rFinger2J3CG
+    100224: Alien__rFinger2J3CRotG
+    100226: Alien__rFinger2JTip
+    100228: Alien__rForearmJ
+    100230: Alien__rHipJ
+    100232: Alien__rKneeJ
+    100234: Alien__ROOTJ
+    100236: Alien__rPalmC
+    100238: Alien__rPalmCG
+    100240: Alien__rPalmJ
+    100242: Alien__rShoulderJ
+    100244: Alien__rThumbJ1
+    100246: Alien__rThumbJ1C
+    100248: Alien__rThumbJ1CG
+    100250: Alien__rThumbJ1CRotG
+    100252: Alien__rThumbJ2
+    100254: Alien__rThumbJ2C
+    100256: Alien__rThumbJ2CG
+    100258: Alien__rThumbJ2CRotG
+    100260: Alien__rThumbJ3
+    100262: Alien__rThumbJ3C
+    100264: Alien__rThumbJ3CG
+    100266: Alien__rThumbJ3CRotG
+    100268: Alien__rThumbJTip
+    100270: Alien__rToeJ
+    100272: Alien__rWristFKC
+    100274: Alien__rWristFKCG
+    100276: Alien__rWristIKC
+    100278: Alien__rWristIKCG
+    100280: Alien__rWristJ
+    100282: Alien__rWristJFK
+    100284: Alien__rWristJFKG1
+    100286: Alien__rWristJFKG2
+    100288: Alien__rWristJG1
+    100290: Alien__rWristJG2
+    100292: Alien__rWristJIKProxy
+    100294: Alien__rWristJIKProxyG1
+    100296: Alien__rWristJIKProxyG2
+    100298: Alien__rWristJProxy
+    100300: Alien__SH_HeadJ
+    100302: Alien__SH_HeadTipJ
+    100304: Alien__SH_JawJ
+    100306: Alien__SH_JawTipJ
+    100308: Alien__SH_lAnkleJ
+    100310: Alien__SH_lBallJ
+    100312: Alien__SH_lClavicleJ
+    100314: Alien__SH_lElbowJ
+    100316: Alien__SH_lEyeJ
+    100318: Alien__SH_lFinger1J1
+    100320: Alien__SH_lFinger1J2
+    100322: Alien__SH_lFinger1J3
+    100324: Alien__SH_lFinger1JTip
+    100326: Alien__SH_lFinger2J1
+    100328: Alien__SH_lFinger2J2
+    100330: Alien__SH_lFinger2J3
+    100332: Alien__SH_lFinger2JTip
+    100334: Alien__SH_lForearmJ
+    100336: Alien__SH_lHipJ
+    100338: Alien__SH_lKneeJ
+    100340: Alien__SH_lPalmJ
+    100342: Alien__SH_lShoulderJ
+    100344: Alien__SH_lThumbJ1
+    100346: Alien__SH_lThumbJ2
+    100348: Alien__SH_lThumbJ3
+    100350: Alien__SH_lThumbJTip
+    100352: Alien__SH_lToeJ
+    100354: Alien__SH_lWristJ
+    100356: Alien__SH_Neck01J
+    100358: Alien__SH_Neck02J
+    100360: Alien__SH_rAnkleJ
+    100362: Alien__SH_rBallJ
+    100364: Alien__SH_rClavicleJ
+    100366: Alien__SH_rElbowJ
+    100368: Alien__SH_rEyeJ
+    100370: Alien__SH_rFinger1J1
+    100372: Alien__SH_rFinger1J2
+    100374: Alien__SH_rFinger1J3
+    100376: Alien__SH_rFinger1JTip
+    100378: Alien__SH_rFinger2J1
+    100380: Alien__SH_rFinger2J2
+    100382: Alien__SH_rFinger2J3
+    100384: Alien__SH_rFinger2JTip
+    100386: Alien__SH_rForearmJ
+    100388: Alien__SH_rHipJ
+    100390: Alien__SH_rKneeJ
+    100392: Alien__SH_ROOTJ
+    100394: Alien__SH_rPalmJ
+    100396: Alien__SH_rShoulderJ
+    100398: Alien__SH_rThumbJ1
+    100400: Alien__SH_rThumbJ2
+    100402: Alien__SH_rThumbJ3
+    100404: Alien__SH_rThumbJTip
+    100406: Alien__SH_rToeJ
+    100408: Alien__SH_rWristJ
+    100410: Alien__SH_Spine01J
+    100412: Alien__SH_Spine02J
+    100414: Alien__SH_SpineTopJ
+    100416: Alien__Spine01J
+    100418: Alien__Spine02J
+    100420: Alien__SpineTopJ
+    100422: FlameRing
+    400000: _body
+    400002: _Eyes
+    400004: _Flame
+    400006: _Support
+    400008: //RootNode
+    400010: Alien_
+    400012: Alien__HeadJ
+    400014: Alien__HeadTipJ
+    400016: Alien__JawJ
+    400018: Alien__JawTipJ
+    400020: Alien__lAnkleJ
+    400022: Alien__lArmSwitchC
+    400024: Alien__lArmSwitchCG
+    400026: Alien__lBallJ
+    400028: Alien__lClavicleJ
+    400030: Alien__lElbowJ
+    400032: Alien__lEyeJ
+    400034: Alien__lFinger1J1
+    400036: Alien__lFinger1J1C
+    400038: Alien__lFinger1J1CG
+    400040: Alien__lFinger1J1CRotG
+    400042: Alien__lFinger1J2
+    400044: Alien__lFinger1J2C
+    400046: Alien__lFinger1J2CG
+    400048: Alien__lFinger1J2CRotG
+    400050: Alien__lFinger1J3
+    400052: Alien__lFinger1J3C
+    400054: Alien__lFinger1J3CG
+    400056: Alien__lFinger1J3CRotG
+    400058: Alien__lFinger1JTip
+    400060: Alien__lFinger2J1
+    400062: Alien__lFinger2J1C
+    400064: Alien__lFinger2J1CG
+    400066: Alien__lFinger2J1CRotG
+    400068: Alien__lFinger2J2
+    400070: Alien__lFinger2J2C
+    400072: Alien__lFinger2J2CG
+    400074: Alien__lFinger2J2CRotG
+    400076: Alien__lFinger2J3
+    400078: Alien__lFinger2J3C
+    400080: Alien__lFinger2J3CG
+    400082: Alien__lFinger2J3CRotG
+    400084: Alien__lFinger2JTip
+    400086: Alien__lForearmJ
+    400088: Alien__lHipJ
+    400090: Alien__lKneeJ
+    400092: Alien__lPalmC
+    400094: Alien__lPalmCG
+    400096: Alien__lPalmJ
+    400098: Alien__lShoulderJ
+    400100: Alien__lThumbJ1
+    400102: Alien__lThumbJ1C
+    400104: Alien__lThumbJ1CG
+    400106: Alien__lThumbJ1CRotG
+    400108: Alien__lThumbJ2
+    400110: Alien__lThumbJ2C
+    400112: Alien__lThumbJ2CG
+    400114: Alien__lThumbJ2CRotG
+    400116: Alien__lThumbJ3
+    400118: Alien__lThumbJ3C
+    400120: Alien__lThumbJ3CG
+    400122: Alien__lThumbJ3CRotG
+    400124: Alien__lThumbJTip
+    400126: Alien__lToeJ
+    400128: Alien__lWristFKC
+    400130: Alien__lWristFKCG
+    400132: Alien__lWristIKC
+    400134: Alien__lWristIKCG
+    400136: Alien__lWristJ
+    400138: Alien__lWristJFK
+    400140: Alien__lWristJFKG1
+    400142: Alien__lWristJFKG2
+    400144: Alien__lWristJG1
+    400146: Alien__lWristJG2
+    400148: Alien__lWristJIKProxy
+    400150: Alien__lWristJIKProxyG1
+    400152: Alien__lWristJIKProxyG2
+    400154: Alien__lWristJProxy
+    400156: Alien__MainC
+    400158: Alien__Neck01J
+    400160: Alien__Neck02J
+    400162: Alien__rAnkleJ
+    400164: Alien__rArmSwitchC
+    400166: Alien__rArmSwitchCG
+    400168: Alien__rBallJ
+    400170: Alien__rClavicleJ
+    400172: Alien__rElbowJ
+    400174: Alien__rEyeJ
+    400176: Alien__rFinger1J1
+    400178: Alien__rFinger1J1C
+    400180: Alien__rFinger1J1CG
+    400182: Alien__rFinger1J1CRotG
+    400184: Alien__rFinger1J2
+    400186: Alien__rFinger1J2C
+    400188: Alien__rFinger1J2CG
+    400190: Alien__rFinger1J2CRotG
+    400192: Alien__rFinger1J3
+    400194: Alien__rFinger1J3C
+    400196: Alien__rFinger1J3CG
+    400198: Alien__rFinger1J3CRotG
+    400200: Alien__rFinger1JTip
+    400202: Alien__rFinger2J1
+    400204: Alien__rFinger2J1C
+    400206: Alien__rFinger2J1CG
+    400208: Alien__rFinger2J1CRotG
+    400210: Alien__rFinger2J2
+    400212: Alien__rFinger2J2C
+    400214: Alien__rFinger2J2CG
+    400216: Alien__rFinger2J2CRotG
+    400218: Alien__rFinger2J3
+    400220: Alien__rFinger2J3C
+    400222: Alien__rFinger2J3CG
+    400224: Alien__rFinger2J3CRotG
+    400226: Alien__rFinger2JTip
+    400228: Alien__rForearmJ
+    400230: Alien__rHipJ
+    400232: Alien__rKneeJ
+    400234: Alien__ROOTJ
+    400236: Alien__rPalmC
+    400238: Alien__rPalmCG
+    400240: Alien__rPalmJ
+    400242: Alien__rShoulderJ
+    400244: Alien__rThumbJ1
+    400246: Alien__rThumbJ1C
+    400248: Alien__rThumbJ1CG
+    400250: Alien__rThumbJ1CRotG
+    400252: Alien__rThumbJ2
+    400254: Alien__rThumbJ2C
+    400256: Alien__rThumbJ2CG
+    400258: Alien__rThumbJ2CRotG
+    400260: Alien__rThumbJ3
+    400262: Alien__rThumbJ3C
+    400264: Alien__rThumbJ3CG
+    400266: Alien__rThumbJ3CRotG
+    400268: Alien__rThumbJTip
+    400270: Alien__rToeJ
+    400272: Alien__rWristFKC
+    400274: Alien__rWristFKCG
+    400276: Alien__rWristIKC
+    400278: Alien__rWristIKCG
+    400280: Alien__rWristJ
+    400282: Alien__rWristJFK
+    400284: Alien__rWristJFKG1
+    400286: Alien__rWristJFKG2
+    400288: Alien__rWristJG1
+    400290: Alien__rWristJG2
+    400292: Alien__rWristJIKProxy
+    400294: Alien__rWristJIKProxyG1
+    400296: Alien__rWristJIKProxyG2
+    400298: Alien__rWristJProxy
+    400300: Alien__SH_HeadJ
+    400302: Alien__SH_HeadTipJ
+    400304: Alien__SH_JawJ
+    400306: Alien__SH_JawTipJ
+    400308: Alien__SH_lAnkleJ
+    400310: Alien__SH_lBallJ
+    400312: Alien__SH_lClavicleJ
+    400314: Alien__SH_lElbowJ
+    400316: Alien__SH_lEyeJ
+    400318: Alien__SH_lFinger1J1
+    400320: Alien__SH_lFinger1J2
+    400322: Alien__SH_lFinger1J3
+    400324: Alien__SH_lFinger1JTip
+    400326: Alien__SH_lFinger2J1
+    400328: Alien__SH_lFinger2J2
+    400330: Alien__SH_lFinger2J3
+    400332: Alien__SH_lFinger2JTip
+    400334: Alien__SH_lForearmJ
+    400336: Alien__SH_lHipJ
+    400338: Alien__SH_lKneeJ
+    400340: Alien__SH_lPalmJ
+    400342: Alien__SH_lShoulderJ
+    400344: Alien__SH_lThumbJ1
+    400346: Alien__SH_lThumbJ2
+    400348: Alien__SH_lThumbJ3
+    400350: Alien__SH_lThumbJTip
+    400352: Alien__SH_lToeJ
+    400354: Alien__SH_lWristJ
+    400356: Alien__SH_Neck01J
+    400358: Alien__SH_Neck02J
+    400360: Alien__SH_rAnkleJ
+    400362: Alien__SH_rBallJ
+    400364: Alien__SH_rClavicleJ
+    400366: Alien__SH_rElbowJ
+    400368: Alien__SH_rEyeJ
+    400370: Alien__SH_rFinger1J1
+    400372: Alien__SH_rFinger1J2
+    400374: Alien__SH_rFinger1J3
+    400376: Alien__SH_rFinger1JTip
+    400378: Alien__SH_rFinger2J1
+    400380: Alien__SH_rFinger2J2
+    400382: Alien__SH_rFinger2J3
+    400384: Alien__SH_rFinger2JTip
+    400386: Alien__SH_rForearmJ
+    400388: Alien__SH_rHipJ
+    400390: Alien__SH_rKneeJ
+    400392: Alien__SH_ROOTJ
+    400394: Alien__SH_rPalmJ
+    400396: Alien__SH_rShoulderJ
+    400398: Alien__SH_rThumbJ1
+    400400: Alien__SH_rThumbJ2
+    400402: Alien__SH_rThumbJ3
+    400404: Alien__SH_rThumbJTip
+    400406: Alien__SH_rToeJ
+    400408: Alien__SH_rWristJ
+    400410: Alien__SH_Spine01J
+    400412: Alien__SH_Spine02J
+    400414: Alien__SH_SpineTopJ
+    400416: Alien__Spine01J
+    400418: Alien__Spine02J
+    400420: Alien__SpineTopJ
+    400422: FlameRing
+    4300000: FlameRing
+    4300002: _Flame
+    4300004: _body
+    4300006: _Eyes
+    4300008: _Support
+    9500000: //RootNode
+    13700000: _body
+    13700002: _Eyes
+    13700004: _Flame
+    13700006: _Support
+    13700008: FlameRing
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .0250000004
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 0
+    splitTangentsAcrossUV: 1
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human:
+    - boneName: Alien__SH_ROOTJ
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_lHipJ
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_rHipJ
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_lKneeJ
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_rKneeJ
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_lAnkleJ
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_rAnkleJ
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_Spine01J
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_Spine02J
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_Neck01J
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_HeadJ
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_lClavicleJ
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_rClavicleJ
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_lShoulderJ
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_rShoulderJ
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_lElbowJ
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_rElbowJ
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_lWristJ
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_rWristJ
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_lToeJ
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_rToeJ
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_lEyeJ
+      humanName: LeftEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_rEyeJ
+      humanName: RightEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_JawJ
+      humanName: Jaw
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_lThumbJ1
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_lThumbJ2
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_lThumbJ3
+      humanName: Left Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_lFinger1J1
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_lFinger1J2
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_lFinger1J3
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_lFinger2J1
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_lFinger2J2
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_lFinger2J3
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_rThumbJ1
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_rThumbJ2
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_rThumbJ3
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_rFinger1J1
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_rFinger1J2
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_rFinger1J3
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_rFinger2J1
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_rFinger2J2
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Alien__SH_rFinger2J3
+      humanName: Right Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Alien(Clone)
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: _body
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: _Eyes
+      position: {x: 0, y: -.102347218, z: 0}
+      rotation: {x: 0, y: -0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: _Flame
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: _Support
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien_
+      position: {x: .268489689, y: 1.84795129, z: .85000211}
+      rotation: {x: 0, y: -0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__MainC
+      position: {x: -.268489689, y: -1.84795129, z: -.85000211}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__HeadJ
+      position: {x: 1.53266972e-16, y: 2.67446852, z: -2.57714989e-16}
+      rotation: {x: -.5, y: .5, z: -.5, w: .5}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__HeadTipJ
+      position: {x: -.787955761, y: -2.18701657e-17, z: 2.62441988e-16}
+      rotation: {x: .5, y: -.5, z: .5, w: .5}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__JawJ
+      position: {x: -.0733640194, y: -.124452926, z: 1.42822361e-17}
+      rotation: {x: .5, y: -.5, z: .5, w: .5}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__JawTipJ
+      position: {x: -0, y: -.0733640194, z: .134353399}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lEyeJ
+      position: {x: -.0401269831, y: -.695177615, z: -.578079879}
+      rotation: {x: .5, y: -.5, z: .5, w: .5}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rEyeJ
+      position: {x: -.0401269831, y: -.695177615, z: .578079879}
+      rotation: {x: .5, y: -.5, z: .5, w: .5}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lArmSwitchCG
+      position: {x: -.761431396, y: 1.34970212, z: .012075766}
+      rotation: {x: -.253269076, y: .278109252, z: .450313032, w: .809770465}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lArmSwitchC
+      position: {x: 8.88178301e-17, y: -1.7763566e-16, z: -.188494757}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lPalmCG
+      position: {x: -.788639843, y: 1.31329417, z: .0540574044}
+      rotation: {x: -.253269076, y: .278109252, z: .450313032, w: .809770465}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lPalmC
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lFinger1J1CG
+      position: {x: -.196699724, y: .00736447424, z: .0265445355}
+      rotation: {x: .0275217015, y: -.0175501443, z: -.103961557, w: .994045556}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lFinger1J1CRotG
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lFinger1J1C
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lFinger1J2CG
+      position: {x: -.322294652, y: .0340373851, z: .0227977745}
+      rotation: {x: .0563747957, y: .243913546, z: .297894835, w: .921187699}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lFinger1J2CRotG
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lFinger1J2C
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lFinger1J3CG
+      position: {x: -.473228216, y: -.0896082073, z: .112000965}
+      rotation: {x: .151674643, y: .000401086902, z: .701879263, w: .695959866}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lFinger1J3CRotG
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lFinger1J3C
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lFinger2J1CG
+      position: {x: -.145363346, y: -.0437374935, z: -.275578409}
+      rotation: {x: -.2755723, y: -.243915752, z: .0869665742, w: .925743937}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lFinger2J1CRotG
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lFinger2J1C
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lFinger2J2CG
+      position: {x: -.242887199, y: -.0770138502, z: -.321044087}
+      rotation: {x: -.332815886, y: .0314230919, z: .569303215, w: .751092553}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lFinger2J2CRotG
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lFinger2J2C
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lFinger2J3CG
+      position: {x: -.299978673, y: -.213173598, z: -.25149402}
+      rotation: {x: -.305896699, y: .0046635964, z: .771354795, w: .558047831}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lFinger2J3CRotG
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lFinger2J3C
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lWristFKCG
+      position: {x: -.761431396, y: 1.34970212, z: .0120757688}
+      rotation: {x: -.253269076, y: .278109252, z: .450313032, w: .809770465}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lWristFKC
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lWristIKCG
+      position: {x: -.776999235, y: 1.34089613, z: 1.91409329e-16}
+      rotation: {x: -.245576292, y: .249172106, z: .442709088, w: .825599313}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lWristIKC
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lWristJFKG2
+      position: {x: -.761431396, y: 1.34970212, z: .0120757688}
+      rotation: {x: -.0211543962, y: .0262962896, z: .00809592102, w: .999397576}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lWristJFKG1
+      position: {x: -8.88178301e-17, y: -7.1054264e-16, z: -2.03661912e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lWristJFK
+      position: {x: -8.88178301e-17, y: 1.7763566e-16, z: 3.33066888e-17}
+      rotation: {x: -.245576292, y: .249172106, z: .442709088, w: .825599313}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lWristJG2
+      position: {x: -.667057633, y: 1.50355864, z: -.241068333}
+      rotation: {x: -.253269076, y: .278109252, z: .450313032, w: .809770465}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lWristJG1
+      position: {x: -.303794682, y: -.0300270207, z: .0588837713}
+      rotation: {x: 2.22712543e-11, y: 9.65237335e-10, z: 6.0711014e-10, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lThumbJ1CG
+      position: {x: -.106134929, y: -.104646087, z: .170536637}
+      rotation: {x: .384794503, y: .468022227, z: -.053461954, w: .793744445}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lThumbJ1CRotG
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lThumbJ1C
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lThumbJ2CG
+      position: {x: -.162877709, y: -.132733598, z: .250532746}
+      rotation: {x: .583147228, y: .446115643, z: .137420267, w: .664857745}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lThumbJ2CRotG
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lThumbJ2C
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lThumbJ3CG
+      position: {x: -.276774108, y: -.274658144, z: .337931335}
+      rotation: {x: .683805585, y: .033027295, z: .398477256, w: .61035645}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lThumbJ3CRotG
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lThumbJ3C
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lWristJ
+      position: {x: 8.88178301e-17, y: 0, z: 7.99360557e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lPalmJ
+      position: {x: -.0618732795, y: -8.88178314e-16, z: 2.6645351e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lFinger1J1
+      position: {x: -.196699724, y: .00736447424, z: .0265445355}
+      rotation: {x: .0140425451, y: .0947617814, z: .0839418098, w: .991855264}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lFinger1J2
+      position: {x: -.116361395, y: .0467018597, z: -.0279020779}
+      rotation: {x: 5.06539255e-16, y: -1.21430643e-17, z: 4.88324658e-16, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lFinger1J3
+      position: {x: -.183572054, y: -.0932191685, z: .0603149012}
+      rotation: {x: .0911349431, y: -.0292769857, z: .337177724, w: .936562061}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lFinger1JTip
+      position: {x: -.144750357, y: -.132105365, z: -.00238298532}
+      rotation: {x: .0131982481, y: -.00785548054, z: .390167445, w: .920615852}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lFinger2J1
+      position: {x: -.145363346, y: -.0437374935, z: -.275578409}
+      rotation: {x: -.308365434, y: -.181660548, z: .186597332, w: .914927185}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lFinger2J2
+      position: {x: -.10926725, y: .0264793169, z: -.00669780374}
+      rotation: {x: .0185086522, y: .00639790669, z: .0792096034, w: .996665597}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lFinger2J3
+      position: {x: -.115677878, y: -.114405192, z: .0128923152}
+      rotation: {x: -.00599007076, y: -.0173684582, z: .462359816, w: .886502028}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lFinger2JTip
+      position: {x: -.204886466, y: -.0694105923, z: -.0234019794}
+      rotation: {x: .0436361507, y: .175946817, z: .402672082, w: .897214472}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lThumbJ1
+      position: {x: -.106134929, y: -.104646087, z: .170536637}
+      rotation: {x: .247691989, y: -.202648625, z: -.301132649, w: .898276865}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lThumbJ2
+      position: {x: -.00658571627, y: .000812353974, z: .10180369}
+      rotation: {x: .0605998076, y: .104822889, z: -.092176564, w: .988353848}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lThumbJ3
+      position: {x: .00381165044, y: -.074464567, z: .187600553}
+      rotation: {x: .417563319, y: -.121719547, z: .0173055679, w: .900292039}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lThumbJTip
+      position: {x: -.00106277771, y: -.125792116, z: .236226007}
+      rotation: {x: .416170537, y: .0578398742, z: .0454184078, w: .906307817}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lWristJIKProxyG2
+      position: {x: -.667059898, y: 1.50356114, z: -.241067484}
+      rotation: {x: 5.38024051e-06, y: 4.18673699e-06, z: 4.5876277e-07, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lWristJIKProxyG1
+      position: {x: -.109941505, y: -.162662342, z: .241068333}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lWristJIKProxy
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -.245582476, y: .249171138, z: .442706347, w: .825599253}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__Neck01J
+      position: {x: -0, y: 2.20926619, z: -.122235902}
+      rotation: {x: .0724191517, y: -0, z: -0, w: .997374296}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__Neck02J
+      position: {x: -5.11298717e-33, y: 2.44186735, z: -.0611179508}
+      rotation: {x: .0724191517, y: -0, z: -0, w: .997374296}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rArmSwitchCG
+      position: {x: .776999235, y: 1.34089613, z: -2.0989761e-16}
+      rotation: {x: -.245576292, y: -.249172106, z: -.442709088, w: .825599313}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rArmSwitchC
+      position: {x: -0, y: 0, z: -.188494757}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__ROOTJ
+      position: {x: -0, y: 1.34795356, z: -.15959084}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lHipJ
+      position: {x: -.192245618, y: -.0707123205, z: 0}
+      rotation: {x: .590093493, y: .484689623, z: .442275107, w: .470381141}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lKneeJ
+      position: {x: -.590045989, y: 2.22044578e-16, z: 0}
+      rotation: {x: -.124873213, y: .00153419864, z: .0121889496, w: .992096663}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lAnkleJ
+      position: {x: -.555881798, y: -8.88178301e-17, z: -8.88178301e-17}
+      rotation: {x: -.07129246, y: .0467036404, z: -.483050913, w: .87143445}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lBallJ
+      position: {x: -.247336805, y: 1.49880098e-16, z: 4.4408915e-17}
+      rotation: {x: -3.04244566e-07, y: 9.32682099e-07, z: -.310120493, w: .950697303}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lToeJ
+      position: {x: -.150263667, y: -2.2600098e-17, z: 1.02140516e-15}
+      rotation: {x: 0, y: -.642787635, z: -0, w: .766044438}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rHipJ
+      position: {x: .192245618, y: -.0707123205, z: 0}
+      rotation: {x: .567336977, y: -.520142019, z: .398745716, w: -.498581022}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rKneeJ
+      position: {x: .590045989, y: -1.55431208e-16, z: 3.5527132e-16}
+      rotation: {x: -.0320386402, y: .000397058146, z: .0123857874, w: .999409795}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rAnkleJ
+      position: {x: .555881798, y: -6.66133775e-17, z: -2.6645351e-16}
+      rotation: {x: .00238748547, y: .0860341266, z: -.477570504, w: .874367714}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rBallJ
+      position: {x: .247336805, y: 2.77555723e-17, z: -8.88178301e-17}
+      rotation: {x: -4.45765608e-07, y: 1.36650976e-06, z: -.310121357, w: .950697005}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rToeJ
+      position: {x: .150263667, y: 4.27793494e-17, z: -1.24344966e-15}
+      rotation: {x: -8.62660837e-17, y: .766044438, z: 8.62660837e-17, w: .642787635}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rPalmCG
+      position: {x: .806936264, y: 1.30323887, z: .038910266}
+      rotation: {x: .825599313, y: -.442709088, z: .249172106, w: .245576292}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rPalmC
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rFinger1J1CG
+      position: {x: .196699724, y: -.00736447424, z: -.0265445355}
+      rotation: {x: .0275217015, y: -.0175501443, z: -.103961557, w: .994045556}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rFinger1J1CRotG
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rFinger1J1C
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rFinger1J2CG
+      position: {x: .322294652, y: -.0340373851, z: -.0227977745}
+      rotation: {x: .0563747957, y: .243913546, z: .297894835, w: .921187699}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rFinger1J2CRotG
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rFinger1J2C
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rFinger1J3CG
+      position: {x: .473228216, y: .0896082073, z: -.112000965}
+      rotation: {x: .151674643, y: .000401086902, z: .701879263, w: .695959866}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rFinger1J3CRotG
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rFinger1J3C
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rFinger2J1CG
+      position: {x: .145363346, y: .0437374935, z: .275578409}
+      rotation: {x: -.2755723, y: -.243915752, z: .0869665742, w: .925743937}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rFinger2J1CRotG
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rFinger2J1C
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rFinger2J2CG
+      position: {x: .242887199, y: .0770138502, z: .321044087}
+      rotation: {x: -.332815886, y: .0314230919, z: .569303215, w: .751092553}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rFinger2J2CRotG
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rFinger2J2C
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rFinger2J3CG
+      position: {x: .299978673, y: .213173598, z: .25149402}
+      rotation: {x: -.305896699, y: .0046635964, z: .771354795, w: .558047831}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rFinger2J3CRotG
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rFinger2J3C
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rWristFKCG
+      position: {x: .776999235, y: 1.34089613, z: -2.22044578e-16}
+      rotation: {x: .825599313, y: -.442709088, z: .249172106, w: .245576292}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rWristFKC
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rWristIKCG
+      position: {x: .776999235, y: 1.34089613, z: -3.30854616e-16}
+      rotation: {x: -.245576292, y: -.249172106, z: -.442709088, w: .825599313}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rWristIKC
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rWristJFKG2
+      position: {x: .776999235, y: 1.34089613, z: -8.88178301e-17}
+      rotation: {x: -2.77555756e-17, y: 0, z: -4.99600361e-16, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rWristJFKG1
+      position: {x: -1.7763566e-16, y: 0, z: -7.7821205e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rWristJFK
+      position: {x: -1.7763566e-16, y: 0, z: -9.00909537e-17}
+      rotation: {x: .825599313, y: -.442709088, z: .249172106, w: .245576292}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rWristJG2
+      position: {x: .667057633, y: 1.50355864, z: -.241068333}
+      rotation: {x: .825599313, y: -.442709088, z: .249172106, w: .245576292}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rWristJG1
+      position: {x: .303794682, y: .0300270207, z: -.0588837713}
+      rotation: {x: -4.71844785e-16, y: 1.94289029e-16, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rThumbJ1CG
+      position: {x: .106134929, y: .104646087, z: -.170536637}
+      rotation: {x: .384794503, y: .468022227, z: -.053461954, w: .793744445}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rThumbJ1CRotG
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rThumbJ1C
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rThumbJ2CG
+      position: {x: .162877709, y: .132733598, z: -.250532746}
+      rotation: {x: .583147228, y: .446115643, z: .137420267, w: .664857745}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rThumbJ2CRotG
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rThumbJ2C
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rThumbJ3CG
+      position: {x: .276774108, y: .274658144, z: -.337931335}
+      rotation: {x: .683805585, y: .033027295, z: .398477256, w: .61035645}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rThumbJ3CRotG
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rThumbJ3C
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rWristJ
+      position: {x: -2.6645351e-16, y: -1.7763566e-16, z: -3.5527132e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rPalmJ
+      position: {x: .0618732795, y: -3.5527132e-16, z: -7.1054264e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rFinger1J1
+      position: {x: .196699724, y: -.00736447424, z: -.0265445355}
+      rotation: {x: .991855264, y: .0839418098, z: -.0947617814, w: -.0140425451}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rFinger1J2
+      position: {x: .116361395, y: .0467018597, z: -.0279020779}
+      rotation: {x: 1.52655666e-16, y: 1.94289029e-16, z: -4.16333634e-16, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rFinger1J3
+      position: {x: .183572054, y: -.0932191685, z: .0603149012}
+      rotation: {x: .0911349431, y: .0292769857, z: -.337177724, w: .936562061}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rFinger1JTip
+      position: {x: .144750357, y: -.132105365, z: -.00238298532}
+      rotation: {x: .0131982481, y: .00785548054, z: -.390167445, w: .920615852}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rFinger2J1
+      position: {x: .145363346, y: .0437374935, z: .275578409}
+      rotation: {x: .914927185, y: .186597332, z: .181660548, w: .308365434}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rFinger2J2
+      position: {x: .10926725, y: .0264793169, z: -.00669780374}
+      rotation: {x: .0185086522, y: -.00639790669, z: -.0792096034, w: .996665597}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rFinger2J3
+      position: {x: .115677878, y: -.114405192, z: .0128923152}
+      rotation: {x: -.00599007076, y: .0173684582, z: -.462359816, w: .886502028}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rFinger2JTip
+      position: {x: .204886466, y: -.0694105923, z: -.0234019794}
+      rotation: {x: .0436361507, y: -.175946817, z: -.402672082, w: .897214472}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rThumbJ1
+      position: {x: .106134929, y: .104646087, z: -.170536637}
+      rotation: {x: .456281126, y: -.489933401, z: .733527303, w: .117091909}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rThumbJ2
+      position: {x: -.10201972, y: 7.1054264e-16, z: 6.2172483e-16}
+      rotation: {x: -.0354540795, y: -.170664817, z: .217849925, w: .960290551}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rThumbJ3
+      position: {x: -.201874882, y: -5.3290702e-16, z: 3.5527132e-16}
+      rotation: {x: .114256337, y: .0860319585, z: .472310603, w: .869750917}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rThumbJTip
+      position: {x: -.26763317, y: 0, z: -1.11022289e-16}
+      rotation: {x: .153719395, y: -.742195845, z: .106564544, w: .643552363}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rWristJIKProxyG2
+      position: {x: .667058825, y: 1.50355995, z: -.241067857}
+      rotation: {x: 2.01537023e-06, y: -9.08395975e-07, z: -2.3148973e-06, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rWristJIKProxyG1
+      position: {x: .109941505, y: -.162662342, z: .241068333}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rWristJIKProxy
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: .825600088, y: -.442706496, z: .249172822, w: .245577797}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__SH_ROOTJ
+      position: {x: 0, y: 1.38627052, z: -.15959084}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__SH_lHipJ
+      position: {x: -.192245558, y: -.0707119629, z: -7.45057989e-08}
+      rotation: {x: .549213529, y: .445383459, z: .480824888, w: .518464684}
+      scale: {x: 1, y: .999999821, z: .999999821}
+      transformModified: 1
+    - name: Alien__SH_lKneeJ
+      position: {x: -.590046287, y: 1.6996637e-07, z: 1.4927565e-07}
+      rotation: {x: -.124873191, y: .00153425336, z: .0121890008, w: .992096663}
+      scale: {x: 1, y: 1.00000012, z: 1}
+      transformModified: 1
+    - name: Alien__SH_lAnkleJ
+      position: {x: -.555881977, y: 1.70402927e-07, z: 3.43425164e-08}
+      rotation: {x: .00238269544, y: .0860347375, z: -.477524549, w: .874392748}
+      scale: {x: .999999762, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__SH_lBallJ
+      position: {x: -.24733685, y: 4.88944352e-08, z: -5.82076574e-08}
+      rotation: {x: -2.38418551e-07, y: 9.53675112e-07, z: -.310120493, w: .950697303}
+      scale: {x: .99999994, y: 1, z: .999999762}
+      transformModified: 1
+    - name: Alien__SH_lToeJ
+      position: {x: -.150263637, y: 9.31295929e-09, z: 3.53097085e-09}
+      rotation: {x: 1.74319421e-08, y: -.642787695, z: 2.94003204e-08, w: .766044438}
+      scale: {x: 1.00000012, y: .99999994, z: 1.00000012}
+      transformModified: 1
+    - name: Alien__SH_rHipJ
+      position: {x: .192245543, y: -.0707122609, z: 7.45057989e-08}
+      rotation: {x: .567336977, y: -.520142019, z: .398745686, w: -.498581022}
+      scale: {x: .999999821, y: 1, z: .999999762}
+      transformModified: 1
+    - name: Alien__SH_rKneeJ
+      position: {x: .590045989, y: 1.07102089e-07, z: 1.08266242e-07}
+      rotation: {x: -.0320386142, y: .000397071242, z: .0123857856, w: .999409854}
+      scale: {x: .999999881, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__SH_rAnkleJ
+      position: {x: .555881917, y: 5.22822994e-08, z: -5.260517e-08}
+      rotation: {x: .00238747871, y: .0860342011, z: -.477570474, w: .874367714}
+      scale: {x: 1.00000012, y: 1.00000012, z: 1.00000012}
+      transformModified: 1
+    - name: Alien__SH_rBallJ
+      position: {x: .247336909, y: 7.42147606e-08, z: -4.65661243e-09}
+      rotation: {x: -4.08974699e-07, y: 1.34110439e-06, z: -.310121447, w: .950696945}
+      scale: {x: .999999762, y: 1.00000012, z: .999999881}
+      transformModified: 1
+    - name: Alien__SH_rToeJ
+      position: {x: .150263637, y: -1.02444908e-07, z: -8.8516563e-09}
+      rotation: {x: 1.06974767e-08, y: .766044438, z: 5.30994804e-08, w: .642787695}
+      scale: {x: 1.00000012, y: 1, z: 1.00000012}
+      transformModified: 1
+    - name: Alien__SH_Spine01J
+      position: {x: 0, y: .209570512, z: -.0495842099}
+      rotation: {x: -.0510985367, y: 0, z: -0, w: .998693645}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__SH_Spine02J
+      position: {x: 0, y: .211230099, z: -.0054513244}
+      rotation: {x: .0659243762, y: 0, z: 0, w: .997824669}
+      scale: {x: 1, y: 1, z: .999999821}
+      transformModified: 1
+    - name: Alien__SH_SpineTopJ
+      position: {x: 0, y: .211045504, z: .0465557352}
+      rotation: {x: -.4428837, y: .551229596, z: -.4428837, w: .551229656}
+      scale: {x: .999999404, y: .999999464, z: .999999285}
+      transformModified: 1
+    - name: Alien__SH_lClavicleJ
+      position: {x: .0580954626, y: -.014637717, z: -.110488042}
+      rotation: {x: .340580881, y: -.61968118, z: .517689645, w: .481661111}
+      scale: {x: 1.0000006, y: 1, z: 1.00000012}
+      transformModified: 1
+    - name: Alien__SH_lShoulderJ
+      position: {x: -.182803601, y: 4.65661287e-08, z: 1.62981433e-08}
+      rotation: {x: -.033644978, y: -.00609152531, z: -.12692669, w: .991322696}
+      scale: {x: .999999702, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__SH_lElbowJ
+      position: {x: -.513761997, y: 5.53554798e-07, z: -8.38190317e-08}
+      rotation: {x: .141706645, y: .0250604134, z: -.0292450022, w: .989159286}
+      scale: {x: .999999762, y: 1, z: 1.00000024}
+      transformModified: 1
+    - name: Alien__SH_lForearmJ
+      position: {x: -.155451283, y: -5.35510424e-07, z: -4.19095159e-08}
+      rotation: {x: -4.47034729e-08, y: -1.11758682e-08, z: -5.40166951e-08, w: 1}
+      scale: {x: .99999994, y: 1, z: .999999821}
+      transformModified: 1
+    - name: Alien__SH_lWristJ
+      position: {x: -.310902417, y: -1.86264515e-07, z: -1.30385146e-07}
+      rotation: {x: -.276464522, y: -.104992956, z: -.0201697983, w: .955058694}
+      scale: {x: .999999762, y: 1.00000048, z: 1.00000012}
+      transformModified: 1
+    - name: Alien__SH_lPalmJ
+      position: {x: -.0618732125, y: 1.98488124e-07, z: 1.57160684e-07}
+      rotation: {x: 2.235174e-08, y: -7.45057971e-09, z: 3.72528985e-09, w: 1}
+      scale: {x: .999999762, y: .999999821, z: 1}
+      transformModified: 1
+    - name: Alien__SH_lFinger1J1
+      position: {x: -.196700022, y: .00736433454, z: .0265443493}
+      rotation: {x: .0196101218, y: .145795137, z: .159815609, w: .976124108}
+      scale: {x: 1, y: 1.00000036, z: .999999881}
+      transformModified: 1
+    - name: Alien__SH_lFinger1J2
+      position: {x: -.116361372, y: .0467016175, z: -.0279020183}
+      rotation: {x: -.00427944586, y: -.240746737, z: -.385108948, w: .890906155}
+      scale: {x: 1, y: 1, z: .99999994}
+      transformModified: 1
+    - name: Alien__SH_lFinger1J3
+      position: {x: -.183572173, y: -.0932192802, z: .0603150912}
+      rotation: {x: -.0830602646, y: .114201762, z: -.117137343, w: .983024895}
+      scale: {x: .999999642, y: .999999821, z: 1.00000024}
+      transformModified: 1
+    - name: Alien__SH_lFinger1JTip
+      position: {x: -.144750059, y: -.132105023, z: -.00238293526}
+      rotation: {x: .0131982816, y: -.00785548519, z: .390167505, w: .920615792}
+      scale: {x: .999999702, y: 1.00000036, z: 1.00000024}
+      transformModified: 1
+    - name: Alien__SH_lFinger2J1
+      position: {x: -.145363376, y: -.0437375829, z: -.27557832}
+      rotation: {x: -.304344654, y: .0593392625, z: .170393273, w: .935317814}
+      scale: {x: 1, y: 1.00000012, z: 1}
+      transformModified: 1
+    - name: Alien__SH_lFinger2J2
+      position: {x: -.109267414, y: .0264795274, z: -.00669819489}
+      rotation: {x: .0346576907, y: -.0606805235, z: -.473857671, w: .877824366}
+      scale: {x: 1.00000012, y: 1.00000024, z: 1.00000024}
+      transformModified: 1
+    - name: Alien__SH_lFinger2J3
+      position: {x: -.115677901, y: -.114405371, z: .01289267}
+      rotation: {x: -.0528906062, y: .0639096349, z: .25042057, w: .964576423}
+      scale: {x: 1.00000012, y: 1.00000024, z: .999999881}
+      transformModified: 1
+    - name: Alien__SH_lFinger2JTip
+      position: {x: -.204886198, y: -.0694104731, z: -.0234020725}
+      rotation: {x: .043636106, y: .175946832, z: .402672172, w: .897214472}
+      scale: {x: .999999523, y: .999999881, z: 1}
+      transformModified: 1
+    - name: Alien__SH_lThumbJ1
+      position: {x: -.106134936, y: -.104646571, z: .170536548}
+      rotation: {x: .388077676, y: .491883427, z: -.0377882123, w: .778471887}
+      scale: {x: .999999881, y: .999999881, z: .999999762}
+      transformModified: 1
+    - name: Alien__SH_lThumbJ2
+      position: {x: -.101803549, y: .000812578946, z: -.00658572139}
+      rotation: {x: .122679412, y: -.00559970597, z: -.161871538, w: .97914052}
+      scale: {x: 1.00000012, y: 1, z: 1.00000012}
+      transformModified: 1
+    - name: Alien__SH_lThumbJ3
+      position: {x: -.187600926, y: -.0744649544, z: .00381155848}
+      rotation: {x: -.0755522847, y: -.0272601079, z: -.036870569, w: .996087015}
+      scale: {x: 1.00000012, y: .99999994, z: .999999881}
+      transformModified: 1
+    - name: Alien__SH_lThumbJTip
+      position: {x: -.236225456, y: -.125791937, z: -.00106295093}
+      rotation: {x: .262161404, y: -.599957466, z: .32639277, w: .681755304}
+      scale: {x: .999999464, y: 1.00000036, z: .999999821}
+      transformModified: 1
+    - name: Alien__SH_Neck01J
+      position: {x: -.24048543, y: -.00243578549, z: 1.34422447e-08}
+      rotation: {x: .473898888, y: -.524804592, z: .473898888, w: .524804711}
+      scale: {x: 1.00000072, y: 1.00000083, z: 1.00000083}
+      transformModified: 1
+    - name: Alien__SH_Neck02J
+      position: {x: 1.3151773e-08, y: .238989562, z: .0268758722}
+      rotation: {x: -3.72528959e-08, y: -2.97528402e-08, z: 1.71659109e-09, w: 1}
+      scale: {x: 1, y: 1.00000012, z: .999999702}
+      transformModified: 1
+    - name: Alien__SH_HeadJ
+      position: {x: 1.55715867e-08, y: .238990396, z: .0268757977}
+      rotation: {x: .534896731, y: -.462477535, z: .534896731, w: -.462477595}
+      scale: {x: .999999642, y: .999999881, z: .999999762}
+      transformModified: 1
+    - name: Alien__SH_HeadTipJ
+      position: {x: -.787955582, y: -5.58793509e-08, z: 8.60092086e-08}
+      rotation: {x: -.50000006, y: .49999994, z: -.50000006, w: -.5}
+      scale: {x: 1.00000024, y: 1.00000024, z: 1.00000024}
+      transformModified: 1
+    - name: Alien__SH_JawJ
+      position: {x: -.073364675, y: -.124453001, z: 1.70226269e-08}
+      rotation: {x: -.50000006, y: .49999994, z: -.50000006, w: -.5}
+      scale: {x: 1.00000024, y: 1.00000024, z: 1.00000024}
+      transformModified: 1
+    - name: Alien__SH_JawTipJ
+      position: {x: -6.2844614e-09, y: -.0733636916, z: .134353504}
+      rotation: {x: -1.08033404e-07, y: -3.02416261e-08, z: 2.93564497e-08, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__SH_lEyeJ
+      position: {x: -.0401277542, y: -.695178032, z: -.57807976}
+      rotation: {x: -.50000006, y: .49999994, z: -.50000006, w: -.5}
+      scale: {x: 1.00000024, y: 1.00000024, z: 1.00000024}
+      transformModified: 1
+    - name: Alien__SH_rEyeJ
+      position: {x: -.0401277766, y: -.695177853, z: .578080177}
+      rotation: {x: -.50000006, y: .49999994, z: -.50000006, w: -.5}
+      scale: {x: 1.00000024, y: 1.00000024, z: 1.00000024}
+      transformModified: 1
+    - name: Alien__SH_rClavicleJ
+      position: {x: .0580953397, y: -.0146376733, z: .110487856}
+      rotation: {x: .619680882, y: .340581387, z: .481661588, w: -.517689168}
+      scale: {x: 1.00000012, y: .999999762, z: .999999821}
+      transformModified: 1
+    - name: Alien__SH_rShoulderJ
+      position: {x: .182803869, y: 3.44589353e-07, z: -6.27127417e-09}
+      rotation: {x: -.0336451791, y: -.00609186618, z: -.126925573, w: .991322815}
+      scale: {x: 1.00000012, y: 1.00000036, z: 1.0000006}
+      transformModified: 1
+    - name: Alien__SH_rElbowJ
+      position: {x: .513762295, y: -6.67641871e-07, z: -2.8870997e-07}
+      rotation: {x: .141706586, y: .0250605028, z: -.0292451605, w: .989159226}
+      scale: {x: .999999642, y: 1.00000012, z: 1}
+      transformModified: 1
+    - name: Alien__SH_rForearmJ
+      position: {x: .155450687, y: -2.93366583e-07, z: 0}
+      rotation: {x: -1.49011576e-08, y: -2.98023153e-08, z: -2.98023153e-08, w: 1}
+      scale: {x: .999999881, y: .999999881, z: 1}
+      transformModified: 1
+    - name: Alien__SH_rWristJ
+      position: {x: .310861945, y: -1.45760748e-06, z: 1.53274104e-05}
+      rotation: {x: -.78570801, y: -.0895882174, z: .0258509126, w: .611529768}
+      scale: {x: .999999881, y: 1.00000012, z: 1}
+      transformModified: 1
+    - name: Alien__SH_rPalmJ
+      position: {x: .0618731566, y: 1.20489844e-07, z: -4.65661243e-09}
+      rotation: {x: 5.96046377e-08, y: 4.470348e-08, z: -1.19209275e-07, w: 1}
+      scale: {x: 1, y: .999999881, z: .999999881}
+      transformModified: 1
+    - name: Alien__SH_rFinger1J1
+      position: {x: .196700171, y: -.00736469636, z: -.0265442189}
+      rotation: {x: -.976123869, y: -.159816712, z: .145795405, w: .0196103733}
+      scale: {x: 1.00000024, y: 1.00000024, z: 1.00000024}
+      transformModified: 1
+    - name: Alien__SH_rFinger1J2
+      position: {x: .116361335, y: .0467018038, z: -.0279018637}
+      rotation: {x: -.00427986262, y: .240745753, z: .385108531, w: .890906632}
+      scale: {x: 1, y: 1.00000012, z: .999999881}
+      transformModified: 1
+    - name: Alien__SH_rFinger1J3
+      position: {x: .183572322, y: -.0932191461, z: .0603147782}
+      rotation: {x: -.0830599368, y: -.114201441, z: .117138341, w: .983024836}
+      scale: {x: 1.00000012, y: .999999881, z: 1.00000024}
+      transformModified: 1
+    - name: Alien__SH_rFinger1JTip
+      position: {x: .144750655, y: -.132105678, z: -.00238290732}
+      rotation: {x: -.0131983729, y: -.00785562582, z: .390167534, w: -.920615792}
+      scale: {x: .999999881, y: 1.00000036, z: .999999881}
+      transformModified: 1
+    - name: Alien__SH_rFinger2J1
+      position: {x: .145363629, y: .0437376723, z: .275578707}
+      rotation: {x: -.935317755, y: -.170394152, z: .0593376122, w: -.304344624}
+      scale: {x: 1.00000012, y: 1.00000024, z: 1.00000024}
+      transformModified: 1
+    - name: Alien__SH_rFinger2J2
+      position: {x: .109267071, y: .0264794733, z: -.00669771992}
+      rotation: {x: .03465648, y: .0606781729, z: .473857075, w: .877824903}
+      scale: {x: 1, y: .99999994, z: 1}
+      transformModified: 1
+    - name: Alien__SH_rFinger2J3
+      position: {x: .115678161, y: -.114405416, z: .0128922807}
+      rotation: {x: .0528902635, y: .0639093295, z: .250418782, w: -.96457696}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__SH_rFinger2JTip
+      position: {x: .20488587, y: -.0694109276, z: -.0234019291}
+      rotation: {x: .0436361022, y: -.175946623, z: -.402672142, w: .897214532}
+      scale: {x: .999999404, y: .999999523, z: .999999762}
+      transformModified: 1
+    - name: Alien__SH_rThumbJ1
+      position: {x: .106134973, y: .104646474, z: -.170536488}
+      rotation: {x: -.456281126, y: .489933491, z: -.733527303, w: -.117091954}
+      scale: {x: 1.00000012, y: .99999994, z: .999999821}
+      transformModified: 1
+    - name: Alien__SH_rThumbJ2
+      position: {x: -.102019571, y: -7.91624188e-08, z: -1.32713453e-07}
+      rotation: {x: -.0368790478, y: -.0180919897, z: .0230938569, w: .998889089}
+      scale: {x: .999999881, y: 1, z: 1.00000012}
+      transformModified: 1
+    - name: Alien__SH_rThumbJ3
+      position: {x: -.201874971, y: 2.47964607e-07, z: 2.37487242e-07}
+      rotation: {x: .130225345, y: .00333215506, z: .0182921942, w: .99131012}
+      scale: {x: .999999762, y: .99999994, z: 1.00000012}
+      transformModified: 1
+    - name: Alien__SH_rThumbJTip
+      position: {x: -.267633736, y: -6.43194582e-08, z: -1.59488991e-07}
+      rotation: {x: .153719321, y: -.742195964, z: .106564596, w: .643552363}
+      scale: {x: .999999762, y: .999999881, z: .999999642}
+      transformModified: 1
+    - name: Alien__Spine01J
+      position: {x: -0, y: 1.55752409, z: -.209175035}
+      rotation: {x: -.0510985292, y: 0, z: -0, w: .998693645}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__Spine02J
+      position: {x: -0, y: 1.76709461, z: -.236156866}
+      rotation: {x: .0148508707, y: -0, z: -0, w: .999889731}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__SpineTopJ
+      position: {x: 3.90521728e-17, y: 1.97666514, z: -.183353871}
+      rotation: {x: -.434648633, y: .557745993, z: -.434648633, w: .557745993}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lClavicleJ
+      position: {x: .0580952279, y: -.0146375634, z: -.110487998}
+      rotation: {x: -.248461038, y: .662017465, z: -.581249833, w: -.402676791}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lShoulderJ
+      position: {x: -.182803854, y: -3.5527132e-16, z: 8.88178301e-17}
+      rotation: {x: -.0412857719, y: -.0571378432, z: .0197665431, w: .99731642}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lElbowJ
+      position: {x: -.513762474, y: -7.1054264e-16, z: 4.4408915e-17}
+      rotation: {x: .136412203, y: .51934433, z: .0844020173, w: .839374483}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lForearmJ
+      position: {x: -.155451059, y: 7.1054264e-16, z: -1.7763566e-16}
+      rotation: {x: 2.22712543e-11, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__lWristJProxy
+      position: {x: -.310902119, y: 7.1054264e-16, z: -4.16333608e-16}
+      rotation: {x: -.276464403, y: -.104993001, z: -.0201697815, w: .955058694}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rClavicleJ
+      position: {x: .0580952279, y: -.0146375634, z: .110487998}
+      rotation: {x: -.662017465, y: -.248461038, z: -.402676791, w: .581249833}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rShoulderJ
+      position: {x: .182803854, y: -3.5527132e-16, z: 2.22044575e-17}
+      rotation: {x: -.0412857719, y: -.0571378432, z: .0197665431, w: .99731642}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rElbowJ
+      position: {x: .513762474, y: -3.5527132e-16, z: 2.22044575e-17}
+      rotation: {x: .139259338, y: .489899635, z: .0796167776, w: .85689348}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rForearmJ
+      position: {x: .155451059, y: 3.5527132e-16, z: 7.2164494e-17}
+      rotation: {x: -4.71844785e-16, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Alien__rWristJProxy
+      position: {x: .310902119, y: 3.5527132e-16, z: -2.33146825e-16}
+      rotation: {x: -.276464403, y: -.104993001, z: -.0201697815, w: .955058694}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: FlameRing
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    armTwist: .186000004
+    foreArmTwist: .819999993
+    upperLegTwist: .51700002
+    legTwist: .5
+    armStretch: .323000014
+    legStretch: .26699999
+    feetSpacing: .294999987
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 3
+  userData: 

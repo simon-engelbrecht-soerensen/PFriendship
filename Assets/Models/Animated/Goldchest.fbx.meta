@@ -1,0 +1,216 @@
+fileFormatVersion: 2
+guid: a981927b4c6ee40f695c14eb675d3cad
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: chest_bottom
+    100002: coin
+    100004: coin1
+    100006: coin2
+    100008: //RootNode
+    100010: joint3
+    100012: joint4
+    100014: joint5
+    100016: joint6
+    100018: joint7
+    100020: joint8
+    100022: joint9
+    100024: lock
+    100026: lock_handle
+    100028: polySurface211
+    100030: polySurface215
+    100032: polySurface216
+    100034: polySurface217
+    100036: polySurface218
+    100038: polySurface223
+    100040: Chest_lid
+    100042: motionTrail1Handle
+    100044: motionTrail2Handle
+    100046: motionTrail3Handle
+    400000: chest_bottom
+    400002: coin
+    400004: coin1
+    400006: coin2
+    400008: //RootNode
+    400010: joint3
+    400012: joint4
+    400014: joint5
+    400016: joint6
+    400018: joint7
+    400020: joint8
+    400022: joint9
+    400024: lock
+    400026: lock_handle
+    400028: polySurface211
+    400030: polySurface215
+    400032: polySurface216
+    400034: polySurface217
+    400036: polySurface218
+    400038: polySurface223
+    400040: Chest_lid
+    400042: motionTrail1Handle
+    400044: motionTrail2Handle
+    400046: motionTrail3Handle
+    2300000: coin
+    2300002: coin1
+    2300004: coin2
+    2300006: polySurface215
+    2300008: polySurface216
+    2300010: polySurface217
+    2300012: polySurface218
+    2300014: polySurface223
+    2300016: chest_bottom
+    2300018: Chest_lid
+    2300020: lock
+    2300022: lock_handle
+    3300000: coin
+    3300002: coin1
+    3300004: coin2
+    3300006: polySurface215
+    3300008: polySurface216
+    3300010: polySurface217
+    3300012: polySurface218
+    3300014: polySurface223
+    3300016: chest_bottom
+    3300018: Chest_lid
+    3300020: lock
+    3300022: lock_handle
+    4300000: polySurface215
+    4300002: polySurface216
+    4300004: polySurface217
+    4300006: polySurface218
+    4300008: polySurface223
+    4300010: coin
+    4300012: coin1
+    4300014: coin2
+    4300016: lock_handle
+    4300018: lock
+    4300020: chest_bottom
+    4300022: Chest_lid
+    7400000: Goldchest_opening
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: chest_bottom
+    13700002: lock
+    13700004: lock_handle
+    13700006: Chest_lid
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 1
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Goldchest_opening
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 48
+      wrapMode: 1
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: chest_bottom
+        weight: 1
+      - path: Chest_lid
+        weight: 1
+      - path: coin
+        weight: 1
+      - path: coin1
+        weight: 1
+      - path: coin2
+        weight: 1
+      - path: joint3
+        weight: 1
+      - path: joint3/joint4
+        weight: 1
+      - path: joint3/joint4/joint5
+        weight: 1
+      - path: joint3/joint4/joint5/joint6
+        weight: 1
+      - path: joint3/joint7
+        weight: 1
+      - path: joint3/joint7/joint8
+        weight: 1
+      - path: joint3/joint7/joint8/joint9
+        weight: 1
+      - path: joint3/polySurface211
+        weight: 1
+      - path: joint3/polySurface211/polySurface215
+        weight: 1
+      - path: joint3/polySurface211/polySurface216
+        weight: 1
+      - path: joint3/polySurface211/polySurface217
+        weight: 1
+      - path: joint3/polySurface211/polySurface218
+        weight: 1
+      - path: joint3/polySurface211/polySurface223
+        weight: 1
+      - path: lock
+        weight: 1
+      - path: lock_handle
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 0
+    splitTangentsAcrossUV: 1
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: chest_bottom
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  userData: 

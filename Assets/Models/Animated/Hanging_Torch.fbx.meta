@@ -1,0 +1,188 @@
+fileFormatVersion: 2
+guid: 0e0192574ca5c4f639149fd7a756c159
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: Chain01
+    100002: Chain02
+    100004: Chain03
+    100006: Chain04
+    100008: Chain05
+    100010: Chain06
+    100012: chainanim
+    100014: ChainRoot
+    100016: Firebowl
+    100018: FxRoot
+    100020: //RootNode
+    100022: joint2
+    100024: joint3
+    100026: joint4
+    100028: joint5
+    100030: joint6
+    100032: joint7
+    100034: joint8
+    100036: Wall
+    100038: cluster1Handle
+    100040: cluster2Handle
+    100042: cluster3Handle
+    100044: cluster4Handle
+    100046: cluster5Handle
+    400000: Chain01
+    400002: Chain02
+    400004: Chain03
+    400006: Chain04
+    400008: Chain05
+    400010: Chain06
+    400012: chainanim
+    400014: ChainRoot
+    400016: Firebowl
+    400018: FxRoot
+    400020: //RootNode
+    400022: joint2
+    400024: joint3
+    400026: joint4
+    400028: joint5
+    400030: joint6
+    400032: joint7
+    400034: joint8
+    400036: Wall
+    400038: cluster1Handle
+    400040: cluster2Handle
+    400042: cluster3Handle
+    400044: cluster4Handle
+    400046: cluster5Handle
+    2300000: Wall
+    3300000: Wall
+    4300000: Wall
+    4300002: Chain06
+    4300004: Chain05
+    4300006: Chain04
+    4300008: Chain03
+    4300010: Chain02
+    4300012: Chain01
+    4300014: Firebowl
+    7400000: Swinging_Torch
+    9500000: //RootNode
+    13700000: Chain01
+    13700002: Chain02
+    13700004: Chain03
+    13700006: Chain04
+    13700008: Chain05
+    13700010: Chain06
+    13700012: Firebowl
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Swinging_Torch
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 53
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: chainanim
+        weight: 1
+      - path: chainanim/Chain01
+        weight: 1
+      - path: chainanim/Chain02
+        weight: 1
+      - path: chainanim/Chain03
+        weight: 1
+      - path: chainanim/Chain04
+        weight: 1
+      - path: chainanim/Chain05
+        weight: 1
+      - path: chainanim/Chain06
+        weight: 1
+      - path: chainanim/Firebowl
+        weight: 1
+      - path: ChainRoot
+        weight: 1
+      - path: ChainRoot/joint2
+        weight: 1
+      - path: ChainRoot/joint2/joint3
+        weight: 1
+      - path: ChainRoot/joint2/joint3/joint4
+        weight: 1
+      - path: ChainRoot/joint2/joint3/joint4/joint5
+        weight: 1
+      - path: ChainRoot/joint2/joint3/joint4/joint5/joint6
+        weight: 1
+      - path: ChainRoot/joint2/joint3/joint4/joint5/joint6/FxRoot
+        weight: 1
+      - path: ChainRoot/joint2/joint3/joint4/joint5/joint6/joint7
+        weight: 1
+      - path: ChainRoot/joint2/joint3/joint4/joint5/joint6/joint7/joint8
+        weight: 1
+      - path: Wall
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  userData: 

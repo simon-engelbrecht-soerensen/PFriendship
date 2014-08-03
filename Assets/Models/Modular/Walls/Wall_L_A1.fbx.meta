@@ -1,0 +1,132 @@
+fileFormatVersion: 2
+guid: 515fcceca877a4f32a3d533b7f02f739
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: polySurface11
+    100002: polySurface118
+    100004: polySurface119
+    100006: polySurface12
+    100008: polySurface120
+    100010: polySurface121
+    100012: polySurface4
+    100014: polySurface6
+    100016: pPlane128
+    100018: //RootNode
+    100020: polySurface201
+    100022: Wall_L_InnerPanel
+    100024: Wall_L_InnerRim
+    100026: Wall_L_InnerRim_Low
+    100028: Wall_L_OuterPanel
+    100030: Wall_L_OuterRim
+    100032: Wall_L_OuterRim_Low
+    400000: polySurface11
+    400002: polySurface118
+    400004: polySurface119
+    400006: polySurface12
+    400008: polySurface120
+    400010: polySurface121
+    400012: polySurface4
+    400014: polySurface6
+    400016: pPlane128
+    400018: //RootNode
+    400020: polySurface201
+    400022: Wall_L_InnerPanel
+    400024: Wall_L_InnerRim
+    400026: Wall_L_InnerRim_Low
+    400028: Wall_L_OuterPanel
+    400030: Wall_L_OuterRim
+    400032: Wall_L_OuterRim_Low
+    2300000: polySurface118
+    2300002: polySurface119
+    2300004: polySurface120
+    2300006: polySurface121
+    2300008: pPlane128
+    2300010: polySurface201
+    2300012: Wall_L_InnerPanel
+    2300014: Wall_L_InnerRim
+    2300016: Wall_L_InnerRim_Low
+    2300018: Wall_L_OuterPanel
+    2300020: Wall_L_OuterRim
+    2300022: Wall_L_OuterRim_Low
+    2300024: //RootNode
+    3300000: polySurface118
+    3300002: polySurface119
+    3300004: polySurface120
+    3300006: polySurface121
+    3300008: pPlane128
+    3300010: polySurface201
+    3300012: Wall_L_InnerPanel
+    3300014: Wall_L_InnerRim
+    3300016: Wall_L_InnerRim_Low
+    3300018: Wall_L_OuterPanel
+    3300020: Wall_L_OuterRim
+    3300022: Wall_L_OuterRim_Low
+    3300024: //RootNode
+    4300000: polySurface118
+    4300002: polySurface119
+    4300004: polySurface120
+    4300006: polySurface121
+    4300008: pPlane128
+    4300010: polySurface201
+    4300012: Wall_L_OuterRim
+    4300014: Wall_L_InnerRim
+    4300016: Wall_L_OuterPanel
+    4300018: Wall_L_InnerPanel
+    4300020: Wall_L_OuterRim_Low
+    4300022: Wall_L_InnerRim_Low
+    4300024: Wall_L_A1
+    4300026: Wall_L_A2
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  userData: 

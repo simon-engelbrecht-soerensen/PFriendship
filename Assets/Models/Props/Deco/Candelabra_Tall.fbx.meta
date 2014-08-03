@@ -1,0 +1,112 @@
+fileFormatVersion: 2
+guid: 33bdd4b4296674da4b7a436c21ed36e3
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Candelabra_Tall
+    100004: Fat_Candle01
+    100006: Fat_Candle02
+    100008: Fat_Candle03
+    100010: pCylinder20
+    100012: pCylinder21
+    100014: pCylinder22
+    100016: polySurface2665
+    100018: polySurface2666
+    100020: pTorus11
+    100022: pTorus12
+    100024: pTorus13
+    100026: transform12
+    100028: transform13
+    100030: transform14
+    100032: transform15
+    100034: transform16
+    100036: transform17
+    100038: transform18
+    100040: transform19
+    400000: //RootNode
+    400002: Candelabra_Tall
+    400004: Fat_Candle01
+    400006: Fat_Candle02
+    400008: Fat_Candle03
+    400010: pCylinder20
+    400012: pCylinder21
+    400014: pCylinder22
+    400016: polySurface2665
+    400018: polySurface2666
+    400020: pTorus11
+    400022: pTorus12
+    400024: pTorus13
+    400026: transform12
+    400028: transform13
+    400030: transform14
+    400032: transform15
+    400034: transform16
+    400036: transform17
+    400038: transform18
+    400040: transform19
+    2300000: Candelabra_Tall
+    2300002: Fat_Candle01
+    2300004: Fat_Candle02
+    2300006: Fat_Candle03
+    3300000: Candelabra_Tall
+    3300002: Fat_Candle01
+    3300004: Fat_Candle02
+    3300006: Fat_Candle03
+    4300000: Fat_Candle01
+    4300002: Fat_Candle02
+    4300004: Fat_Candle03
+    4300006: Candelabra_Tall
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 0
+    splitTangentsAcrossUV: 1
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  userData: 

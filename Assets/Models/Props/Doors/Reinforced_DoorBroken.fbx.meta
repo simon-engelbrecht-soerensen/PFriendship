@@ -1,0 +1,105 @@
+fileFormatVersion: 2
+guid: de19b54d96e8e48638718184de00b522
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: joint1
+    100002: joint2
+    100004: joint3
+    100006: pCube2
+    100008: polySurface69
+    100010: Reinforced_BrokenHolder
+    100012: Reinforced_BrokenPiece
+    100014: Reinforced_BrokenRing
+    100016: Reinforced_BrokenWoodRight
+    100018: Reinforced_BrokenWoodRight1
+    100020: //RootNode
+    100022: Reinforced_DoorBrokenLeft
+    100024: Reinforced_DoorBrokenRight
+    400000: joint1
+    400002: joint2
+    400004: joint3
+    400006: pCube2
+    400008: polySurface69
+    400010: Reinforced_BrokenHolder
+    400012: Reinforced_BrokenPiece
+    400014: Reinforced_BrokenRing
+    400016: Reinforced_BrokenWoodRight
+    400018: Reinforced_BrokenWoodRight1
+    400020: //RootNode
+    400022: Reinforced_DoorBrokenLeft
+    400024: Reinforced_DoorBrokenRight
+    2300000: Reinforced_BrokenHolder
+    2300002: Reinforced_BrokenPiece
+    2300004: Reinforced_BrokenRing
+    2300006: Reinforced_BrokenWoodRight
+    2300008: Reinforced_BrokenWoodRight1
+    2300010: Reinforced_DoorBrokenLeft
+    2300012: Reinforced_DoorBrokenRight
+    3300000: Reinforced_BrokenHolder
+    3300002: Reinforced_BrokenPiece
+    3300004: Reinforced_BrokenRing
+    3300006: Reinforced_BrokenWoodRight
+    3300008: Reinforced_BrokenWoodRight1
+    3300010: Reinforced_DoorBrokenLeft
+    3300012: Reinforced_DoorBrokenRight
+    4300000: Reinforced_BrokenPiece
+    4300002: Reinforced_BrokenHolder
+    4300004: Reinforced_BrokenRing
+    4300006: Reinforced_BrokenWoodRight
+    4300008: Reinforced_BrokenWoodRight1
+    4300010: Reinforced_DoorBrokenLeft
+    4300012: Reinforced_DoorBrokenRight
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 0
+    splitTangentsAcrossUV: 1
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  userData: 

@@ -1,0 +1,183 @@
+fileFormatVersion: 2
+guid: 3b0b7af272c6c40fdb108911d4705199
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Largepot
+    100004: largepotsupport
+    100006: pCube65
+    100008: pCube66
+    100010: pCube67
+    100012: pCube68
+    100014: pTorus23
+    100016: Roundstones
+    100018: transform48
+    100020: transform49
+    100022: transform50
+    100024: transform51
+    100026: transform52
+    100028: joint1
+    100030: joint10
+    100032: joint11
+    100034: joint12
+    100036: joint2
+    100038: joint3
+    100040: joint4
+    100042: joint5
+    100044: joint6
+    100046: joint7
+    100048: joint8
+    100050: joint9
+    100052: Large_cooking
+    400000: //RootNode
+    400002: Largepot
+    400004: largepotsupport
+    400006: pCube65
+    400008: pCube66
+    400010: pCube67
+    400012: pCube68
+    400014: pTorus23
+    400016: Roundstones
+    400018: transform48
+    400020: transform49
+    400022: transform50
+    400024: transform51
+    400026: transform52
+    400028: joint1
+    400030: joint10
+    400032: joint11
+    400034: joint12
+    400036: joint2
+    400038: joint3
+    400040: joint4
+    400042: joint5
+    400044: joint6
+    400046: joint7
+    400048: joint8
+    400050: joint9
+    400052: Large_cooking
+    2300000: Largepot
+    2300002: largepotsupport
+    2300004: Roundstones
+    2300006: //RootNode
+    2300008: Large_cooking
+    3300000: Largepot
+    3300002: largepotsupport
+    3300004: Roundstones
+    3300006: //RootNode
+    3300008: Large_cooking
+    4300000: Roundstones
+    4300002: largepotsupport
+    4300004: Largepot
+    4300006: Large_cooking
+    7400000: Cooking_swinging
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: Large_cooking
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 2
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Cooking_swinging
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 48
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: joint1
+        weight: 1
+      - path: joint1/joint2
+        weight: 1
+      - path: joint1/joint2/joint3
+        weight: 1
+      - path: joint1/joint2/joint3/joint4
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint7
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint7/joint8
+        weight: 1
+      - path: joint1/joint2/joint3/joint4/joint5/joint6/joint7/joint8/joint9
+        weight: 1
+      - path: joint10
+        weight: 1
+      - path: joint10/joint11
+        weight: 1
+      - path: joint10/joint11/joint12
+        weight: 1
+      - path: Large_cooking
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 0
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  userData: 

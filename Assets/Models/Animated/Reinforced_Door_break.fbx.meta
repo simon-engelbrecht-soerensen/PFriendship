@@ -1,0 +1,215 @@
+fileFormatVersion: 2
+guid: 2e1640b32bf7e42a48e78b8fd97f83a4
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: _broken
+    100002: _broken1
+    100004: Bottom
+    100006: Bottom 1
+    100008: Broken_Root
+    100010: Broken_Root1
+    100012: curve1
+    100014: curve2
+    100016: joint13
+    100018: joint13 1
+    100020: joint14
+    100022: joint14 1
+    100024: joint15
+    100026: joint15 1
+    100028: joint16
+    100030: joint16 1
+    100032: joint18
+    100034: joint18 1
+    100036: joint19
+    100038: joint19 1
+    100040: joint20
+    100042: joint20 1
+    100044: joint21
+    100046: joint21 1
+    100048: joint22
+    100050: joint22 1
+    100052: joint23
+    100054: joint23 1
+    100056: pCube2
+    100058: //RootNode
+    100060: top
+    100062: top 1
+    100064: WoodLeft
+    100066: WoodLeft01
+    100068: WoodLeft02
+    100070: WoodLeftEnd
+    100072: WoodRight
+    100074: WoodRight01
+    100076: WoodRight02
+    100078: WoodRightEnd
+    400000: _broken
+    400002: _broken1
+    400004: Bottom
+    400006: Bottom 1
+    400008: Broken_Root
+    400010: Broken_Root1
+    400012: curve1
+    400014: curve2
+    400016: joint13
+    400018: joint13 1
+    400020: joint14
+    400022: joint14 1
+    400024: joint15
+    400026: joint15 1
+    400028: joint16
+    400030: joint16 1
+    400032: joint18
+    400034: joint18 1
+    400036: joint19
+    400038: joint19 1
+    400040: joint20
+    400042: joint20 1
+    400044: joint21
+    400046: joint21 1
+    400048: joint22
+    400050: joint22 1
+    400052: joint23
+    400054: joint23 1
+    400056: pCube2
+    400058: //RootNode
+    400060: top
+    400062: top 1
+    400064: WoodLeft
+    400066: WoodLeft01
+    400068: WoodLeft02
+    400070: WoodLeftEnd
+    400072: WoodRight
+    400074: WoodRight01
+    400076: WoodRight02
+    400078: WoodRightEnd
+    4300000: WoodRight
+    4300002: WoodLeft
+    4300004: _broken1
+    4300006: _broken
+    7400000: Break_Open
+    9500000: //RootNode
+    13700000: _broken1
+    13700002: WoodLeft
+    13700004: WoodRight
+    13700006: _broken
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Break_Open
+      takeName: Take 001
+      firstFrame: 24
+      lastFrame: 48
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: _broken
+        weight: 1
+      - path: Broken_Root
+        weight: 1
+      - path: Broken_Root/Bottom
+        weight: 1
+      - path: Broken_Root/Bottom/joint13
+        weight: 1
+      - path: Broken_Root/Bottom/joint14
+        weight: 1
+      - path: Broken_Root/Bottom/joint14/joint15
+        weight: 1
+      - path: Broken_Root/Bottom/joint14/joint15/joint16
+        weight: 1
+      - path: Broken_Root/Bottom/joint14/joint15/joint16/top
+        weight: 1
+      - path: Broken_Root/Bottom/joint14/joint15/joint18
+        weight: 1
+      - path: Broken_Root/Bottom/joint14/joint15/joint19
+        weight: 1
+      - path: Broken_Root/Bottom/joint14/joint20
+        weight: 1
+      - path: Broken_Root/Bottom/joint14/joint20/joint21
+        weight: 1
+      - path: Broken_Root/Bottom/joint14/joint22
+        weight: 1
+      - path: Broken_Root/Bottom/joint14/joint22/joint23
+        weight: 1
+      - path: Broken_Root/curve1
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: pCube2/WoodLeft
+        weight: 1
+      - path: WoodLeft01
+        weight: 1
+      - path: WoodLeft01/WoodLeft02
+        weight: 1
+      - path: WoodLeft01/WoodLeft02/WoodLeftEnd
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  userData: 

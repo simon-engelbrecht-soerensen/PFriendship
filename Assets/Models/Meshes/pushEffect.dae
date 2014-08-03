@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset><contributor><author></author><authoring_tool>FBX COLLADA exporter</authoring_tool><comments></comments></contributor><created>2014-01-12T17:08:50Z</created><keywords></keywords><modified>2014-01-12T17:08:50Z</modified><revision></revision><subject></subject><title></title><unit meter="0.010000" name="centimeter"></unit><up_axis>Y_UP</up_axis></asset>
+  <library_materials>
+    <material id="lambert1" name="lambert1">
+      <instance_effect url="#lambert1-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="lambert1-fx" name="lambert1">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.400000  0.400000 0.400000 1.000000</color>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="pPlane1-lib" name="pPlane1Mesh">
+      <mesh>
+        <source id="pPlane1-POSITION">
+          <float_array id="pPlane1-POSITION-array" count="45">
+-3.206674 -0.000000 2.704155
+3.206674 -0.000000 0.533020
+-3.206674 0.000000 -2.704155
+3.206674 0.000000 -0.533020
+0.000000 -0.000000 1.375537
+0.000000 0.000000 -1.375537
+-1.603337 -0.000000 2.000002
+-1.603337 0.000000 -2.000002
+1.603337 -0.000000 0.892585
+1.603337 0.000000 -0.892585
+-3.206674 0.000000 -0.000000
+-1.603337 0.000000 0.000000
+0.000000 0.000000 0.000000
+1.603337 0.000000 0.000000
+3.206674 0.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#pPlane1-POSITION-array" count="15" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="pPlane1-Normal0">
+          <float_array id="pPlane1-Normal0-array" count="144">
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+-0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#pPlane1-Normal0-array" count="48" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="pPlane1-UV0">
+          <float_array id="pPlane1-UV0-array" count="30">
+0.000000 0.000000
+1.000000 0.000000
+0.000000 0.721322
+1.000000 0.721322
+0.500000 0.000000
+0.500000 0.721322
+0.250000 0.000000
+0.250000 0.721322
+0.750000 0.000000
+0.750000 0.721322
+0.000000 0.360661
+0.250000 0.360661
+0.500000 0.360661
+0.750000 0.360661
+1.000000 0.360661
+</float_array>
+          <technique_common>
+            <accessor source="#pPlane1-UV0-array" count="15" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="pPlane1-VERTEX">
+          <input semantic="POSITION" source="#pPlane1-POSITION"/>
+        </vertices>
+        <triangles count="16" material="lambert1"><input semantic="VERTEX" offset="0" source="#pPlane1-VERTEX"/><input semantic="NORMAL" offset="1" source="#pPlane1-Normal0"/><input semantic="TEXCOORD" offset="2" set="0" source="#pPlane1-UV0"/><p> 7 0 7 10 1 10 11 2 11 2 3 2 10 4 10 7 5 7 12 6 12 13 7 13 9 8 9 12 9 12 9 10 9 5 11 5 12 12 12 5 13 5 11 14 11 11 15 11 5 16 5 7 17 7 13 18 13 14 19 14 3 20 3 13 21 13 3 22 3 9 23 9 6 24 6 10 25 10 0 26 0 10 27 10 6 28 6 11 29 11 4 30 4 11 31 11 6 32 6 11 33 11 4 34 4 12 35 12 8 36 8 12 37 12 4 38 4 12 39 12 8 40 8 13 41 13 1 42 1 13 43 13 8 44 8 13 45 13 1 46 1 14 47 14</p></triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="pushEffect" name="pushEffect">
+      <node name="pPlane1" id="pPlane1" sid="pPlane1"><matrix sid="matrix">1.000000 0.000000 0.000000 -0.995952 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.001113 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#pPlane1-lib"><bind_material><technique_common><instance_material symbol="lambert1" target="#lambert1"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <extra><technique profile="MAX3D"><frame_rate>24.000000</frame_rate></technique><technique profile="FCOLLADA"><start_time>0.041667</start_time><end_time>2.000000</end_time></technique></extra>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#pushEffect"></instance_visual_scene>
+  </scene>
+</COLLADA>
