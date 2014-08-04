@@ -1,0 +1,31 @@
+fileFormatVersion: 2
+guid: 581763ba1c4569946afbad351d3c0d72
+labels:
+- Projection
+- Mesh
+- Skinned
+- Skinning
+- Terrain
+- LOD
+- Prefab
+- Lightmap
+- Lightmapping
+- Shaders
+- Shader
+- Batch
+- Batching
+- Uv
+- Uvs
+- Decal
+- Decals
+- Projector
+- Edit
+- Editing
+- Texture
+- Atlas
+- Tile
+MonoAssemblyImporter:
+  serializedVersion: 1
+  iconMap: {}
+  executionOrder: {}
+  userData: 
