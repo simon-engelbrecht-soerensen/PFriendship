@@ -284,44 +284,57 @@ public class PlayerAttack : MonoBehaviour {
 
 //		if(button1 == ButtonOne.ranged)
 //		{
-//			switch(controls.playerNumber)
-//			{
-//			case 1:
-//				if(GamePad.GetButtonDown (GamePad.Button.A, GamePad.Index.One))
-//				{
-//					StartCoroutine("Shoot");
-//					
-//				}
-//				break;
-//				
-//			case 2:
-//				if(GamePad.GetButtonDown (GamePad.Button.A, GamePad.Index.Two))
-//				{
-//					StartCoroutine("Shoot");
-//					
-//				}
-//				break;
-//				
-//			case 3:
-//				if(GamePad.GetButtonDown (GamePad.Button.A, GamePad.Index.Three))
-//				{
-//					StartCoroutine("Shoot");
-//					
-//				}
-//				break;
-//				
-//			case 4:
-//				if(GamePad.GetButtonDown (GamePad.Button.A, GamePad.Index.Four))
-//				{
-//					StartCoroutine("Shoot");
-//					
-//				}
-//				break;
-//				
-//			default:
-//				break;
-//				
-//			}
+						switch(controls.playerNumber)
+			{
+				case 1:
+				//				if(GamePad.GetButtonDown (GamePad.Button.A, GamePad.Index.One) && !swinging)
+				if(p1.Buttons.A == ButtonState.Pressed && !shotPressed)
+				{
+					
+										StartCoroutine("Shoot");
+					shotPressed = true;
+					
+				}
+
+				break;
+				
+				case 2:
+				if(p2.Buttons.A == ButtonState.Pressed &&  !shotPressed)
+				{
+					shotPressed = true;
+					StartCoroutine("Shoot");
+
+					
+				}
+
+				break;
+				
+				case 3:
+				if(p3.Buttons.A == ButtonState.Pressed && !shotPressed)
+				{
+					shotPressed = true;
+					StartCoroutine("Shoot");
+
+					
+				}
+
+				break;
+				
+				case 4:
+				if(p4.Buttons.A == ButtonState.Pressed && !shotPressed)
+				{
+										shotPressed = true;
+
+					StartCoroutine("Shoot");
+
+				}
+
+				break;
+				
+				default:
+				break;
+				
+			}
 //		}
 
 //		if(button2 == ButtonTwo.ranged)
