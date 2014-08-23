@@ -5,6 +5,7 @@ public class PlayerShot : MonoBehaviour {
 	public float dmgToEnemy = 0.5f;
 	public float backlashForce = 5f;
 	public float backlashDuration = 0.2f;
+	public GameObject explosionPrefab;
 	// Use this for initialization
 	void Start () {
 	
@@ -36,5 +37,20 @@ public class PlayerShot : MonoBehaviour {
 		yield return new WaitForSeconds(backlashDuration);
 		col.rigidbody.isKinematic = true;
 //		}
+	}
+
+	void OnCollisionEnter(Collision col)
+	{
+//		Debug.Log (col.gameObject.layer);
+//
+		if(col.gameObject.layer != 9 || col.gameObject.layer != 15)
+		{
+
+			if(explosionPrefab)
+			{
+				Instantiate(explosionPrefab,col.contacts[0].point,Quaternion.LookRotation(col.contacts[0].normal));
+				this.gameObject.SetActive(false);
+			}
+		}
 	}
 }

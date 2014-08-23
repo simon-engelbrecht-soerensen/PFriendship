@@ -11,7 +11,7 @@
 		uniform float _LightCutoff;
 		
       		half4 LightingWrapLambert (SurfaceOutput s, half3 lightDir, half atten) {
-          half NdotL = dot (s.Normal, lightDir);
+//         	 half NdotL = dot (s.Normal, lightDir);
 
 		  	atten = step(_LightCutoff, atten) * atten;
           	half4 c;

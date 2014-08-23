@@ -661,10 +661,10 @@ public class PlayerAttack : MonoBehaviour {
 	{
 		Vector3 dir = movement.inputDir - this.transform.position;
 		dir.Normalize();
-		for(int i = 0; i <= shotAmt; i++)
+		for(int i = 0; i <= shotAmt-1; i++)
 		{
 
-			GameObject shotPref = Instantiate(shot,this.transform.position, transform.rotation) as GameObject;
+			GameObject shotPref = Instantiate(shot,this.transform.position + ( this.transform.forward *1.2f), transform.rotation) as GameObject;
 //			shotPref.transform.eulerAngles = new Vector3(transform.rotation.x, transform.rotation.y * Random.Range(-2,2), transform.rotation.z);
 			if(spreadShot)
 			{

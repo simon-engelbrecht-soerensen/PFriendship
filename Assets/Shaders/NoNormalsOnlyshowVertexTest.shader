@@ -17,7 +17,7 @@
 
 		  	atten = step(_LightCutoff, atten) * atten;
           	half4 c;
-          	c.rgb = s.Albedo * _LightColor0.rgb * atten;
+          	c.rgb = _Color* _LightColor0.rgb * atten;
           	c.a = s.Alpha;
           	return c;
       }
