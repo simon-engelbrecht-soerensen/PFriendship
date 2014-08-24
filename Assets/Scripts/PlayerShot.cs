@@ -49,8 +49,18 @@ public class PlayerShot : MonoBehaviour {
 			if(explosionPrefab)
 			{
 				Instantiate(explosionPrefab,col.contacts[0].point,Quaternion.LookRotation(col.contacts[0].normal));
-				this.gameObject.SetActive(false);
+//				this.gameObject.SetActive(false);
+				StartCoroutine("FadeOut");
+
 			}
 		}
+	}
+
+	IEnumerator FadeOut()
+	{
+		rigidbody.isKinematic = true;
+		collider.enabled = false;
+		yield return new WaitForSeconds(0.2f);
+		this.gameObject.SetActive(false);
 	}
 }

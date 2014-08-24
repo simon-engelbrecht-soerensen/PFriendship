@@ -49,7 +49,8 @@ Category
 //	AlphaTest Greater .01
 //	ColorMask RGB
 	Cull Off
-// Lighting Off ZWrite Off
+// Lighting Off 
+ZWrite Off
 	BindChannels
 	{
 		Bind "Color", color

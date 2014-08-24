@@ -11,6 +11,7 @@ public class PlayerAttack : MonoBehaviour {
 	public ButtonTwo button2;
 
 	public GameObject shot;
+	public GameObject muzzleFlash;
 	public float shotRange;
 	public float shotAmt;
 	public float shotSpeed = 200f;
@@ -68,6 +69,7 @@ public class PlayerAttack : MonoBehaviour {
 	public GameObject hitEffect;
 	private GameObject hitEffectInst;
 	private bool swingType;
+
 	void Start () {
 		audioSource = transform.parent.GetComponent<AudioSource>();
 
@@ -664,7 +666,8 @@ public class PlayerAttack : MonoBehaviour {
 		for(int i = 0; i <= shotAmt-1; i++)
 		{
 
-			GameObject shotPref = Instantiate(shot,this.transform.position + ( this.transform.forward *1.2f), transform.rotation) as GameObject;
+			GameObject shotPref = Instantiate(shot,this.transform.position + ( this.transform.forward *1.4f), transform.rotation) as GameObject;
+			GameObject muzzlePref = Instantiate(muzzleFlash,new Vector3(this.transform.position.x + ( this.transform.forward.x * 1.01f), this.transform.position.y + 0.05f, this.transform.position.z + (this.transform.forward.z * 1.01f)), transform.rotation) as GameObject;
 //			shotPref.transform.eulerAngles = new Vector3(transform.rotation.x, transform.rotation.y * Random.Range(-2,2), transform.rotation.z);
 			if(spreadShot)
 			{
