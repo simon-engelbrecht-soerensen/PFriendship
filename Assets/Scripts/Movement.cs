@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using XInputDotNetPure;
 public class Movement : MonoBehaviour {
 	public Vector3 inputDir;
+	public Vector3 inputDir2;
+
+
 	public float movementX;
 	public float movementY;
 	public float movementMax = 5f;
@@ -183,6 +186,8 @@ public class Movement : MonoBehaviour {
 			standStillButton = standStillButton1;
 			dashButton = dashButton1;
 			inputDir = new Vector3(p1.ThumbSticks.Left.X, p1.ThumbSticks.Left.Y,  0);
+			inputDir2 = new Vector3(p1.ThumbSticks.Right.X, p1.ThumbSticks.Right.Y,  0);
+
 //			rumbleButton
 			break;
 
@@ -190,18 +195,24 @@ public class Movement : MonoBehaviour {
 			standStillButton = standStillButton2;
 			dashButton = dashButton2;
 			inputDir = new Vector3(p2.ThumbSticks.Left.X, p2.ThumbSticks.Left.Y, 0);
+			inputDir2 = new Vector3(p2.ThumbSticks.Right.X, p2.ThumbSticks.Right.Y,  0);
+
 			break;
 			
 		case 3:
 			standStillButton = standStillButton3;
 			dashButton = dashButton3;
 			inputDir = new Vector3(p3.ThumbSticks.Left.X,p3.ThumbSticks.Left.Y,0);
+			inputDir2 = new Vector3(p3.ThumbSticks.Right.X, p3.ThumbSticks.Right.Y,  0);
+
 			break;
 			
 		case 4:
 			standStillButton = standStillButton4;
 			dashButton = dashButton4;
 			inputDir = new Vector3(p4.ThumbSticks.Left.X,p4.ThumbSticks.Left.Y,0);
+			inputDir2 = new Vector3(p4.ThumbSticks.Right.X, p4.ThumbSticks.Right.Y,  0);
+
 			break;
 			
 		default:
@@ -243,6 +254,8 @@ public class Movement : MonoBehaviour {
 
 		}
 		inputDir = Quaternion.Euler(35, 0, 45) * inputDir;
+		inputDir2 = Quaternion.Euler(35, 0, 45) * inputDir2;
+
 	}
 	void FixedUpdate()
 	{
@@ -349,12 +362,12 @@ public class Movement : MonoBehaviour {
 //		rigidbody.AddForce(transform.forward * speed);	
 		if(!standStill)
 		{
-			rigidbody.velocity = new Vector3(transform.forward.x * speed, gravity, transform.forward.z * speed);
+			rigidbody.velocity = new Vector3(inputDir.x * speed, gravity, inputDir.z * speed);
 		}
 		
-		if(inputDir.magnitude > 0f)
+		if(inputDir2.magnitude > 0f)
 		{
-			float newTargetAngle = Mathf.Atan2(inputDir.x, inputDir.y) * Mathf.Rad2Deg;		
+			float newTargetAngle = Mathf.Atan2(inputDir2.x, inputDir2.y) * Mathf.Rad2Deg;		
 			targetAngle = newTargetAngle;
 		}					
 		

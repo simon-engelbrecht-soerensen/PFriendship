@@ -286,11 +286,11 @@ public class PlayerAttack : MonoBehaviour {
 
 //		if(button1 == ButtonOne.ranged)
 //		{
-						switch(controls.playerNumber)
+			switch(controls.playerNumber)
 			{
 				case 1:
 				//				if(GamePad.GetButtonDown (GamePad.Button.A, GamePad.Index.One) && !swinging)
-				if(p1.Buttons.A == ButtonState.Pressed && !shotPressed)
+				if(p1.Buttons.RightShoulder == ButtonState.Pressed && !shotPressed)
 				{
 					
 										StartCoroutine("Shoot");
@@ -301,7 +301,7 @@ public class PlayerAttack : MonoBehaviour {
 				break;
 				
 				case 2:
-				if(p2.Buttons.A == ButtonState.Pressed &&  !shotPressed)
+				if(p2.Buttons.RightShoulder == ButtonState.Pressed &&  !shotPressed)
 				{
 					shotPressed = true;
 					StartCoroutine("Shoot");
@@ -312,7 +312,7 @@ public class PlayerAttack : MonoBehaviour {
 				break;
 				
 				case 3:
-				if(p3.Buttons.A == ButtonState.Pressed && !shotPressed)
+				if(p3.Buttons.RightShoulder == ButtonState.Pressed && !shotPressed)
 				{
 					shotPressed = true;
 					StartCoroutine("Shoot");
@@ -323,7 +323,7 @@ public class PlayerAttack : MonoBehaviour {
 				break;
 				
 				case 4:
-				if(p4.Buttons.A == ButtonState.Pressed && !shotPressed)
+				if(p4.Buttons.RightShoulder == ButtonState.Pressed && !shotPressed)
 				{
 										shotPressed = true;
 
