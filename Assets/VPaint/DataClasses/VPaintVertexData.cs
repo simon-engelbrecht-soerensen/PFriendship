@@ -27,11 +27,13 @@ namespace Valkyrie.VPaint
 			data.colorer = colorer;
 			data.colors = new Color[colors.Length];
 			data.transparency = new float[colors.Length];
+			
 			for(int i = 0; i < colors.Length; i++)
 			{
 				data.colors[i] = colors[i];
 				data.transparency[i] = transparency[i];
 			}
+			
 			return data;
 		}
 	}

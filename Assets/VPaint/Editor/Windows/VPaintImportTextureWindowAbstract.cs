@@ -336,7 +336,11 @@ public abstract class VPaintImportTextureWindowAbstract : VPaintWindowBase
 				
 				for(int i = 0; i < pd.colors.Length; i++)
 				{
-					EditorUtility.DisplayProgressBar("Sampling...", "Sampling texture onto '" + vc.name + "'", (float)i/pd.colors.Length);
+					if(EditorUtility.DisplayCancelableProgressBar("Sampling...", "Sampling texture onto '" + vc.name + "'", (float)i/pd.colors.Length))
+					{
+						EditorUtility.ClearProgressBar();
+						return;
+					}
 					
 					Vector2 uv = uvs[i];
 					Vector2 normalizedPos = uvTransformation(uv);
@@ -494,8 +498,9 @@ public abstract class VPaintImportTextureWindowAbstract : VPaintWindowBase
 				}
 				VPaint.Instance.ReloadLayers();
 			}
-			EditorUtility.ClearProgressBar();
-		}catch{
+		}
+		finally
+		{
 			EditorUtility.ClearProgressBar();
 		}
 	}

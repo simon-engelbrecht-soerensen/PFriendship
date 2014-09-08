@@ -11,8 +11,9 @@ public class VPaintStorageCache : ScriptableObject
 {
 	public VPaintLayerStack layerStack = new VPaintLayerStack();
 	[HideInInspector][SerializeField] public List<VPaintStorageObject> storageObjects = new List<VPaintStorageObject>();
+	[HideInInspector][SerializeField] public List<VPaintVertexCache> vertexCache = new List<VPaintVertexCache>();
 	
-	public VPaintGroup CreatePaintGroup (string name)
+	public VPaintGroup CreatePaintGroup (string name, bool copyVertexCache = true)
 	{
 		var paintGroup = new GameObject(name).AddComponent<VPaintGroup>();
 		var stack = layerStack.Clone();
@@ -31,6 +32,20 @@ public class VPaintStorageCache : ScriptableObject
 				
 				data.vpaintObject = vpaintObject;
 				if(!objects.Contains(vpaintObject)) objects.Add(vpaintObject);
+			}
+		}
+		
+		if(copyVertexCache)
+		{
+			foreach(var cache in vertexCache)
+			{
+				var vpaintObject = GetVPaintObject(cache.obj as VPaintStorageObject);
+				if(!vpaintObject) continue;
+				paintGroup.vertexCache.Add(new VPaintVertexCache()
+				{
+					vpaintObject = vpaintObject,
+					vertices = cache.vertices
+				});
 			}
 		}
 		
@@ -99,6 +114,21 @@ public class VPaintStorageCache : ScriptableObject
 					data.colorer = swaps[vp];
 				}
 			}
+			
+			for(int i = 0; i < grp.vertexCache.Count; i++)
+			{
+				EditorUtility.DisplayProgressBar("Copying Vertex Cache", "Copying cache " + i, (float)i/grp.vertexCache.Count);
+				var cache = grp.vertexCache[i];
+				var t = CreateStorageObject(cache.vpaintObject);
+				AssetDatabase.AddObjectToAsset(t, this);				
+				storageObjects.Add(t);
+				vertexCache.Add(new VPaintVertexCache()
+				{
+					obj = t,
+					vertices = cache.vertices
+				});
+			}
+			
 		}finally{
 			EditorUtility.ClearProgressBar();
 		}

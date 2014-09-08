@@ -154,5 +154,20 @@ namespace Valkyrie.VPaint
 			_cordonePositionY = EditorPrefs.GetFloat("VP_Cordone_PosY", 0f);
 			_cordonePositionZ = EditorPrefs.GetFloat("VP_Cordone_PosZ", 0f);
 		}
+		
+		public static void Reset ()
+		{
+			useR = true;
+			useG = true;
+			useB = true;
+			useA = true;
+			radius = 2f;
+			strength = 100f;
+			falloff = 0f;
+			selectedColor = 0;
+			cordoneEnabled = false;
+			cordoneSize = Vector3.one;
+			cordonePosition = Vector3.zero;
+		}
 	}
 }

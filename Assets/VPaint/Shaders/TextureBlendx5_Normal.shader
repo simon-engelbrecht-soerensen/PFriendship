@@ -20,7 +20,7 @@ Shader "VPaint/Lit/Blend 5 Bumped Textures" {
 		LOD 200
 		
 		CGPROGRAM
-		#pragma surface surf Lambert
+		#pragma surface surf BlinnPhong
 		#pragma target 3.0
 
 		sampler2D _BaseTexture;

@@ -3,6 +3,7 @@ using UnityEditor;
 
 namespace Valkyrie.VPaint
 {
+/*
 	[InitializeOnLoad]
 	public class VPaintInitialization
 	{
@@ -23,7 +24,7 @@ namespace Valkyrie.VPaint
 		
 		static void ReloadGroups ()
 		{
-			var groups = GameObject.FindSceneObjectsOfType(typeof(VPaintGroup));
+			var groups = GameObject.FindObjectsOfType(typeof(VPaintGroup));
 			foreach(var g in groups)
 			{
 				var pg = g as VPaintGroup;
@@ -32,4 +33,5 @@ namespace Valkyrie.VPaint
 			}
 		}
 	}
+*/// Deprecated
 }

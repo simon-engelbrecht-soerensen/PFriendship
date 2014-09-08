@@ -10,20 +10,23 @@ public class VPaintImportColorsWindow : VPaintWindowBase
 //	int layerToImport = -1;
 	public override void OnValidatedGUI ()
 	{
-		IVPaintable paintable = VPaint.GetIVPaintable(Selection.activeGameObject);
-		if(paintable != null)
-		{
-			var obj = paintable as UnityEngine.Object;
-			if(EditorUtility.IsPersistent(obj)) paintable = null;
-		}
-		if(paintable == VPaint.Instance.layerCache) paintable = null;
+//		IVPaintable paintable = VPaint.GetIVPaintable(Selection.activeGameObject);
+//		if(paintable != null)
+//		{
+//			var obj = paintable as UnityEngine.Object;
+//			if(EditorUtility.IsPersistent(obj)) paintable = null;
+//		}
+//		if(paintable == VPaint.Instance.layerCache) paintable = null;
+		
+		VPaintGroup paintable = null;
+		if(Selection.activeGameObject) paintable = Selection.activeGameObject.GetComponent<VPaintGroup>();
 		
 		GUIStyle style = GetWordWrappedLabel();
 		GUILayout.Label("Select a VPaint Group to import into the currently selected layer stack.", style);
 		
 		GUILayout.Space(10);
 		
-		EditorGUILayout.ObjectField(new GUIContent("Import Target:"), paintable as UnityEngine.Object, typeof(UnityEngine.Object), true);
+		EditorGUILayout.ObjectField(new GUIContent("Import Target:"), paintable, typeof(VPaintGroup), true);
 		
 //		List<string> layerNames = new List<string>();
 //		layerNames.Add("All Layers");
@@ -55,7 +58,7 @@ public class VPaintImportColorsWindow : VPaintWindowBase
 		maxSize = new Vector2(400, 120);
 	}
 	
-	void Import (IVPaintable paintable)
+	void Import (VPaintGroup paintable)
 	{
 		foreach(var layer in paintable.GetLayerStack().layers)
 			VPaint.Instance.layerStack.layers.Add(layer.Clone());

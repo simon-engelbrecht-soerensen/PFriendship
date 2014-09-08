@@ -19,7 +19,7 @@ Shader "VPaint/Lit/Blend 4 Bumped Textures" {
 		LOD 200
 		
 		CGPROGRAM
-		#pragma surface surf Lambert
+		#pragma surface surf BlinnPhong
 		#pragma target 3.0
 
 		half4 _Color;

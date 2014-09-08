@@ -8,18 +8,13 @@ namespace Valkyrie.VPaint
 	[Serializable]
 	public class VPaintLayerStack
 	{
-		public List<VPaintLayer> layers = new List<VPaintLayer>();
+		public List<VPaintLayer> layers = new List<VPaintLayer>(){new VPaintLayer()};
 		public int currentLayer = 0;
 		
 		public void Clear ()
 		{
 			layers.Clear();
 		}
-		
-//		public void BuildPaintDataDictionary ()
-//		{
-//			foreach(var layer in layers) layer.BuildPaintDataDictionary();
-//		}
 		
 		public VPaintLayerStack Clone ()
 		{
@@ -36,14 +31,12 @@ namespace Valkyrie.VPaint
 			return layer;
 		}
 		
-		public List<VPaintLayer> GetActiveLayers ()
+		public IEnumerable<VPaintLayer> GetActiveLayers ()
 		{
-			List<VPaintLayer> lyrs = new List<VPaintLayer>();
 			foreach(VPaintLayer l in layers)
 			{
-				if(l.enabled) lyrs.Add(l);
+				if(l.enabled) yield return l;
 			}
-			return lyrs;
 		}
 		
 		public VPaintLayer GetMergedLayer ()

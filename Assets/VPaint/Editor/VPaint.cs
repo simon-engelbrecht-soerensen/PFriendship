@@ -12,9 +12,12 @@ using Valkyrie.VPaint;
 public class VPaint : EditorWindow 
 {			
 	public static VPaint Instance;
+	static VPaintGroup lastPaintGroup;
+	public static VPaintObjectError[] allErrors;
 	
 	static VPaint ()
 	{
+		//Find ShaderUtil internal class, used to find out if a shader supports vertex colors
 		var types =	typeof(Editor).Assembly.GetTypes();
 		for(int i = 0; i < types.Length; i++)
 		{
@@ -24,6 +27,13 @@ public class VPaint : EditorWindow
 				getShaderSourceChannelsMethod = t.GetMethod("GetSourceChannels", BindingFlags.Static | BindingFlags.Public);
 				break;
 			}
+		}
+		
+		var arr = Enum.GetValues(typeof(VPaintObjectError));
+		allErrors = new VPaintObjectError[arr.Length];
+		for(int i = 0; i < arr.Length; i++)
+		{
+			allErrors[i] = (VPaintObjectError)arr.GetValue(i);
 		}
 	}
 	
@@ -62,6 +72,25 @@ public class VPaint : EditorWindow
 		OpenEditor();
 		
 		
+	}
+	
+	[MenuItem("GameObject/VPaint/Add Selection To Last")]
+	public static void AddSelectionToLast ()
+	{
+		if(!lastPaintGroup)
+		{
+			Debug.LogWarning("Last paint group could not be found. Please open a paint group before using this menu item.");
+			return;
+		}
+		foreach(var go in Selection.gameObjects)
+		{
+			if(!go.GetComponent<MeshFilter>()) continue;
+			if(!go.GetComponent<MeshRenderer>()) continue;
+			var vp = go.GetComponent<VPaintObject>();
+			if(!vp) vp = go.AddComponent<VPaintObject>();
+			lastPaintGroup.AddColorer(vp);
+		}
+		if(Instance) Instance.BuildObjectInfo();
 	}
 	
 	[MenuItem("GameObject/VPaint/Open Manual")]
@@ -107,61 +136,145 @@ public class VPaint : EditorWindow
 	}
 	
 	public bool overrideTool = false;
+	public bool sceneViewControlsEnabled = true;
 	
 	public bool dirty = false;
+	public void MarkDirty ()
+	{
+		if(!dirty) EditorUtility.SetDirty(_layerCache);
+		dirty = true;
+	}
 	
 	private float deltaTime;
 	private float lastTime = 0;
 	
 	private SceneView lastDrawnSceneView;
 	
-//	private MethodInfo method_SetSearchFilter;
-	
-//	Dictionary<MeshCollider, VPaintObject> editColliders;
+	public VPaintObjectInfo[] objectInfo;
+	public int errorCount = 0;
+	public HashSet<VPaintObjectError> errorTypes;
+	public void BuildObjectInfo ()
+	{
+		if(!layerCache || layerStack == null)
+		{
+			objectInfo = null;
+			return;
+		}
+		
+		objectInfo = new VPaintObjectInfo[currentEditingContents.Length];
+		errorCount = 0;
+		errorTypes = new HashSet<VPaintObjectError>();
+		for(int i = 0; i < currentEditingContents.Length; i++)
+		{
+			var info = new VPaintObjectInfo();
+			info.vpaintObject = currentEditingContents[i];
+			
+			if(!info.vpaintObject)
+			{
+				info.errors.Add(VPaintObjectError.MissingObject);
+				errorTypes.Add(VPaintObjectError.MissingObject);
+			}
+			else if(!info.vpaintObject.GetComponent<MeshFilter>())
+			{
+				info.errors.Add(VPaintObjectError.MissingMeshFilter);
+				errorTypes.Add(VPaintObjectError.MissingMeshFilter);
+			}
+			else
+			{
+				var mesh = info.vpaintObject.originalMesh;
+				if(!mesh) mesh = info.vpaintObject.GetComponent<MeshFilter>().sharedMesh;
+				
+				if(!mesh)
+				{
+					info.errors.Add(VPaintObjectError.MissingMesh);
+				}
+				else
+				{
+				
+					var verts = mesh.vertices;
+					
+					for(int l = 0; l < layerStack.layers.Count; l++)
+					{
+						var layer = layerStack.layers[l];
+						var pd = layer.Get(info.vpaintObject);
+						if(pd == null) continue;
+						if(pd.colors.Length != verts.Length)
+						{
+							info.errors.Add(VPaintObjectError.InvalidVertexCount);
+							errorTypes.Add(VPaintObjectError.InvalidVertexCount);
+							break;
+						}
+					}
+					
+					info.vertexCache = layerCache.vertexCache.Find(obj=>obj.vpaintObject == info.vpaintObject);			
+					
+					if(!info.errors.Contains(VPaintObjectError.InvalidVertexCount)
+					&& (info.vertexCache == null || info.vertexCache.vertices.Length != info.vpaintObject.GetMeshInstance().vertices.Length))
+					{
+						layerCache.CacheVertices(info.vpaintObject);
+						if(info.vertexCache == null) info.vertexCache = layerCache.vertexCache.Find(obj=>obj.vpaintObject == info.vpaintObject);
+					}
+					
+				}
+			}
+			
+			if(!info.vpaintObject.GetComponent<MeshRenderer>())
+			{
+				info.errors.Add(VPaintObjectError.MissingMeshRenderer);
+				errorTypes.Add(VPaintObjectError.MissingMeshRenderer);
+			}
+			
+			
+			objectInfo[i] = info;
+			
+			errorCount += info.errors.Count;
+		}
+	}
 	
 	[NonSerialized] public UnityEngine.Object _layerCacheObject;
-	IVPaintable _layerCache;
-	public IVPaintable layerCache
+	VPaintGroup _layerCache;
+	public VPaintGroup layerCache
 	{
 		get{
 			if(_layerCache == null)
 			{
 				if(_layerCacheObject)
 				{
-					layerCache = _layerCacheObject as IVPaintable;
+					layerCache = _layerCacheObject as VPaintGroup;
 				}
 			}
 			return _layerCache;
 		}
 		private set{
-//			if(_layerCache != value)
-//			{
-//				if(_layerCache != null)
-//				{
-					Cleanup(false);
-//				}
-//			}
+			
+			Cleanup(false);
+
 			_layerCache = value;
 			if(_layerCache != null)
 			{
+				lastPaintGroup = _layerCache;
+				
 				_layerCache.GetLayerStack().Sanitize();
-//				_layerCache.GetLayerStack().BuildPaintDataDictionary();
+
 				ClearMaterialSwaps();
 				_layerCacheObject = _layerCache as UnityEngine.Object;
 				
 				currentEditingContents = _layerCache.GetVPaintObjects();
-				currentEditingContentsMask = new bool[currentEditingContents.Length];
-				for(int i = 0; i < currentEditingContents.Length; i++)
-				{
-					currentEditingContents[i].index = i;
-					currentEditingContentsMask[i] = true;
-				}
+				
+//				currentEditingContentsMask = new bool[currentEditingContents.Length];
+//				for(int i = 0; i < currentEditingContents.Length; i++)
+//				{
+//					currentEditingContents[i].index = i;
+//					currentEditingContentsMask[i] = true;
+//				}
 				
 				layerStack.Sanitize(new List<IVPaintIdentifier>(currentEditingContents));
 				
-				baseLayer = _layerCache.GetBaseLayer();
+				foreach(var obj in currentEditingContents) obj.GetMeshInstance();
 				
-//				SetupColliders();
+				BuildObjectInfo();
+				
+				baseLayer = _layerCache.GetBaseLayer();
 				
 				ReloadLayers();
 				
@@ -232,15 +345,21 @@ public class VPaint : EditorWindow
 	
 	public VPaintObject[] currentEditingContents = new VPaintObject[0];
 	
-	public bool[] currentEditingContentsMask = new bool[0];
 	public IEnumerable<VPaintObject> maskedVPaintObjects ()
 	{
 		var cordoneBounds = VertexEditorControls.GetCordoneBounds();
 		for(int i = 0; i < currentEditingContents.Length; i++)
-		{
-			if(!currentEditingContentsMask[i]) continue;
+		{			
 			var c = currentEditingContents[i];
 			if(!c) continue;
+			
+			if(objectInfo[i].error) continue;
+			
+			var selectWindow = VPaintWindowBase.GetVPaintWindow<VPaintSelectionWindow>();
+			if(selectWindow)
+			{
+				if(!selectWindow.currentEditingContentsMask[i]) continue;
+			}
 			
 			if(VertexEditorControls.cordoneEnabled)
 			{
@@ -335,7 +454,11 @@ public class VPaint : EditorWindow
 	
 	public void PushUndo (string s)
 	{
-		Undo.RegisterUndo(_layerCacheObject, s);
+#if UNITY_4_3
+		Undo.RecordObject(_layerCache, s);
+#else
+		Undo.RegisterUndo(_layerCache, s);
+#endif
 		var mb = _layerCacheObject as MonoBehaviour;
 		if(mb)
 		{
@@ -349,13 +472,9 @@ public class VPaint : EditorWindow
 	
 	public void Cleanup (bool cleanupInstances = true)
 	{
-//		if(editColliders != null)
-//		{
-//			foreach(var kvp in editColliders) GameObject.DestroyImmediate(kvp.Key.gameObject);
-//			editColliders.Clear();
-//		}
 		foreach(var vc in currentEditingContents)
 		{
+			if(!vc) continue;
 			if(vc.editorCollider)
 			{
 				GameObject.DestroyImmediate(vc.editorCollider);
@@ -383,7 +502,8 @@ public class VPaint : EditorWindow
 			if(layerStack == null) return null;
 			if(layerStack.layers.Count == 0)
 			{
-				layerStack.layers.Add(new VPaintLayer());
+				var newLayer = new VPaintLayer();
+				layerStack.layers.Add(newLayer);
 			}
 			if(_currentPaintLayer < 0 || layerStack.layers.Count <= _currentPaintLayer)
 				_currentPaintLayer = Mathf.Clamp(_currentPaintLayer, 0, layerStack.layers.Count-1);
@@ -391,63 +511,63 @@ public class VPaint : EditorWindow
 		}
 	}
 	
+	InlineColorPicker picker;
 	public void OnEnable () 
 	{
+		if(!picker) picker = CreateInstance<InlineColorPicker>();
+		
 		Instance = this;
-		
-//		method_SetSearchFilter = typeof(SceneView).GetMethod("SetSearchFilter", BindingFlags.NonPublic | BindingFlags.Instance);
-		
 		
 		VertexEditorColors.Deserialize();
 		
 		VertexEditorControls.Load();
 		
-//		ReloadLayers();
-//		PushUndo("Open Vertex Painter");
-		
-//		SetupColliders ();
-		
-		objectsGroup.foldout = currentEditingContents.Length < 200;
-		
 		RegisterCallbacks ();
 		
 		ValidateSelection();
+		
+		BuildObjectInfo();
 	}
 	
 	public void OnDisable () {
+		if(picker) UnityEngine.Object.DestroyImmediate (picker);
+		
 		Instance = null;
 		
-//		if(lastDrawnSceneView){
-//			method_SetSearchFilter.Invoke(lastDrawnSceneView, new object[]{ "", 0, true } );
-//		}
-		
 		DisableVertexColorPreview();
-//		Cleanup();
 		
 		DeregisterCallbacks();
 	}
 	
 	void RegisterCallbacks ()
-	{
+	{		
 		EditorApplication.update += OnEditorUpdateCallback;
 		SceneView.onSceneGUIDelegate += OnSceneGUICallback;
 		
+#if UNITY_4_3
+		Undo.undoRedoPerformed += OnUndoRedoPerformedCallback;
+#else
 		//UndoRedo callback
 		var undoRedoPerformedEvent = typeof(EditorApplication).GetField("undoRedoPerformed", BindingFlags.Static | BindingFlags.NonPublic);
 		var dg = undoRedoPerformedEvent.GetValue(null) as EditorApplication.CallbackFunction;
 		EditorApplication.CallbackFunction callback = OnUndoRedoPerformedCallback;
 		undoRedoPerformedEvent.SetValue(null, Delegate.Combine(dg, callback));		
+#endif
 	}
 	void DeregisterCallbacks ()
 	{
 		EditorApplication.update -= OnEditorUpdateCallback;
 		SceneView.onSceneGUIDelegate -= OnSceneGUICallback;
 		
+#if UNITY_4_3
+		Undo.undoRedoPerformed -= OnUndoRedoPerformedCallback;
+#else
 		//UndoRedoCallback
 		var undoRedoPerformedEvent = typeof(EditorApplication).GetField("undoRedoPerformed", BindingFlags.Static | BindingFlags.NonPublic);
 		var dg = undoRedoPerformedEvent.GetValue(null) as EditorApplication.CallbackFunction;
 		EditorApplication.CallbackFunction callback = OnUndoRedoPerformedCallback;
 		undoRedoPerformedEvent.SetValue(null, Delegate.RemoveAll(dg, callback));
+#endif
 	}
 	
 	void ValidateSelection ()
@@ -460,7 +580,7 @@ public class VPaint : EditorWindow
 		bool reload = true;
 		if(_layerCacheObject) {
 			if(_layerCacheObject is Component) {
-				if(Selection.activeGameObject && GetIVPaintable(Selection.activeGameObject) == _layerCacheObject) {
+				if(Selection.activeGameObject && Selection.activeGameObject.GetComponent<VPaintGroup>() == _layerCacheObject) {
 					reload = false;
 				}
 			} else {
@@ -472,43 +592,26 @@ public class VPaint : EditorWindow
 		if(reload) {
 			if(Selection.activeGameObject){
 				if(!EditorUtility.IsPersistent(Selection.activeGameObject)){
-					layerCache = GetIVPaintable(Selection.activeGameObject);
+					layerCache = Selection.activeGameObject.GetComponent<VPaintGroup>();
 				}
 				else layerCache = null;
-			} else {
+			}/* else {
 				layerCache = Selection.activeObject as IVPaintable;
-			}
+			}*/
 			
 			Repaint();
 		}
-	}
-	
-	public static IVPaintable GetIVPaintable (GameObject go)
-	{
-		if(!go) return null;
-		var behaviours = go.GetComponents<MonoBehaviour>();
-		foreach(var b in behaviours)
-		{
-			var p = b as IVPaintable;
-			if(p != null) return p;
-		}
-		return null;
 	}
 	
 	void OnUndoRedoPerformedCallback ()
 	{
 		CleanupInstances();
 		ReloadLayers();
-//		SetupColliders();
-		
+
 		if(vertexColorPreviewEnabled) EnableVertexColorPreview();
-		if(layerCache != null)
-		{
-			if(currentEditingContents.Length != layerCache.GetVPaintObjects().Length)
-			{
-				layerCache = layerCache;
-			}
-		}
+//		layerCache = layerCache;
+		BuildObjectInfo();
+		VPaintWindowBase.RepaintAll();
 	}
 	
 	void OnEditorUpdateCallback ()
@@ -522,47 +625,6 @@ public class VPaint : EditorWindow
 		OnSceneGUI();
 	}
 	
-//	public void SetupColliders ()
-//	{
-//		try{
-//			if(editColliders == null) editColliders = new Dictionary<MeshCollider, VPaintObject>();
-//			editColliders.Clear();
-//	
-//			for(int i = 0; i < currentEditingContents.Length; i++)
-//			{
-//				var vc = currentEditingContents[i];
-//				string str = "";
-//				if(vc.editorCollider)
-//				{
-//					editColliders.Add(vc.editorCollider, vc);
-//					str = "("+i+"/"+currentEditingContents.Length+") Registering VPaintObject Collider for " + vc.name;
-//				}
-//				else
-//				{
-//					var mf = vc.GetComponent<MeshFilter>();
-//					if(!mf) continue;
-//					
-//					GameObject go = new GameObject("Editor Collider");
-//					go.hideFlags = HideFlags.HideInHierarchy;
-//					go.transform.parent = vc.transform;
-//					go.transform.localPosition = Vector3.zero;
-//					go.transform.localRotation = Quaternion.identity;
-//					go.transform.localScale = Vector3.one;
-//					
-//					vc.editorCollider = go.AddComponent<MeshCollider>();
-//					vc.editorCollider.sharedMesh = vc.originalMesh ? vc.originalMesh : mf.sharedMesh;
-//					
-//					editColliders.Add(vc.editorCollider, vc);
-//					
-//					str = "("+i+"/"+currentEditingContents.Length+") Creating VPaintObject Collider for " + vc.name;
-//				}
-//				EditorUtility.DisplayProgressBar("Initializing VPaint", str, (float)i/currentEditingContents.Length);
-//			}
-//		
-//		}finally{
-//			EditorUtility.ClearProgressBar();
-//		} 
-//	}
 	Bounds GetBounds (VPaintObject vc)
 	{
 		if(vc.editorCollider) return vc.editorCollider.bounds;
@@ -582,6 +644,8 @@ public class VPaint : EditorWindow
 			go.transform.localRotation = Quaternion.identity;
 			go.transform.localScale = Vector3.one;
 			
+			go.AddComponent<VPaintEditorBehaviour>();
+			
 			vc.editorCollider = go.AddComponent<MeshCollider>();
 			vc.editorCollider.sharedMesh = vc.originalMesh ? vc.originalMesh : mf.sharedMesh;
 		}
@@ -593,16 +657,21 @@ public class VPaint : EditorWindow
 		if(!_lockSelection) ValidateSelection();
 	}
 	
+	public void RefreshObjects ()
+	{
+		layerCache = layerCache;
+	}
+	
 	bool IsRightClick(Event e)
 	{
 		return Event.current.type == EventType.MouseDown && Event.current.button == 1;
 	}
 	
 	VPaintInspectorGroup mainGroup = new VPaintInspectorGroup();
+	VPaintInspectorGroup maintGroup = new VPaintInspectorGroup();
 	VPaintInspectorGroup colorsGroup = new VPaintInspectorGroup();
 	VPaintInspectorGroup controlsGroup = new VPaintInspectorGroup();
 	VPaintInspectorGroup layersGroup = new VPaintInspectorGroup();
-	VPaintInspectorGroup objectsGroup = new VPaintInspectorGroup();
 	VPaintInspectorGroup cordoneGroup = new VPaintInspectorGroup();
 	GenericMenu rightClickMenu;
 	
@@ -627,7 +696,7 @@ public class VPaint : EditorWindow
 		
 		mainGroup.title = ()=>{
 			
-			if(layerStack == null)
+			if(layerStack == null || !_layerCacheObject)
 			{
 				GUILayout.Label("VPaint Disabled");
 			}
@@ -635,6 +704,7 @@ public class VPaint : EditorWindow
 			{
 				GUILayout.Label("VPaint Enabled");
 				GUILayout.FlexibleSpace();
+
 				bool guiActiveCache = GUI.enabled;
 				GUI.enabled = vertexColorPreviewEnabled;
 				if(GUILayout.Button("Normal View"))
@@ -653,7 +723,7 @@ public class VPaint : EditorWindow
 				previewButton(VertexColorPreviewMode.G, "G");
 				previewButton(VertexColorPreviewMode.B, "B");
 				previewButton(VertexColorPreviewMode.A, "A");
-				GUI.enabled = guiActiveCache;
+				GUI.enabled = guiActiveCache;				
 			}
 		};
 		mainGroup.method = (r)=>{
@@ -685,8 +755,8 @@ public class VPaint : EditorWindow
 				ValidateSelection();
 			}
 		}
-
-		if(layerStack != null)
+		
+		if(layerStack != null && _layerCacheObject)
 		{
 			if(IsRightClick(Event.current))
 			{
@@ -696,70 +766,29 @@ public class VPaint : EditorWindow
 			VPaintGUIUtility.BeginColumnView(position.width - 54);
 			
 			colorsGroup.method = ColorsGroupGUI;
-			colorsGroup.title = ()=>{
-				EditorGUILayout.BeginHorizontal();
-				GUILayout.Label("Color Settings");
-				GUILayout.FlexibleSpace();
-				if(colorsGroup.foldout)
-				{
-					if(VPaintGUIUtility.FoldoutMenu())
-					{
-						var menu = new GenericMenu();
-						menu.AddItem(new GUIContent("Flood Fill"), false, ()=>{
-							FloodFill();
-						});
-						
-						menu.AddItem(new GUIContent("Invert"), false, ()=>{
-							InvertColors();
-						});
-						
-						menu.AddItem(new GUIContent("Erase"), false, ()=>{
-							EraseAll();
-						});
-						menu.ShowAsContext();
-					}
-				}
-				EditorGUILayout.EndHorizontal();
-			};
+			colorsGroup.title = ColorsGroupTitle;
 			colorsGroup.width = position.width-40;
 			colorsGroup.OnGUI();
 			
 			controlsGroup.method = ControlsGroupGUI;
-			controlsGroup.title = ()=>{GUILayout.Label("Tool Settings");};
+			controlsGroup.title = ControlsGroupTitle;
 			controlsGroup.width = position.width-40;
 			controlsGroup.OnGUI();
 			
 			cordoneGroup.method = CordoneGroupGUI;
-			cordoneGroup.title = ()=>{
-				GUILayout.Label("Isolated Region");
-				GUILayout.FlexibleSpace();
-				if(VPaintGUIUtility.FoldoutMenu())
-				{
-					GenericMenu menu = new GenericMenu();
-					menu.AddItem(new GUIContent("Reset"), false, ()=>{
-						VertexEditorControls.cordoneEnabled = false;
-						VertexEditorControls.cordonePosition = Vector3.zero;
-						VertexEditorControls.cordoneSize = Vector3.one;
-					});
-					menu.AddItem(new GUIContent("Focus"), false, ()=>{
-						if(!SceneView.lastActiveSceneView) return;
-						VertexEditorControls.cordonePosition = SceneView.lastActiveSceneView.pivot;
-					});
-					menu.ShowAsContext();
-				}
-			};
+			cordoneGroup.title = CordoneGroupTitle;
 			cordoneGroup.width = position.width-40;
 			cordoneGroup.OnGUI();
 			
 			layersGroup.method = LayersGroupGUI;
-			layersGroup.title = ()=>{ GUILayout.Label("Layer Hierarchy"); };
+			layersGroup.title = LayersGroupTitle;
 			layersGroup.width = position.width-40;
 			layersGroup.OnGUI();
 			
-			objectsGroup.method = ObjectsGroupGUI;
-			objectsGroup.title = ()=>{GUILayout.Label("Object Targets");};	
-			objectsGroup.width = position.width-40;
-			objectsGroup.OnGUI();
+			maintGroup.method = MaintenanceGroupGUI;
+			maintGroup.title = MaintenanceGroupTitle;
+			maintGroup.width = position.width-40;
+			maintGroup.OnGUI();
 			
 			if(IsRightClick(Event.current) && mainRect.Contains(Event.current.mousePosition))
 			{
@@ -769,7 +798,7 @@ public class VPaint : EditorWindow
 			
 			if(GUI.changed){
 				EditorUtility.SetDirty(_layerCacheObject);
-				dirty = true;
+				MarkDirty();
 			}
 			
 			SceneViewKeyHandler();
@@ -802,9 +831,9 @@ public class VPaint : EditorWindow
 	
 	void LayersMenu (GenericMenu menu, string prefix = "Layers/")
 	{
-		menu.AddItem(new GUIContent(prefix + "New Layer (shift+n)"), false, NewLayer);
-		menu.AddItem(new GUIContent(prefix + "Create Merged (shift+m)"), false, CreateMergedLayer);
-		menu.AddItem(new GUIContent(prefix + "Collapse All (ctrl+shift+e)"), false, MergeAllLayers);
+		menu.AddItem(new GUIContent(prefix + "New Layer "+MenuHotkey("VP_HK_NewLayer")), false, NewLayer);
+		menu.AddItem(new GUIContent(prefix + "Create Merged "+MenuHotkey("VP_HK_CreateMergedLayer")), false, CreateMergedLayer);
+		menu.AddItem(new GUIContent(prefix + "Collapse All "+MenuHotkey("VP_HK_MergeAllLayers")), false, MergeAllLayers);
 	}
 	
 	void ImportMenu (GenericMenu menu, string prefix = "Import/")
@@ -812,24 +841,25 @@ public class VPaint : EditorWindow
 		menu.AddItem(new GUIContent(prefix + "Base Layer"), false, ImportBaseLayer);
 		menu.AddItem(new GUIContent(prefix + "Lightmaps"), false, ImportLightmaps);
 		menu.AddItem(new GUIContent(prefix + "Texture"), false, ImportTexture);
+		menu.AddItem(new GUIContent(prefix + "Ambient Occlusion"), false, ()=>{GetWindow<VPaintAmbientOcclusionWindow>(true);});
 		menu.AddItem(new GUIContent(prefix + "VPaint Group"), false, ImportLayerCache);	
 	}
 	
 	void LayerMenu (GenericMenu menu, int layerIndex, string prefix = "")
 	{
 		if(layerStack.layers.Count == 1)
-			menu.AddDisabledItem(new GUIContent("Remove Layer (shift+r)"));
-		else menu.AddItem(new GUIContent("Remove Layer (shift+r)"), false, RemoveLayer, layerIndex);
+			menu.AddDisabledItem(new GUIContent("Remove Layer "+MenuHotkey("VP_HK_CurrentLayerRemove")));
+		else menu.AddItem(new GUIContent("Remove Layer "+MenuHotkey("VP_HK_CurrentLayerRemove")), false, RemoveLayer, layerIndex);
 		
 		if(layerIndex == 0)
-			menu.AddDisabledItem(new GUIContent("Merge Layer Down (shift+e)"));
-		else menu.AddItem(new GUIContent("Merge Layer Down (shift+e)"), false, MergeLayerDown, layerIndex);
+			menu.AddDisabledItem(new GUIContent("Merge Layer Down "+MenuHotkey("VP_HK_CurrentLayerMergeDown")));
+		else menu.AddItem(new GUIContent("Merge Layer Down "+MenuHotkey("VP_HK_CurrentLayerMergeDown")), false, MergeLayerDown, layerIndex);
 		
-		menu.AddItem(new GUIContent("Duplicate Layer (shift+d)"), false, DuplicateLayer, layerIndex);
+		menu.AddItem(new GUIContent("Duplicate Layer "+MenuHotkey("VP_HK_CurrentLayerDuplicate")), false, DuplicateLayer, layerIndex);
 		
-		menu.AddItem(new GUIContent("Move Layer Up (shift+up)"), false, MoveLayerUp, layerIndex);
+		menu.AddItem(new GUIContent("Move Layer Up "+MenuHotkey("VP_HK_CurrentLayerMoveUp")), false, MoveLayerUp, layerIndex);
 		
-		menu.AddItem(new GUIContent("Move Layer Down (shift+down)"), false, MoveLayerDown, layerIndex);
+		menu.AddItem(new GUIContent("Move Layer Down "+MenuHotkey("VP_HK_CurrentLayerMoveDown")), false, MoveLayerDown, layerIndex);
 		
 		menu.AddItem(new GUIContent("Convert To Gamma Space"), false, ConvertToGamma, layerIndex);
 		menu.AddItem(new GUIContent("Convert To Linear Space"), false, ConvertToLinear, layerIndex);
@@ -847,6 +877,10 @@ public class VPaint : EditorWindow
 		});
 	}
 	
+	void LayersGroupTitle ()
+	{
+		GUILayout.Label("Layers Hierarchy");
+	}
 	void LayersGroupGUI (Rect rect)
 	{
 			
@@ -1029,8 +1063,70 @@ public class VPaint : EditorWindow
 		}
 	}
 	
+	void ColorsGroupTitle ()
+	{
+		EditorGUILayout.BeginHorizontal();
+		GUILayout.Label("Color Settings");
+		GUILayout.FlexibleSpace();
+		if(colorsGroup.foldout)
+		{
+			if(VPaintGUIUtility.FoldoutMenu())
+			{
+				var menu = new GenericMenu();
+				menu.AddItem(new GUIContent("Flood Fill"), false, ()=>{
+					FloodFill();
+				});
+				
+				menu.AddItem(new GUIContent("Invert"), false, ()=>{
+					InvertColors();
+				});
+				
+				menu.AddItem(new GUIContent("Erase"), false, ()=>{
+					EraseAll();
+				});
+				
+//				menu.AddSeparator("");
+//				
+//				menu.AddItem(new GUIContent("Open PAL File"), false, ()=>{
+//					string path = EditorUtility.OpenFilePanel("Open PAL File", "", "pal");
+//					if(path == null || path == "") return;
+//					var text = File.ReadAllText(path);
+//					string[] arrs = text.Split('[',']');
+//					List<Color> colors = new List<Color>();
+//					for(int i = 0; i < arrs.Length; i++)
+//					{
+//						var str = arrs[i];
+//						
+//					}
+//				});
+//				menu.AddItem(new GUIContent("Save PAL File"), false, ()=>{
+//					
+//				});
+				
+				menu.ShowAsContext();
+			}
+		}
+		EditorGUILayout.EndHorizontal();	
+	}
 	void ColorsGroupGUI (Rect rect)
 	{
+		if(!picker.mainTexture)
+		{
+			picker.Setup(280);
+		}
+		
+		var col = VertexEditorColors.colors[VertexEditorControls.selectedColor];
+		
+		EditorGUILayout.BeginHorizontal();
+		GUILayout.FlexibleSpace();
+		picker.DrawGUI(ref col);
+		GUILayout.FlexibleSpace();
+		EditorGUILayout.EndHorizontal();
+		
+		VertexEditorColors.colors[VertexEditorControls.selectedColor] = col;
+		
+		GUILayout.Space(10);
+		
 		List<Rect> colorRects = new List<Rect>();
 		EditorGUILayout.BeginHorizontal();
 		GUILayout.FlexibleSpace();
@@ -1139,70 +1235,114 @@ public class VPaint : EditorWindow
 		});
 	}
 	
+	
+	
+	void ControlsGroupTitle ()
+	{
+		GUILayout.Label("Tool Settings");
+	}
 	void ControlsGroupGUI (Rect rect)
 	{	
-		VPaintGUIUtility.columnViewBoxCount = tool == VertexTool.Paint ? 2 : 1;
-		VPaintGUIUtility.DrawColumnRow(24, 
+		VPaintGUIUtility.columnViewBoxCount = sceneViewControlsEnabled ? 2 : 1;
+		VPaintGUIUtility.DrawColumnRow(12,
 		(r)=>{
 			EditorGUIUtility.AddCursorRect(r, MouseCursor.Link);
 			if(r.Contains(Event.current.mousePosition) && Event.current.type == EventType.MouseDown && Event.current.button == 0)
 			{
-				tool = VertexTool.Paint;
+				sceneViewControlsEnabled = !sceneViewControlsEnabled;
+				Event.current.Use();
 			}
 			GUILayout.FlexibleSpace();
-			GUILayout.Label("Paint");
+			GUILayout.Label(sceneViewControlsEnabled ? "Disable Tool" : "Enable Tool");
 			GUILayout.FlexibleSpace();
+		});
+		
+		if(sceneViewControlsEnabled)
+		{
+			VPaintGUIUtility.columnViewBoxCount = tool == VertexTool.Paint ? 2 : 1;
+			VPaintGUIUtility.DrawColumnRow(24, 
+			(r)=>{
+				EditorGUIUtility.AddCursorRect(r, MouseCursor.Link);
+				if(r.Contains(Event.current.mousePosition) && Event.current.type == EventType.MouseDown && Event.current.button == 0)
+				{
+					tool = VertexTool.Paint;
+					Event.current.Use();
+				}
+				GUILayout.FlexibleSpace();
+				GUILayout.Label("Paint");
+				GUILayout.FlexibleSpace();
+				
+				VPaintGUIUtility.columnViewBoxCount = tool == VertexTool.Erase ? 2 : 1;
+			},
+			(r)=>{
+				EditorGUIUtility.AddCursorRect(r, MouseCursor.Link);
+				if(r.Contains(Event.current.mousePosition) && Event.current.type == EventType.MouseDown && Event.current.button == 0)
+				{
+					tool = VertexTool.Erase;
+					Event.current.Use();
+				}
+				GUILayout.FlexibleSpace();
+				GUILayout.Label("Erase");
+				GUILayout.FlexibleSpace();
+				
+				VPaintGUIUtility.columnViewBoxCount = tool == VertexTool.Smooth ? 2 : 1;
+			},
+			(r)=>{
+				EditorGUIUtility.AddCursorRect(r, MouseCursor.Link);
+				if(r.Contains(Event.current.mousePosition) && Event.current.type == EventType.MouseDown && Event.current.button == 0)
+				{
+					tool = VertexTool.Smooth;
+					Event.current.Use();
+				}
+				GUILayout.FlexibleSpace();
+				GUILayout.Label("Smooth");
+				GUILayout.FlexibleSpace();
+			});
+			VPaintGUIUtility.columnViewBoxCount = 1;
 			
-			VPaintGUIUtility.columnViewBoxCount = tool == VertexTool.Erase ? 2 : 1;
-		},
-		(r)=>{
-			EditorGUIUtility.AddCursorRect(r, MouseCursor.Link);
-			if(r.Contains(Event.current.mousePosition) && Event.current.type == EventType.MouseDown && Event.current.button == 0)
-			{
-				tool = VertexTool.Erase;
-			}
-			GUILayout.FlexibleSpace();
-			GUILayout.Label("Erase");
-			GUILayout.FlexibleSpace();
+			VPaintGUIUtility.DrawColumnRow(24, 
+			()=>{
+				VertexEditorControls.radius = EditorGUILayout.Slider("Radius", VertexEditorControls.radius, 0, 30);
+			});
 			
-			VPaintGUIUtility.columnViewBoxCount = tool == VertexTool.Smooth ? 2 : 1;
-		},
-		(r)=>{
-			EditorGUIUtility.AddCursorRect(r, MouseCursor.Link);
-			if(r.Contains(Event.current.mousePosition) && Event.current.type == EventType.MouseDown && Event.current.button == 0)
-			{
-				tool = VertexTool.Smooth;
-			}
-			GUILayout.FlexibleSpace();
-			GUILayout.Label("Smooth");
-			GUILayout.FlexibleSpace();
-		});
-		VPaintGUIUtility.columnViewBoxCount = 1;
-		
-		VPaintGUIUtility.DrawColumnRow(24, 
-		()=>{
-			VertexEditorControls.radius = EditorGUILayout.Slider("Radius", VertexEditorControls.radius, 0, 30);
-		});
-		
-		VPaintGUIUtility.DrawColumnRow(24, 
-		()=>{
-			VertexEditorControls.radius = Mathf.Clamp(EditorGUILayout.Slider("Radius (Fine)", VertexEditorControls.radius, 
-					VertexEditorControls.radius - 1f, VertexEditorControls.radius + 1f), 0, 30);
-		});
-		
-		VPaintGUIUtility.DrawColumnRow(24, 
-		()=>{
-			VertexEditorControls.strength = EditorGUILayout.Slider("Opacity", VertexEditorControls.strength, 0, 100);
-		});
-		VPaintGUIUtility.DrawColumnRow(24, 
-		()=>{
-			VertexEditorControls.falloff = EditorGUILayout.Slider("Falloff", VertexEditorControls.falloff, 0, 10);
-		});
+			VPaintGUIUtility.DrawColumnRow(24, 
+			()=>{
+				VertexEditorControls.radius = Mathf.Clamp(EditorGUILayout.Slider("Radius (Fine)", VertexEditorControls.radius, 
+						VertexEditorControls.radius - 1f, VertexEditorControls.radius + 1f), 0, 30);
+			});
+			
+			VPaintGUIUtility.DrawColumnRow(24, 
+			()=>{
+				VertexEditorControls.strength = EditorGUILayout.Slider("Opacity", VertexEditorControls.strength, 0, 100);
+			});
+			VPaintGUIUtility.DrawColumnRow(24, 
+			()=>{
+				VertexEditorControls.falloff = EditorGUILayout.Slider("Falloff", VertexEditorControls.falloff, 0, 10);
+			});
+		}
 	}
 	
+	
+	void CordoneGroupTitle ()
+	{
+		GUILayout.Label("Object Isolation");
+	}
 	void CordoneGroupGUI (Rect rect)
 	{
 		VPaintGUIUtility.columnViewBoxCount = 1;
+		
+		VPaintGUIUtility.DrawColumnRow(24,
+		(r)=>{
+			GUILayout.Label("Isolate Object Window:");
+			GUILayout.FlexibleSpace();
+			GUI.enabled = !VPaintWindowBase.GetVPaintWindow<VPaintSelectionWindow>();
+			if(GUILayout.Button("Open"))
+			{
+				EditorWindow.GetWindow<VPaintSelectionWindow>(true);
+			}
+			GUI.enabled = true;
+		});
+		
 		VPaintGUIUtility.DrawColumnRow(24,
 		(r)=>{
 			
@@ -1216,7 +1356,7 @@ public class VPaint : EditorWindow
 				VertexEditorControls.cordoneEnabled = !VertexEditorControls.cordoneEnabled;
 			}
 			
-			GUILayout.Label("Enabled");
+			GUILayout.Label("Isolated Region");
 			GUILayout.FlexibleSpace();
 			
 			Rect b = EditorGUILayout.BeginHorizontal();
@@ -1225,9 +1365,22 @@ public class VPaint : EditorWindow
 			
 			GUI.Toggle(b, VertexEditorControls.cordoneEnabled, GUIContent.none);
 			
-			EditorGUILayout.EndHorizontal();
+			if(VPaintGUIUtility.FoldoutMenu())
+			{
+				GenericMenu menu = new GenericMenu();
+				menu.AddItem(new GUIContent("Reset"), false, ()=>{
+					VertexEditorControls.cordoneEnabled = false;
+					VertexEditorControls.cordonePosition = Vector3.zero;
+					VertexEditorControls.cordoneSize = Vector3.one;
+				});
+				menu.AddItem(new GUIContent("Focus"), false, ()=>{
+					if(!SceneView.lastActiveSceneView) return;
+					VertexEditorControls.cordonePosition = SceneView.lastActiveSceneView.pivot;
+				});
+				menu.ShowAsContext();
+			}
 			
-//			GUILayout.Space(10);
+			EditorGUILayout.EndHorizontal();
 			
 		});
 		GUI.enabled = VertexEditorControls.cordoneEnabled;
@@ -1242,108 +1395,53 @@ public class VPaint : EditorWindow
 		GUI.enabled = true;
 	}
 	
-	void ObjectsGroupGUI (Rect rect)
+	void MaintenanceGroupTitle ()
 	{
-		bool allMasked = true;
-		foreach(var b in currentEditingContentsMask) allMasked &= b;
-		
-		VPaintGUIUtility.columnViewBoxCount = 2;
+		GUILayout.Label("Maintenance");
+	}
+	void MaintenanceGroupGUI (Rect rect)
+	{
 		VPaintGUIUtility.DrawColumnRow(24,
 		()=>{
-			bool maskAll = EditorGUILayout.Toggle(allMasked, GUILayout.Width(16));
-			if(maskAll != allMasked)
+			if(errorCount != 0)
 			{
-				for(int i = 0; i < currentEditingContentsMask.Length; i++) 
-				{
-					currentEditingContentsMask[i] = maskAll;
-				}
+				GUIStyle style = new GUIStyle(GUI.skin.label);
+				style.normal.textColor = Color.red;
+				GUILayout.Label("This group contains " + errorCount + " error" + (errorCount == 1 ? "" : "s") + ".", style);
 			}
-			
-			GUILayout.Label(currentEditingContents.Length + " object" + (currentEditingContents.Length == 1 ? "" : "s"));
-			
+			else
+			{
+				GUILayout.Label("This group has no errors.");
+			}
 			GUILayout.FlexibleSpace();
-			
-			if(VPaintGUIUtility.FoldoutMenu())
+			if(GUILayout.Button("Open Object Manager"))
 			{
-				GenericMenu menu = new GenericMenu();
-				
-				menu.AddItem(new GUIContent("Add Object(s)"), false, ()=>{
-					EditorWindow.GetWindow<VPaintAddColorerWindow>(true);
-				});				
-				
-				menu.AddItem(new GUIContent("Remove Selected"), false, ()=>{
-					PushUndo("Remove selected");
-					foreach(var vc in maskedVPaintObjects()){
-						layerCache.RemoveColorer(vc);
-					}
-					CleanupInstances();
-					layerCache = layerCache;
-				});
-				
-				menu.AddSeparator("");
-				
-				menu.AddItem(new GUIContent("Flood Fill"), false, ()=>{
-					FloodFill();
-				});
-				
-				menu.AddItem(new GUIContent("Invert"), false, ()=>{
-					InvertColors();
-				});
-				
-				menu.AddItem(new GUIContent("Erase"), false, ()=>{
-					EraseAll();
-				});
-				
-				menu.ShowAsContext();
+				EditorWindow.GetWindow<VPaintGroupMaintenance>(true);
 			}
-			
 		});
-		
-		VPaintGUIUtility.columnViewBoxCount = 1;
-		for(int i = 0; i < currentEditingContents.Length; i++)
-		{
-			var vc = currentEditingContents[i];
-			
-			VPaintGUIUtility.DrawColumnRow(20,
-			()=>{
-				currentEditingContentsMask[i] = EditorGUILayout.Toggle(currentEditingContentsMask[i], GUILayout.Width(16));
-				Rect labelRect = EditorGUILayout.BeginVertical();
-				GUILayout.Label(vc.name);
-				EditorGUILayout.EndVertical();
-				EditorGUIUtility.AddCursorRect(labelRect, MouseCursor.Link);
-				if(labelRect.Contains(Event.current.mousePosition) && Event.current.type == EventType.MouseDown && Event.current.button == 0)
-				{
-					EditorGUIUtility.PingObject(vc);
-				}
-				
-				GUILayout.FlexibleSpace();
-					
-				if(VPaintGUIUtility.FoldoutMenu())
-				{
-					GenericMenu menu = new GenericMenu();
-					menu.AddItem(new GUIContent("Flood"), false, ()=>{
-						PushUndo("Flood " + vc.name);
-						Flood(vc);
-					});
-					menu.AddItem(new GUIContent("Invert"), false, ()=>{
-						PushUndo("Invert " + vc.name);
-						Invert(vc);
-					});
-					menu.AddItem(new GUIContent("Erase"), false, ()=>{
-						PushUndo("Erase " + vc.name);
-						EraseAll(vc);
-					});
-					menu.AddItem(new GUIContent("Remove"), false, ()=>{
-						PushUndo("Remove " + vc.name);
-						layerCache.RemoveColorer(vc);
-						CleanupInstances();
-						layerCache = layerCache;
-					});
-					menu.ShowAsContext();
-				}
-				
-			});
-		}
+		VPaintGUIUtility.DrawColumnRow(24,
+		()=>{
+			if(GUILayout.Button("Reset Settings"))
+			{
+				VertexEditorControls.Reset();
+			}
+			GUILayout.FlexibleSpace();
+			if(GUILayout.Button("Open Hotkey Editor"))
+			{
+				EditorWindow.GetWindow<VPaintHotkeyWindow>(true);
+			}
+			if(GUILayout.Button("Open Clipboard"))
+			{
+				EditorWindow.GetWindow<VPaintClipboardWindow>(true);
+			}
+		});
+	}
+	
+	public void BreakInstance (VPaintObject obj)
+	{
+		if(!obj.originalMesh) return;
+		if(!EditorUtility.IsPersistent(obj.originalMesh)) return;
+		obj.originalMesh = obj.GetMeshInstance();
 	}
 	
 	void FloodFill ()
@@ -1351,7 +1449,7 @@ public class VPaint : EditorWindow
 		PushUndo("Flood Fill");
 		foreach(VPaintObject vc in maskedVPaintObjects())
 			Flood(vc);
-		dirty = true;
+		MarkDirty();
 	}
 	
 	void Flood (VPaintObject vc)
@@ -1396,7 +1494,7 @@ public class VPaint : EditorWindow
 		PushUndo("Erase All");
 		foreach(VPaintObject vc in maskedVPaintObjects())
 			EraseAll(vc);
-		dirty = true;
+		MarkDirty();
 	}
 	void EraseAll (VPaintObject vc)
 	{
@@ -1433,7 +1531,7 @@ public class VPaint : EditorWindow
 		PushUndo("Invert Colors");
 		foreach(var vc in maskedVPaintObjects())
 			Invert(vc);
-		dirty = true;
+		MarkDirty();
 	}
 	
 	void Invert (VPaintObject vc)
@@ -1486,7 +1584,7 @@ public class VPaint : EditorWindow
 	{
 		PushUndo("Import Base Layer");
 		var layer = new VPaintLayer();
-		foreach(var vc in currentEditingContents)
+		foreach(var vc in maskedVPaintObjects())
 		{
 			var data = layer.GetOrCreate(vc);
 			data.colors = vc.originalMesh.colors;
@@ -1617,19 +1715,13 @@ public class VPaint : EditorWindow
 		ReloadLayers();
 	}
 	
-	public void ToggleWireframe () 
-	{
-//		if(lastDrawnSceneView.m_RenderMode != SceneView.RenderMode.Textured)
-//			lastDrawnSceneView.m_RenderMode = SceneView.RenderMode.Textured;
-//		else
-//			lastDrawnSceneView.m_RenderMode = SceneView.RenderMode.TexWire;
-	}
-	
 	public void OnSceneGUI () 
 	{
 		if(layerStack == null) return;
 		
-		Tools.current = Tool.None;
+		if(!sceneViewControlsEnabled) return;
+		
+		UnityEditor.Tools.current = UnityEditor.Tool.None;
 		if(Event.current.type == EventType.Layout) HandleUtility.AddDefaultControl(GUIUtility.GetControlID(FocusType.Native));
 		
 		if(overrideTool) return;
@@ -1695,15 +1787,25 @@ public class VPaint : EditorWindow
 		public Color[] colors;
 		public float[] transparency;
 	}
-	public void DoVertexPaint () {
+	public void DoVertexPaint () 
+	{
 		
 		bool useEvent = false;
 		
+		if(objectInfo == null)
+		{
+			BuildObjectInfo();
+		}
+		
 		Camera camera = Camera.current;
-		if(!camera) return;
+		if(!camera)
+		{
+			return;
+		}
 		Vector3 mousePosition = Event.current.mousePosition;
 		
 		Bounds cordoneBounds = VertexEditorControls.GetCordoneBounds();
+		
 		if((Event.current.type == EventType.Repaint || Event.current.type == EventType.Layout)
 		&& VertexEditorControls.cordoneEnabled)
 		{
@@ -1750,20 +1852,15 @@ public class VPaint : EditorWindow
 		
 		if(VertexEditorControls.cordoneEnabled && !cordoneBounds.IntersectRay(r)) return;
 		
-//		if(editColliders == null) SetupColliders();
-		
 		MeshCollider hitCollider = null;
 		VPaintObject hitObject = null;
 		
-//		foreach(var kvp in editColliders)
-//		{
-		foreach(var vc in currentEditingContents)
+		foreach(var vc in maskedVPaintObjects())
 		{
-			if(!currentEditingContentsMask[vc.index]) continue;
-			if(VertexEditorControls.cordoneEnabled && !cordoneBounds.Intersects(GetBounds(vc))) continue;
 			var col = GetCollider(vc);
 			RaycastHit testHit;
-			if(col.Raycast(r, out testHit, Mathf.Infinity))
+			
+			if(col.Raycast(r, out testHit, hit.distance))
 			{
 				if(!hitCollider || testHit.distance < hit.distance)
 				{
@@ -1774,7 +1871,8 @@ public class VPaint : EditorWindow
 			}
 		}
 		
-		if(hitCollider) {
+		if(hitCollider) 
+		{
 		
 			if(VertexEditorControls.cordoneEnabled && !cordoneBounds.Contains(hit.point)) return;
 			
@@ -1818,41 +1916,13 @@ public class VPaint : EditorWindow
 			
 			if(Event.current.alt || Event.current.command)
 				modifierHeld = true;
-
+			
+//			bool invalidEvents = Event.current.type == EventType.Repaint || Event.current.type == EventType.Layout;
+			
 			if(!modifierHeld && !sampleKey && leftMouseDown
 			&& ((Event.current.control && rightClickDown) || (!Event.current.control && !rightClickDown)) && !middleMouseDown){
 				
-//				Collider[] colliders = Physics.OverlapSphere(hit.point, VertexEditorControls.radius);
-				
-				Dictionary<VPaintObject, ColorData> colorsToApply = new Dictionary<VPaintObject, ColorData>();
-				List<VPaintObject> affectedColorers = new List<VPaintObject>();
-//				for(int i = 0; i < colliders.Length; i++){
-//				foreach(var kvp in editColliders)
-//				{
-				foreach(var vc in currentEditingContents)
-				{
-						
-//					Collider c = kvp.Key;
-					
-//					var mc = c as MeshCollider;
-//					if(!mc) continue;
-					
-//					if(!editColliders.ContainsKey(mc)) continue;
-					
-					var mc = GetCollider(vc);
-//					var mc = kvp.Key;
-//					var vc = kvp.Value;
-//					VPaintObject vc = editColliders[mc];
-					if(!vc) continue;
-					
-					if(VertexEditorControls.cordoneEnabled && !cordoneBounds.Intersects(mc.bounds))
-						continue;
-					
-					if(!currentEditingContentsMask[vc.index])
-						continue;
-					
-					affectedColorers.Add(vc);
-				}
+				Dictionary<VPaintObject, ColorData> colorsToApply = new Dictionary<VPaintObject, ColorData>();	
 				
 				Color targColor = VertexEditorControls.targetColor;
 				
@@ -1860,9 +1930,29 @@ public class VPaint : EditorWindow
 				if(Event.current.shift) useTool = VertexTool.Smooth;
 				if(Event.current.control) useTool = VertexTool.Erase;
 				
-				foreach(VPaintObject vc in affectedColorers) 
+				var affectedBounds = new Bounds(hit.point, Vector3.one*VertexEditorControls.radius*2);
+				var sqrRadius = VertexEditorControls.radius * VertexEditorControls.radius;
+				
+				List<VPaintObject> smoothTargets = null;
+				if(useTool == VertexTool.Smooth)
 				{
-					Mesh m = vc.GetMeshInstance();
+					smoothTargets = new List<VPaintObject>();
+					foreach(var vc in maskedVPaintObjects())
+					{
+						if(!GetCollider(vc).bounds.Intersects(affectedBounds))
+						{
+							continue;
+						}
+						smoothTargets.Add(vc);
+					}
+				}
+				
+				foreach(VPaintObject vc in maskedVPaintObjects()) 
+				{
+					if(!GetCollider(vc).bounds.Intersects(affectedBounds))
+					{
+						continue;
+					}
 					
 					var pd = currentPaintLayer.GetOrCreate(vc);
 					Color[] colors = pd.colors;
@@ -1871,7 +1961,12 @@ public class VPaint : EditorWindow
 					Color[] newColors = new Color[colors.Length];
 					float[] newTransparency = new float[transparency.Length];
 					
-					Vector3[] vertices = m.vertices;
+					Vector3[] vertices = vc.myVertices;
+					
+					if(vertices.Length != pd.colors.Length)
+					{
+						continue;
+					}
 					
 					Transform t = vc.transform;
 					
@@ -1883,11 +1978,14 @@ public class VPaint : EditorWindow
 					{
 						Vector3 v = t.TransformPoint(vertices[b]);
 						
-						float distance = Vector3.Distance(v, hit.point);
+						float sqrDistance = Vector3.SqrMagnitude(v - hit.point);
 						
-						if(distance < VertexEditorControls.radius
+						if(affectedBounds.Contains(v)
+						&& sqrDistance < sqrRadius
 						&& (!VertexEditorControls.cordoneEnabled || cordoneBounds.Contains(v)))
 						{
+							float distance = Mathf.Sqrt(sqrDistance);
+							
 							float affect = 
 								Mathf.Clamp01(
 									Mathf.Pow(
@@ -1927,7 +2025,7 @@ public class VPaint : EditorWindow
 								float tr = 0;
 								float fac = 0;
 								float rad = VertexEditorControls.radius - distance;
-								foreach(var vc2 in affectedColorers)
+								foreach(var vc2 in smoothTargets)
 								{									
 									var vc2data = currentPaintLayer.Get(vc2);
 									if(vc2data == null) continue;
@@ -1984,7 +2082,7 @@ public class VPaint : EditorWindow
 					
 					if(used){						
 						colorsToApply.Add(vc, new ColorData(){colors = newColors, transparency = newTransparency});
-						dirty = true;
+						MarkDirty();
 					}
 				}
 				
@@ -1995,6 +2093,7 @@ public class VPaint : EditorWindow
 					{
 						SetColors(currentPaintLayer, kvp.Key, kvp.Value.colors, kvp.Value.transparency);
 					}
+					useEvent = true;
 				}
 			}
 			
@@ -2009,10 +2108,10 @@ public class VPaint : EditorWindow
 		LoadLayers(stack.layers);
 	}
 	
-	public void LoadLayers (List<VPaintLayer> layers)
-	{
+	public void LoadLayers (IEnumerable<VPaintLayer> layers)
+	{		
 		ClearAllColors();
-		List<VPaintObject> affectedColorers = new List<VPaintObject>();
+		HashSet<VPaintObject> affectedColorers = new HashSet<VPaintObject>();
 		foreach(VPaintLayer layer in layers)
 		{
 			LoadLayer(layer, affectedColorers);
@@ -2025,7 +2124,7 @@ public class VPaint : EditorWindow
 	
 	public void ClearAllColors () 
 	{
-		foreach(var vc in currentEditingContents)
+		foreach(var vc in maskedVPaintObjects())
 		{
 			if(!vc) continue;
 			ClearColors(vc);
@@ -2038,15 +2137,15 @@ public class VPaint : EditorWindow
 		
 		Mesh m = vc.GetMeshInstance();
 		if(!m) return;
-		Color[] colors = m.colors;
-		Vector3[] vertices = m.vertices;
+		Color[] colors = vc.myColors;
+		Vector3[] vertices = vc.myVertices;
 		
 		if(colors.Length != vertices.Length)
 			colors = new Color[vertices.Length];
 		
 		for(int i = 0; i < colors.Length; i++)
 		{
-			colors[i] = Color.grey;
+			colors[i] = Color.black;
 		}
 		m.colors = colors;
 	}
@@ -2055,7 +2154,7 @@ public class VPaint : EditorWindow
 	{
 		ClearAllColors();
 		
-		List<VPaintObject> affectedColorers = new List<VPaintObject>();
+		HashSet<VPaintObject> affectedColorers = new HashSet<VPaintObject>();
 		
 		LoadLayer(layer, affectedColorers);
 		
@@ -2067,50 +2166,37 @@ public class VPaint : EditorWindow
 		lastLoadedLayer = layer;
 	}
 	
-	public void LoadLayer (VPaintLayer layer, List<VPaintObject> affectedColorers)
+	public void LoadLayer (VPaintLayer layer, HashSet<VPaintObject> affectedColorers)
 	{
-		bool cancelAllInvalid = false;
 		foreach(var vc in currentEditingContents)
-		{	
+		{
 			if(!vc) continue;
 			
 			var paintData = layer.Get(vc);
 			if(paintData != null)
 			{
-				Mesh m = vc.GetMeshInstance();
-				if(m.vertices.Length != paintData.colors.Length){
-					if(cancelAllInvalid)
+				var verts = vc.myVertices;
+				
+				if(verts.Length != paintData.colors.Length)
+				{
+					paintData = new VPaintVertexData();
+					
+					paintData.colors = new Color[verts.Length];
+					paintData.transparency = new float[verts.Length];
+					
+					for(int i = 0; i < paintData.colors.Length; i++)
 					{
-						layer.Remove(vc);
-						continue;
-					}
-					var dialogResult = EditorUtility.DisplayDialogComplex(
-						"Invalid Vertex Colors", 
-						"The colorer " + vc.name + " contains vertex color data which does not match the source mesh, on layer '" + layer.name + "'. Attempt to copy colors to new mesh?",
-						"Okay", "Cancel All", "Cancel");
-					if(dialogResult == 0)
-					{
-						Color[] newColors = new Color[m.vertices.Length];
-						float[] newTrans = new float[m.vertices.Length];
-						for(int i = 0; i < paintData.colors.Length && i < m.vertices.Length; i++)
-						{
-							newColors[i] = paintData.colors[i];
-							newTrans[i] = paintData.transparency[i];
-						}
-						paintData.colors = newColors;
-						paintData.transparency = newTrans;
-					}
-					else
-					{
-						if(dialogResult == 2) cancelAllInvalid = true;
-						layer.Remove(vc);
-						continue;
+						paintData.colors[i] = Color.magenta;
+						paintData.transparency[i] = 1f;
 					}
 				}
 				
 				PaintObject(vc, layer, paintData);
+				
 				if(!affectedColorers.Contains(vc))
+				{
 					affectedColorers.Add(vc);
+				}
 			}
 		}
 	}
@@ -2126,10 +2212,10 @@ public class VPaint : EditorWindow
 	public void LoadObject (VPaintObject vc)
 	{
 		if(layerStack == null) return;
-		LoadObject(vc, layerStack.layers);
+		LoadObject(vc, layerStack.GetActiveLayers());
 	}
 	
-	public void LoadObject (VPaintObject vc, List<VPaintLayer> layers)
+	public void LoadObject (VPaintObject vc, IEnumerable<VPaintLayer> layers)
 	{
 		ClearColors(vc);
 		PaintObject(vc, baseLayer);
@@ -2151,8 +2237,10 @@ public class VPaint : EditorWindow
 	public void PaintObject (VPaintObject vc, VPaintLayer layer)
 	{		
 		VPaintVertexData data = layer.Get(vc);
-		if(data==null) return;
-
+		if(data==null)
+		{
+			return;
+		}
 		PaintObject(vc, layer, data);
 	}
 	
@@ -2178,7 +2266,10 @@ public class VPaint : EditorWindow
 	
 	public void SetColors (VPaintLayer layer, VPaintObject vc, Color[] colors, float[] transparency)
 	{
-		if(layerStack == null) return;
+		if(layerStack == null)
+		{
+			return;
+		}
 		VPaintVertexData data = layer.GetOrCreate(vc);
 		SetColors(layer, data, colors, transparency);
 		LoadObject(vc, layerStack.GetActiveLayers());
@@ -2188,14 +2279,22 @@ public class VPaint : EditorWindow
 	{
 		data.colors = colors;
 		data.transparency = transparency;
-		dirty = true;
+		
+		MarkDirty();
 	}
 	
-	public void ReloadLayers (){
-		List<VPaintLayer> lyrs = new List<VPaintLayer>();
-		if(baseLayer != null) lyrs.Add(baseLayer);
-		if(layerStack != null) lyrs.AddRange(layerStack.GetActiveLayers());
-		LoadLayers(lyrs);
+	public void ReloadLayers ()
+	{
+		LoadLayers(AllLayers());
+	}
+	IEnumerable<VPaintLayer> AllLayers ()
+	{
+		if(layerStack == null) yield break;
+		yield return baseLayer;
+		foreach(var layer in layerStack.GetActiveLayers())
+		{
+			yield return layer;
+		}
 	}
 	
 	public static Color GetSampleColor (List<VPaintObject> colorers, Vector3 position, float radius)
@@ -2229,6 +2328,11 @@ public class VPaint : EditorWindow
 		return (Color)(avg/fac);		
 	}
 	
+	string MenuHotkey (string key)
+	{
+		return "["+VPaintHotkeys.GetLabel(key)+"]";
+	}
+	
 	private bool raiseKey = false;
 	private bool lowerKey = false;
 	private bool rightKey = false;
@@ -2242,7 +2346,8 @@ public class VPaint : EditorWindow
 	
 	private const float noclipSpeed = 30f;
 	private float noclipSpeedMod = 4f;
-	public void SceneViewKeyHandler () {
+	public void SceneViewKeyHandler () 
+	{
 		bool keyPressed = false;
 		bool mousePressed = false;
 		bool active = false;		
@@ -2287,7 +2392,9 @@ public class VPaint : EditorWindow
 					sampleKey = active;
 					break;
 			}
-		}else if(mousePressed){
+		}
+		else if(mousePressed)
+		{
 			if(Event.current.button == 0){
 				leftMouseDown = active;
 			}
@@ -2299,141 +2406,73 @@ public class VPaint : EditorWindow
 			}
 		}
 		
-		if(Event.current.type == EventType.KeyDown){
-			switch(Event.current.keyCode)
-			{
-				case KeyCode.UpArrow:
-					if(Event.current.shift)
-					{
-						MoveLayerUp(_currentPaintLayer);
-						Event.current.Use();
-					}
-					break;
-				case KeyCode.DownArrow:
-					if(Event.current.shift)
-					{
-						MoveLayerDown(_currentPaintLayer);
-						Event.current.Use();
-					}
-					break;
-				case KeyCode.D:
-					if(Event.current.shift)
-					{
-						DuplicateLayer(_currentPaintLayer);
-						Event.current.Use();
-					}
-					break;
-				case KeyCode.R:
-					if(Event.current.alt)
-					{
-						RemoveLayer(_currentPaintLayer);
-						Event.current.Use();
-					}
-					break;
-				case KeyCode.E:
-					if(Event.current.shift)
-					{
-						if(Event.current.control)
-						{
-							MergeAllLayers();
-							Event.current.Use();
-						}
-						else
-						{
-							MergeLayerDown(_currentPaintLayer);
-							Event.current.Use();
-						}
-					}
-					break;
-				case KeyCode.N:
-					if(Event.current.shift)
-					{
-						NewLayer();
-						Event.current.Use();
-					}
-					break;
-				case KeyCode.M:
-					if(Event.current.shift)
-					{
-						CreateMergedLayer();
-						Event.current.Use();
-					}
-					break;
-				case KeyCode.LeftBracket:
-					VertexEditorControls.radius = Mathf.Clamp(VertexEditorControls.radius-0.25f, 0, Mathf.Infinity);
-					Event.current.Use();
-					break;
-				case KeyCode.RightBracket:
-					VertexEditorControls.radius = Mathf.Clamp(VertexEditorControls.radius+0.25f, 0, 30);
-					Event.current.Use();
-					break;
-				case KeyCode.Minus:
-					VertexEditorControls.strength = Mathf.Clamp(VertexEditorControls.strength-1, 0, Mathf.Infinity);
-					Event.current.Use();
-					break;
-				case KeyCode.Equals:
-					VertexEditorControls.strength = Mathf.Clamp(VertexEditorControls.strength+1, 0, 100);
-					Event.current.Use();
-					break;
-				case KeyCode.Alpha0:
-					VertexEditorControls.falloff = 10f;
-					Event.current.Use();
-					break;
-				case KeyCode.BackQuote:
-					VertexEditorControls.falloff = 0f;
-					Event.current.Use();
-					break;
-				case KeyCode.Alpha1:
-					VertexEditorControls.falloff = 1f;
-					Event.current.Use();
-					break;
-				case KeyCode.Alpha2:
-					VertexEditorControls.falloff = 2f;
-					Event.current.Use();
-					break;
-				case KeyCode.Alpha3:
-					VertexEditorControls.falloff = 3f;
-					Event.current.Use();
-					break;
-				case KeyCode.Alpha4:
-					VertexEditorControls.falloff = 4f;
-					Event.current.Use();
-					break;
-				case KeyCode.Alpha5:
-					VertexEditorControls.falloff = 5f;
-					Event.current.Use();
-					break;
-				case KeyCode.Alpha6:
-					VertexEditorControls.falloff = 6f;
-					Event.current.Use();
-					break;
-				case KeyCode.Alpha7:
-					VertexEditorControls.falloff = 7f;
-					Event.current.Use();
-					break;
-				case KeyCode.Alpha8:
-					VertexEditorControls.falloff = 8f;
-					Event.current.Use();
-					break;
-				case KeyCode.Alpha9:
-					VertexEditorControls.falloff = 9f;
-					Event.current.Use();
-					break;
-				case KeyCode.Tab:
-					if(Event.current.shift)
-					{
-						ToggleWireframe();
-						Event.current.Use();
-					}
-					else
-					{
-						ToggleVertexColorPreview();
-						Event.current.Use();
-					}
-					break;
-			}
-		}
-		
+		VPaintHotkeys.Evaluate(Event.current);		
+	}	
+	
+	public static void CurrentLayerMoveUp ()
+	{
+		if(!Instance) return;
+		Instance.MoveLayerUp(Instance._currentPaintLayer);
+	}
+	public static void CurrentLayerMoveDown ()
+	{
+		if(!Instance) return;
+		Instance.MoveLayerDown(Instance._currentPaintLayer);
+	}
+	public static void CurrentLayerDuplicate ()
+	{
+		if(!Instance) return;
+		Instance.DuplicateLayer(Instance._currentPaintLayer);
+	}
+	public static void CurrentLayerRemove ()
+	{
+		if(!Instance) return;
+		Instance.RemoveLayer(Instance._currentPaintLayer);
+	}
+	public static void CurrentLayerMergeDown ()
+	{
+		if(!Instance) return;
+		Instance.MergeLayerDown(Instance._currentPaintLayer);
+	}
+	public static void AllLayersMerge ()
+	{
+		if(!Instance) return;
+		Instance.MergeAllLayers();
+	}
+	public static void CreateNewLayer ()
+	{
+		if(!Instance) return;
+		Instance.NewLayer();
+	}
+	public static void CreateAllMergedLayer ()
+	{
+		if(!Instance) return;
+		Instance.CreateMergedLayer();
+	}
+	public static void DecreaseRadius ()
+	{
+		if(!Instance) return;
+		VertexEditorControls.radius = Mathf.Clamp(VertexEditorControls.radius-0.25f, 0, Mathf.Infinity);
+	}
+	public static void IncreaseRadius ()
+	{
+		if(!Instance) return;
+		VertexEditorControls.radius = Mathf.Clamp(VertexEditorControls.radius+0.25f, 0, 30);
+	}
+	public static void DecreasePower ()
+	{
+		if(!Instance) return;
+		VertexEditorControls.strength = Mathf.Clamp(VertexEditorControls.strength-1, 0, Mathf.Infinity);
+	}
+	public static void IncreasePower ()
+	{
+		if(!Instance) return;
+		VertexEditorControls.strength = Mathf.Clamp(VertexEditorControls.strength+1, 0, 100);
+	}
+	public static void ToggleVertexColorPreviewMode ()
+	{
+		if(!Instance) return;
+		Instance.ToggleVertexColorPreview();
 	}
 	
 }

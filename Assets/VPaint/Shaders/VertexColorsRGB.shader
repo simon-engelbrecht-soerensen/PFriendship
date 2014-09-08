@@ -1,12 +1,5 @@
 Shader "VPaint/Unlit/VertexColorsRGB"
 {
-	 Properties {
-	      _MainTex ("Texture (RGB)", 2D) = "white" {}
-	      _Color ("Main Color", Color) = (1,1,1,1)
-	      _SliceGuide ("Slice Guide (RGB)", 2D) = "white" {}
-	      _SliceAmount ("Slice Amount", Range(0.0, 1.0)) = 0.5
-    }
-
 	SubShader {
 		Tags { "RenderType"="Opaque" }
 		
@@ -37,7 +30,6 @@ Shader "VPaint/Unlit/VertexColorsRGB"
 			
 			fixed4 frag (v2f o) : COLOR
 			{
-				
 				return o.color;
 			}
 			ENDCG

@@ -16,7 +16,8 @@ Shader "VPaint/Lit/Blend 3 Bumped Textures" {
 		LOD 200
 		
 		CGPROGRAM
-		#pragma surface surf Lambert
+		#pragma surface surf BlinnPhong
+		#pragma target 3.0
 
 		half4 _Color;
 		sampler2D _Texture1;
@@ -41,7 +42,8 @@ Shader "VPaint/Lit/Blend 3 Bumped Textures" {
 			float4 color : COLOR;
 		};
 
-		void surf (Input IN, inout SurfaceOutput o) {
+		void surf (Input IN, inout SurfaceOutput o) 
+		{
 			float4 color = IN.color;
 			
 			half4 t1 = tex2D (_Texture1, IN.uv_Texture1);
