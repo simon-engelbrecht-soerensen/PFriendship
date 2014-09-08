@@ -1,8 +1,6 @@
 using UnityEditor;
 using UnityEngine;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Valkyrie.VPaint
 {
@@ -77,7 +75,6 @@ namespace Valkyrie.VPaint
 		
 		static float columnWidth;
 		public static int columnViewBoxCount = 1;
-		public static bool vAlignRows = true;
 		public static void BeginColumnView (float width)
 		{
 			columnWidth = width;
@@ -105,12 +102,11 @@ namespace Valkyrie.VPaint
 			{
 				BoxArea(0, 4, columnViewBoxCount, ()=>{
 					Rect rect = EditorGUILayout.BeginVertical(GUILayout.Height(height), GUILayout.Width(width));
-					bool doVAlign = vAlignRows;
-					if(doVAlign) GUILayout.FlexibleSpace();
+					GUILayout.FlexibleSpace();
 					EditorGUILayout.BeginHorizontal();
 					items[i](rect);
 					EditorGUILayout.EndHorizontal();
-					if(doVAlign) GUILayout.FlexibleSpace();
+					GUILayout.FlexibleSpace();
 					EditorGUILayout.EndVertical();
 				});
 				if(i != items.Length-1) GUILayout.Space(4);
@@ -125,178 +121,5 @@ namespace Valkyrie.VPaint
 			return r;
 		}
 		
-		public static void SelectionGroup (string title, List<VPaintObject> objects, ref Vector2 scroll)
-		{
-			VPaintGUIUtility.DrawColumnRow(24,
-			()=>{
-				GUILayout.Label(title);
-				if(VPaintGUIUtility.FoldoutMenu())
-				{
-					AddMenu(objects);
-				}
-			});
-			
-			bool doVAlign = vAlignRows;
-			vAlignRows = false;
-			
-			var s = scroll;
-			VPaintGUIUtility.DrawColumnRow(200,
-			()=>{
-				s = EditorGUILayout.BeginScrollView(s);
-				for(int i = 0; i < objects.Count; i++)
-				{
-					var obj = objects[i];
-					var r = EditorGUILayout.BeginHorizontal();
-					GUILayout.Label(obj.name);
-					GUILayout.FlexibleSpace();
-					if(GUILayout.Button("X"))
-					{
-						objects.RemoveAt(i--);
-					}
-					EditorGUILayout.EndHorizontal();
-					if(r.Contains(Event.current.mousePosition) && Event.current.type == EventType.MouseDown && Event.current.button == 0)
-						EditorGUIUtility.PingObject(obj);
-				}
-				EditorGUILayout.EndScrollView();
-			});
-			scroll = s;
-			
-			vAlignRows = doVAlign;
-			
-			VPaintGUIUtility.DrawColumnRow(1,()=>{});
-		}
-		
-		public static void DualSelectionGroup (
-			string leftTitle, List<VPaintObject> leftObjects, ref Vector2 leftScroll,
-			string rightTitle, List<VPaintObject> rightObjects, ref Vector2 rightScroll)
-		{		
-			VPaintGUIUtility.DrawColumnRow(24,
-			()=>{
-				GUILayout.Label(leftTitle);
-				GUILayout.FlexibleSpace();
-				if(VPaintGUIUtility.FoldoutMenu())
-				{
-					AddMenu(leftObjects);
-				}
-			}, 
-			()=>{
-				if(VPaintGUIUtility.FoldoutMenu())
-				{
-					AddMenu(rightObjects);
-				}
-				GUILayout.FlexibleSpace();
-				GUILayout.Label(rightTitle);
-			});
-		
-			var ls = leftScroll;
-			var rs = rightScroll;
-			
-			bool doVAlign = vAlignRows;
-			vAlignRows = false;
-			
-			VPaintGUIUtility.DrawColumnRow(200,
-			()=>{
-				ls = EditorGUILayout.BeginScrollView(ls);
-				for(int i = 0; i < leftObjects.Count; i++)
-				{
-					var obj = leftObjects[i];
-					var r = EditorGUILayout.BeginHorizontal();
-					GUILayout.Label(obj.name);
-					GUILayout.FlexibleSpace();
-					if(GUILayout.Button("X"))
-					{
-						leftObjects.RemoveAt(i--);
-					}
-					EditorGUILayout.EndHorizontal();
-					if(r.Contains(Event.current.mousePosition) && Event.current.type == EventType.MouseDown && Event.current.button == 0)
-						EditorGUIUtility.PingObject(obj);
-				}
-				EditorGUILayout.EndScrollView();
-			},
-			()=>{
-				rs = EditorGUILayout.BeginScrollView(rs);
-				for(int i = 0; i < rightObjects.Count; i++)
-				{
-					var obj = rightObjects[i];
-					var r = EditorGUILayout.BeginHorizontal();
-					GUILayout.Label(obj.name);
-					GUILayout.FlexibleSpace();
-					if(GUILayout.Button("X"))
-					{
-						rightObjects.RemoveAt(i--);
-					}
-					EditorGUILayout.EndHorizontal();
-					
-					if(r.Contains(Event.current.mousePosition) && Event.current.type == EventType.MouseDown && Event.current.button == 0)
-						EditorGUIUtility.PingObject(obj);
-				}
-				EditorGUILayout.EndScrollView();
-			});
-			
-			vAlignRows = doVAlign;
-			
-			leftScroll = ls;
-			rightScroll = rs;
-
-			VPaintGUIUtility.DrawColumnRow(1,()=>{},()=>{});
-		}
-		static void AddMenu (List<VPaintObject> objects)
-		{
-			var menu = new GenericMenu();
-			
-			var instance = global::VPaint.Instance;
-			
-			menu.AddItem(new GUIContent("Add All"), false, ()=>{
-				foreach(var vp in instance.currentEditingContents)
-				{
-					if(!objects.Contains(vp)) objects.Add(vp);
-				}
-			});
-			menu.AddItem(new GUIContent("Add Selected"), false, ()=>{
-				foreach(var go in Selection.gameObjects)
-				{
-					var vp = go.GetComponent<VPaintObject>();
-					if(vp && !objects.Contains(vp) 
-					&& instance.currentEditingContents.Contains(vp))
-					{
-						objects.Add(vp);
-					}
-				}
-			});
-
-			menu.AddItem(new GUIContent("Add Selected + Children"), false, ()=>{
-				foreach(var go in Selection.gameObjects)
-				{
-					var vps = go.GetComponentsInChildren<VPaintObject>();
-					foreach(var vp in vps)
-					{
-						if(!objects.Contains(vp)
-						&& instance.currentEditingContents.Contains(vp)) objects.Add(vp);
-					}
-				}
-			});
-			menu.AddItem(new GUIContent("Remove Selected"), false, ()=>{
-				foreach(var go in Selection.gameObjects)
-				{
-					var vp = go.GetComponent<VPaintObject>();
-					if(vp) objects.Remove(vp);
-				}
-			});
-			menu.AddItem(new GUIContent("Remove Selected + Children"), false, ()=>{
-				foreach(var go in Selection.gameObjects)
-				{
-					var vps = go.GetComponentsInChildren<VPaintObject>();
-					foreach(var vp in vps)
-					{
-						objects.Remove(vp);
-					}
-				}
-			});
-			menu.AddItem(new GUIContent("Clear"), false, ()=>{
-				objects.Clear();
-			});
-			
-			menu.ShowAsContext();
-		}
 	}
 }

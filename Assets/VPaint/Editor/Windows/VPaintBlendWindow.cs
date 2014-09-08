@@ -2,7 +2,6 @@ using UnityEditor;
 using UnityEngine;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Valkyrie.VPaint;
 
 public class VPaintBlendWindow : VPaintWindowBase
@@ -197,11 +196,13 @@ public class VPaintBlendWindow : VPaintWindowBase
 	void ValidateSelection ()
 	{
 		Settings.Load();
-	}
-	
-	public override bool LockSelection ()
-	{
-		return true;
+		if(VPaint.Instance._layerCacheObject != currentSelection)
+		{
+			blendOptions = new bool[VPaint.Instance.currentEditingContents.Length];
+			for(int i = 0; i < blendOptions.Length; i++) blendOptions[i] = true;
+			blendTargets = new List<VPaintObject>();
+			currentSelection = VPaint.Instance._layerCacheObject;
+		}
 	}
 	
 	public override bool CloseOnInvalid ()
@@ -209,17 +210,19 @@ public class VPaintBlendWindow : VPaintWindowBase
 		return false;
 	}
 	
-	public List<VPaintObject> blendObjects = new List<VPaintObject>();
-	public List<VPaintObject> blendTargets = new List<VPaintObject>();
-	
-	Vector2 blendObjectsScroll;
-	Vector2 blendTargetsScroll;
-	
+	bool[] blendOptions;
+	List<VPaintObject> blendTargets;
 	Vector2 blendScroll;
 	Vector2 mainScroll;
 	public override void OnValidatedGUI ()
 	{
 		mainScroll = EditorGUILayout.BeginScrollView(mainScroll);
+		
+		VPaintGUIUtility.DrawColumnRow(24, ()=>{
+			GUILayout.Label("Targeted Layer: " + currentLayer.name);
+		});
+		
+		GUILayout.Space(20);
 		
 		BlendSettingsGUI();
 		
@@ -340,9 +343,109 @@ public class VPaintBlendWindow : VPaintWindowBase
 	{		
 		VPaintGUIUtility.BeginColumnView(position.width - 48);
 		
-		VPaintGUIUtility.DualSelectionGroup(
-			"Blend To", blendObjects, ref blendObjectsScroll,
-			"Blend From", blendTargets, ref blendTargetsScroll);
+		bool allChecked = true;
+		for(int i = 0; i < blendOptions.Length; i++)
+		{
+			if(blendTargets.Contains(VPaint.Instance.currentEditingContents[i]))
+				continue;
+			bool b = blendOptions[i];
+			allChecked &= b;
+		}
+		
+		VPaintGUIUtility.DrawColumnRow(24,
+		()=>{
+			bool checkAll = EditorGUILayout.Toggle(allChecked, GUILayout.Width(16));
+			if(checkAll != allChecked){
+				for(int i = 0; i < blendOptions.Length; i++) blendOptions[i] = checkAll;
+			}
+			GUILayout.Label("Blend Objects");
+			GUILayout.FlexibleSpace();
+		}, 
+		()=>{
+			GUILayout.FlexibleSpace();
+			GUILayout.Label("Blend Targets");
+		});
+		
+		int bo = 0;//blend option
+		int bt = 0;//blend target
+		while(true)
+		{
+			VPaintObject blendTarget = bt < blendTargets.Count ? blendTargets[bt] : null;
+			
+			//Find the next blend option, skip it and mark it false
+			VPaintObject blendOption;
+			do{
+				blendOption = bo < blendOptions.Length ? VPaint.Instance.currentEditingContents[bo] : null;
+				if(blendOption && blendTargets.Contains(blendOption))
+				{
+					blendOptions[bo] = false;
+					blendOption = null;
+					bo++;
+				}
+			}while(blendOption == null && bo < blendOptions.Length);
+			
+			if(!blendTarget && !blendOption) break;
+			
+			VPaintGUIUtility.DrawColumnRow(24,
+			()=>{
+				Rect r = EditorGUILayout.BeginHorizontal();
+				if(blendOption)
+				{												
+					blendOptions[bo] = EditorGUILayout.Toggle(blendOptions[bo], GUILayout.Width(16));
+					
+					GUILayout.Label(blendOption.name);
+				
+					GUILayout.FlexibleSpace();
+					
+					if(GUILayout.Button(">", GUILayout.Width(24)))
+					{
+						blendTargets.Add(blendOption);
+					}
+					
+					if(r.Contains(Event.current.mousePosition) && Event.current.type == EventType.MouseDown && Event.current.button == 0)
+						EditorGUIUtility.PingObject(blendOption);
+					
+				}else
+				{
+					GUILayout.FlexibleSpace();
+					GUILayout.Label("");
+				}
+				EditorGUILayout.EndHorizontal();
+			},
+			()=>{
+				Rect r = EditorGUILayout.BeginHorizontal();
+				if(blendTarget)
+				{
+					if(GUILayout.Button("<", GUILayout.Width(24)))
+					{
+						blendTargets.Remove(blendTarget);
+					}
+					
+					GUILayout.FlexibleSpace();
+					
+					GUILayout.Label(blendTarget.name);
+					
+					if(r.Contains(Event.current.mousePosition) && Event.current.type == EventType.MouseDown && Event.current.button == 0)
+						EditorGUIUtility.PingObject(blendTarget);						
+				}else
+				{
+					GUILayout.Label(" ");
+					GUILayout.FlexibleSpace();
+				}
+				EditorGUILayout.EndHorizontal();
+			});
+			
+			bt++;
+			bo++;
+		}
+		
+		VPaintGUIUtility.DrawColumnRow(24,
+		()=>{
+			
+		},
+		()=>{
+			
+		});
 	}
 	
 	public override bool OverrideTool ()
@@ -432,7 +535,13 @@ public class VPaintBlendWindow : VPaintWindowBase
 	
 	VPaintObject[] GetBlendObjects ()
 	{
-		return blendObjects.ToArray();
+		List<VPaintObject> objs = new List<VPaintObject>();
+		for(int i = 0; i < blendOptions.Length; i++)
+		{
+			if(!blendOptions[i]) continue;
+			objs.Add(VPaint.Instance.currentEditingContents[i]);
+		}
+		return objs.ToArray();
 	}
 	
 	public void BlendRadial (bool preview)
@@ -461,10 +570,7 @@ public class VPaintBlendWindow : VPaintWindowBase
 			
 		while(asyncOperation.MoveNext())
 		{
-			if(EditorUtility.DisplayCancelableProgressBar("Applying Radial Blending", asyncOperation.Current.message, asyncOperation.Current.progress))
-			{
-				return;
-			}
+			EditorUtility.DisplayProgressBar("Applying Radial Blending", asyncOperation.Current.message, asyncOperation.Current.progress);
 		}
 		EditorUtility.ClearProgressBar();
 		
@@ -506,11 +612,7 @@ public class VPaintBlendWindow : VPaintWindowBase
 		
 		while(asyncOperation.MoveNext())
 		{
-			if(EditorUtility.DisplayCancelableProgressBar("Applying Directional Blending", asyncOperation.Current.message, asyncOperation.Current.progress))
-			{
-				EditorUtility.ClearProgressBar();
-				return;
-			}
+			EditorUtility.DisplayProgressBar("Applying Directional Blending", asyncOperation.Current.message, asyncOperation.Current.progress);
 		}
 		EditorUtility.ClearProgressBar();
 		

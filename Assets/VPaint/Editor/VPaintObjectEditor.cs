@@ -8,24 +8,13 @@ using Valkyrie.VPaint;
 public class VPaintObjectEditor : Editor 
 {
 	public override void OnInspectorGUI ()
-	{		
-#if !UNITY_4_3
+	{
 		EditorGUIUtility.LookLikeInspector();
-#endif
 		DrawDefaultInspector();
 		
 		var vcol = (target as VPaintObject);
 		
 		var mr = vcol.GetComponent<MeshRenderer>();
-		
-		if(!mr)
-		{
-			GUIStyle style = new GUIStyle(GUI.skin.label);
-			style.wordWrap = true;
-			style.normal.textColor = Color.red;
-			GUILayout.Label("ERROR: VPaint Object requires a mesh renderer.", style);
-			return;
-		}
 		
 		var mat = vcol.originalMaterial;
 		if(!mat) mat = mr.sharedMaterial;
@@ -38,17 +27,17 @@ public class VPaintObjectEditor : Editor
 		}
 		if(!supportsVertexColors)
 		{
-			GUILayout.Space(10);
+			GUILayout.Space(4);
 			Rect r = EditorGUILayout.BeginVertical();
-//			r.width+=4;
-//			r.x-=2;
-//			r.height+=4;
-//			r.y-=2;
+			r.width+=4;
+			r.x-=2;
+			r.height+=4;
+			r.y-=2;
 			GUI.Box(r, GUIContent.none);
 			GUILayout.Space(4);
 			GUIStyle style = new GUIStyle(GUI.skin.label);
 			style.wordWrap = true;
-			if(!EditorGUIUtility.isProSkin) style.normal.textColor = Color.black;
+			style.normal.textColor = Color.black;
 			style.fontSize = 12;
 			GUILayout.Label("The material assigned to this object does not support vertex colors!", style);
 			GUILayout.Space(4);
@@ -66,16 +55,11 @@ public class VPaintObjectEditor : Editor
 			&& mf.sharedMesh != vc._mesh
 			&& mf.sharedMesh != vc._meshNonSerialized)
 			{
-#if UNITY_4_3
-				Undo.RecordObjects(new Object[]{vc, mf}, "Change Mesh");
-#else
 				Undo.RegisterUndo(new Object[]{vc, mf}, "Change Mesh");
-#endif
 				var m = mf.sharedMesh;
 				vc.ResetInstances();
 				vc.originalMesh = m;
 				mf.sharedMesh = m;
-				if(VPaint.Instance) VPaint.Instance.BuildObjectInfo();
 			}
 		}
 	}

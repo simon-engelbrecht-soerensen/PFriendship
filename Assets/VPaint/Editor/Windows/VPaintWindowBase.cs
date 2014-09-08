@@ -5,43 +5,13 @@ using System;
 using System.Reflection;
 using Valkyrie.VPaint;
 
-[InitializeOnLoad]
 public class VPaintWindowBase : EditorWindow 
 {
-	static VPaintWindowBase ()
-	{
-		EditorApplication.delayCall += ()=>{
-			if(VPaint.Instance)
-			{
-				foreach(var instance in Instances)
-				{
-					if(instance.LockSelection()) VPaint.Instance.lockSelection = true;
-					if(instance.OverrideTool()) VPaint.Instance.overrideTool = true;
-				}
-			}
-		};
-	}
-	
 	public VPaintLayerStack currentLayerStack
 		{ get{ return VPaint.Instance.layerStack; } }
 	
 	public VPaintLayer currentLayer
 		{ get{ return currentLayerStack.layers[currentLayerStack.currentLayer]; } }
-	
-	public static T GetVPaintWindow <T> ()
-		where T : VPaintWindowBase 
-	{
-		foreach(var instance in Instances)
-		{
-			if(instance is T) return instance as T;
-		}
-		return null;
-	}
-	
-	public static void RepaintAll ()
-	{
-		foreach(var instance in Instances) instance.Repaint();
-	}
 	
 	public static List<VPaintWindowBase> Instances = new List<VPaintWindowBase>();
 	public void OnEnable ()

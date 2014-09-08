@@ -31,18 +31,9 @@ namespace Valkyrie.VPaint
 		
 		public VPaintVertexData GetOrCreate (VPaintObject vc)
 		{
-			if(vc==null)
-			{
-				return null;
-			}
-			
+			if(vc==null) return null;
 			var data = Get(vc);
-			
-			if(data != null)
-			{
-				return data;
-			}
-			
+			if(data != null) return data;
 			data = new VPaintVertexData();
 			data.vpaintObject = vc;
 			
@@ -56,10 +47,7 @@ namespace Valkyrie.VPaint
 	
 		public VPaintVertexData Get (IVPaintIdentifier vc)
 		{
-			if(vc == null)
-			{
-				return null;
-			}
+			if(vc == null) return null;
 			for(int i = 0; i < paintData.Count; i++)
 			{
 				VPaintVertexData data = paintData[i];
@@ -81,27 +69,12 @@ namespace Valkyrie.VPaint
 			}
 		}
 	
-		public void Flood (IEnumerable<VPaintObject> objects, Color color)
-		{
-			foreach(var obj in objects)
-			{
-				var pd = GetOrCreate(obj);
-				for(int i = 0; i < pd.colors.Length; i++)
-				{
-					pd.transparency[i] = 1;
-					pd.colors[i] = color;
-				}
-			}
-		}
-		
 		public VPaintLayer Clone ()
 		{
 			VPaintLayer layer = new VPaintLayer();
-			
 			foreach(var vpd in paintData)
 			{
-				var v = vpd.Clone();
-				layer.paintData.Add(v);
+				layer.paintData.Add(vpd.Clone());
 			}
 			layer.blendMode = blendMode;
 			layer.name = name;
@@ -132,21 +105,16 @@ namespace Valkyrie.VPaint
 				else
 				{					
 					cols = new Color[data.colors.Length];
-					
 					for(int i = 0; i < cols.Length; i++)
 					{
 						cols[i] = baseColor;
 					}
-					
 					trans = new float[data.transparency.Length];
-					
 					rootData = new VPaintVertexData();
 					rootData.colors = cols;
 					rootData.transparency = trans;
 					rootData.colorer = data.colorer;
-					
 					paintData.Add(rootData);
-					
 				}
 				
 				VPaintUtility.MergeColors(
@@ -162,29 +130,17 @@ namespace Valkyrie.VPaint
 		{
 			foreach(var data in paintData)
 			{
-				if(data.vpaintObject == null)
-				{
-					continue;
-				}
+				if(data.vpaintObject == null) continue;
 				data.vpaintObject.SetColors(data.colors);
 			}
 		}
 		
 		public void Sanitize ()
 		{
-			var checkedObjects = new HashSet<UnityEngine.Object>();
 			for(int i = 0; i < paintData.Count; i++)
 			{
 				var pd = paintData[i];
-				if(pd.colorer == null
-				|| checkedObjects.Contains(pd.colorer))
-				{
-					paintData.RemoveAt(i--);
-				}
-				else
-				{
-					checkedObjects.Add(pd.colorer);
-				}
+				if(pd.colorer == null) paintData.RemoveAt(i--);
 			}
 		}
 		
@@ -213,23 +169,6 @@ namespace Valkyrie.VPaint
 				{
 					paintData.RemoveAt(i--);
 					continue;
-				}
-			}
-		}
-		
-		public void CleanZeroTransparency ()
-		{
-			for(int i = 0; i < paintData.Count; i++)
-			{
-				var pd = paintData[i];
-				bool rem = true;
-				foreach(float f in pd.transparency)
-				{
-					if(f != 0) rem = false;
-				}
-				if(rem)
-				{
-					paintData.RemoveAt(i--);
 				}
 			}
 		}

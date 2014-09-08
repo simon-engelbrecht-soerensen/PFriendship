@@ -13,7 +13,7 @@ Shader "VPaint/Lit/Blend 2 Bumped Textures" {
 		LOD 200
 		
 		CGPROGRAM
-		#pragma surface surf BlinnPhong
+		#pragma surface surf Lambert
 
 		half4 _Color;
 		sampler2D _Texture1;

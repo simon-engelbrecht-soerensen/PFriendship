@@ -1,5 +1,3 @@
-#define HideInternals
-
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,8 +16,7 @@ public delegate Color VPaintObjectPositionalModifier (Color color, float distanc
 
 [AddComponentMenu("VPaint/VPaint Object")]
 [RequireComponent(typeof(MeshFilter))]
-[RequireComponent(typeof(MeshRenderer))]
-[ExecuteInEditMode]
+[RequireComponent(typeof(Renderer))]
 public class VPaintObject : MonoBehaviour, IVPaintIdentifier //, IVertexPaintable 
 {
 	
@@ -39,22 +36,15 @@ public class VPaintObject : MonoBehaviour, IVPaintIdentifier //, IVertexPaintabl
 		return selected;
 	}	
 	
-#if HideInternals
 	[HideInInspector] 
-#endif
 	public Mesh _mesh;
-	
 	[NonSerialized]
 	public Mesh _meshNonSerialized; //non serialized reference because of that asshole Undo
-
-#if HideInternals
+	
 	[HideInInspector] 
-#endif
 	public Material originalMaterial;
 	
-#if HideInternals
 	[HideInInspector] 
-#endif
 	public Mesh originalMesh;
 	
 	[NonSerialized] public Color[] colorsBuilder;
@@ -63,27 +53,9 @@ public class VPaintObject : MonoBehaviour, IVPaintIdentifier //, IVertexPaintabl
 	
 	[NonSerialized]	public Color[] myColors;
 	[NonSerialized] public Vector3[] myVertices;
-
-#if HideInternals
+	
 	[HideInInspector] 
-#endif
 	public MeshCollider editorCollider;
-	
-	MeshRenderer _meshRenderer;
-	MeshRenderer meshRenderer {
-		get{
-			if(!_meshRenderer) _meshRenderer = GetComponent<MeshRenderer>();
-			return _meshRenderer;
-		}
-	}
-	
-	MeshFilter _meshFilter;
-	MeshFilter meshFilter {
-		get{
-			if(!_meshFilter) _meshFilter = GetComponent<MeshFilter>();
-			return _meshFilter;
-		}
-	}
 	
 	[SerializeField] bool _isDynamic;
 	public bool isDynamic 
@@ -115,34 +87,13 @@ public class VPaintObject : MonoBehaviour, IVPaintIdentifier //, IVertexPaintabl
 	}
 	
 	public void OnDestroy () {
-		if(_mesh && _mesh != originalMesh) DestroyImmediate(_mesh);
+		if(_mesh) Destroy(_mesh);
 		all.Remove(this);
-		if(editorCollider) GameObject.DestroyImmediate(editorCollider.gameObject);
+		if(editorCollider) GameObject.Destroy(editorCollider.gameObject);
 	}
-	
-	public void OnEnable ()
-	{
-		if(!Application.isPlaying)
-		{
-			if(!_mesh) return;
-			var others = GameObject.FindObjectsOfType(typeof(VPaintObject));
-			foreach(var o in others)
-			{
-				var vp = o as VPaintObject;
-				if(vp == this) continue;
-				if(vp._mesh == _mesh)
-				{
-					_mesh = null;
-					ResetInstances();
-					break;
-				}
-			}
-		}
-	} 
 	
 	public void Awake ()
 	{
-		if(!Application.isPlaying) return;
 		if(_isDynamic)
 		{
 			CreateDynamicCollider();
@@ -163,11 +114,7 @@ public class VPaintObject : MonoBehaviour, IVPaintIdentifier //, IVertexPaintabl
 		Mesh m = GetMeshInstance();
 		if(colors.Length != myVertices.Length)
 		{
-			for(int i = 0; i < colors.Length; i++)
-			{
-				colors[i] = Color.magenta;
-			}
-			Debug.LogWarning("Invalid vertex colors assigned to " + name + ". Check the Maintenance window for your VPaint Group for more info.");
+			Debug.LogWarning("Colors length of " + name + " is different than vertices length");
 			return;
 		}
 		for(int i = 0; i < colors.Length; i++)
@@ -178,6 +125,13 @@ public class VPaintObject : MonoBehaviour, IVPaintIdentifier //, IVertexPaintabl
 	public bool IsEqualTo (IVPaintIdentifier obj)
 	{
 		return obj == this;
+//		var vc = obj as VPaintObject;
+//		if(!vc)
+//		{
+//			return false;
+//		}
+//		if(vc == this) return true;
+//		return false;
 	}
 	/* */
 	
@@ -201,26 +155,22 @@ public class VPaintObject : MonoBehaviour, IVPaintIdentifier //, IVertexPaintabl
 	
 	public Mesh GetMeshInstance ()
 	{
-		if(!this) return null;
-		if(!meshFilter) return null;
-		
 		if(!_mesh){
 			if(_meshNonSerialized)
 			{
 				_mesh = _meshNonSerialized;
-#if UNITY_EDITOR
-				UnityEditor.EditorUtility.SetDirty(this);
-#endif
 			}
 			else
 			{
-				if(!meshFilter.sharedMesh && !originalMesh) return null;
-				if(originalMesh) meshFilter.sharedMesh = originalMesh;
-				originalMesh = meshFilter.sharedMesh;
+				MeshFilter mf = GetComponent<MeshFilter>();
+				if(!mf) return null;
+				if(!mf.sharedMesh && !originalMesh) return null;
+				if(originalMesh) mf.sharedMesh = originalMesh;
+				originalMesh = mf.sharedMesh;
 				var vdc = GetComponent<VertexDataCache>();
 				if(vdc) _mesh = vdc.GetMeshInstance();
-				else _mesh = GameObject.Instantiate(meshFilter.sharedMesh) as Mesh;
-				meshFilter.sharedMesh = _mesh;
+				else _mesh = GameObject.Instantiate(mf.sharedMesh) as Mesh;
+				mf.sharedMesh = _mesh;
 				myVertices = _mesh.vertices;
 				var cols = _mesh.colors;
 				if(cols == null || cols.Length != myVertices.Length)
@@ -236,13 +186,8 @@ public class VPaintObject : MonoBehaviour, IVPaintIdentifier //, IVertexPaintabl
 //				if(_mesh.normals.Length == 0)
 //					_mesh.RecalculateNormals();
 				_mesh.RecalculateBounds();
-#if UNITY_EDITOR
-				UnityEditor.EditorUtility.SetDirty(this);
-#endif
 			}
 		}
-		meshFilter.sharedMesh = _mesh;
-		
 		_meshNonSerialized = _mesh;
 		if(myVertices == null) myVertices = _mesh.vertices;
 		if(myColors == null) myColors = _mesh.colors;
@@ -251,16 +196,10 @@ public class VPaintObject : MonoBehaviour, IVPaintIdentifier //, IVertexPaintabl
 	
 	public void ResetInstances ()
 	{
-		if(_mesh && _mesh != originalMesh) GameObject.DestroyImmediate(_mesh);
-		
-		_mesh = null;
-		_meshNonSerialized = null;
-		
+		if(_mesh) GameObject.DestroyImmediate(_mesh);
 		MeshFilter mf = GetComponent<MeshFilter>();
 		if(!mf) return;
-		
 		mf.sharedMesh = originalMesh;
-		
 		ResetMaterial();
 	}
 	
@@ -281,9 +220,7 @@ public class VPaintObject : MonoBehaviour, IVPaintIdentifier //, IVertexPaintabl
 	public void FloodColors (Color color)
 	{
 		var m = GetMeshInstance();
-		var c = myColors;
-		if(c == null) c = m.colors;
-		if(c == null || c.Length == 0) c = new Color[m.vertices.Length];
+		var c = m.colors;
 		for(int i = 0; i < c.Length; i++)
 			c[i] = color;
 		m.colors = c;
@@ -360,20 +297,16 @@ public class VPaintObject : MonoBehaviour, IVPaintIdentifier //, IVertexPaintabl
 		});
 	}
 	
-	Material instancedMaterial;
 	public void SetInstanceMaterial (Material m)
 	{
 		if(!renderer) return;
 		if(!originalMaterial) originalMaterial = renderer.sharedMaterial;
 		renderer.sharedMaterial = m;
-		instancedMaterial = m;
 	}
 	public void ResetMaterial ()
 	{
-		if(!renderer) return;
-		
-		if(renderer.sharedMaterial != instancedMaterial) originalMaterial = renderer.sharedMaterial;
-		else if(originalMaterial) renderer.sharedMaterial = originalMaterial;
+		if(renderer && originalMaterial) renderer.sharedMaterial = originalMaterial;
+		originalMaterial = null;
 	}
 	
 }
